@@ -1,23 +1,25 @@
-exports.postWrite = async (req, res) => {
+const postWrite = async (req, res) => {
   res.send('postWrite');
 };
 
-exports.getWrite = async (req, res) => {
+const getWrite = async (req, res) => {
   res.send('getWrite');
 };
 
-exports.detail = async (req, res) => {
+const detail = async (req, res) => {
   res.send('detail page');
 };
 
-exports.getEditWrite = async (req, res) => {
+const getEditWrite = async (req, res) => {
   res.send('getEdit write');
 };
 
-exports.postEditWrite = async (req, res) => {
+const postEditWrite = async (req, res) => {
   res.send('post Edit write');
 };
 
-exports.deleteWrite = async (req, res) => {
+const deleteWrite = async (req, res) => {
   res.send('deltePage');
 };
+
+module.exports = {getWrite, detail, getEditWrite, postEditWrite, deleteWrite}
