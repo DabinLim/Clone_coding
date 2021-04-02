@@ -1,19 +1,21 @@
-const express = require('express');
+const express = require("express");
+const { globalRouter } = require("./routes/globalRoute.js");
 const mongoose = require("mongoose");
 const connect = require('./schemas');
-// import { globalRouter } from "./routes/globalRoute.js";
-
-
 const app = express();
+
+
+
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 
-const instaRouter = require("./routers/instaRoute");
+const instaRouter = require("./routers/insta");
+
 app.use("/api", [instaRouter]);
 
 
 // app.use('/', globalRouter);
-
 
 app.use('/public', express.static('public'));
 
