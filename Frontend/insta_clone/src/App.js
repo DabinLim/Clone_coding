@@ -12,6 +12,7 @@ function App() {
   return (
     <React.Fragment>
       <ConnectedRouter history={history}>
+      
       <BrowserRouter>
       <Route path='/' exact component={Main}/>
       <Route path='/newpost' exact component={NewPost}/>

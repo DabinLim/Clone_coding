@@ -6,23 +6,30 @@ import styled from "styled-components";
 
 const Login = (props) => {
   const dispatch = useDispatch();
-  const testing = () => {
-    let data = {
-      user_id: "ekqls@naver.com",
-      password: "ekqls1234",
-    };
-    dispatch(testActions.loginTest(data));
+  const [id, setId] = React.useState('');
+  const [pwd, setPwd] = React.useState('');
+  const login = () => {
+    if(!id || !pwd){
+        window.alert('아이디와 비밀번호 모두 입력해주세요')
+        return
+    }
+    dispatch(testActions.loginSV([id, pwd]));
   };
   return (
     <React.Fragment>
       <Grid flex_column padding="0 10%" max_height="380px">
         <Banner/>       
         <Grid min_height='100px' flex_column flex_detail="align-items:center;">
-          <Input margin='5px'/>
-          <Input margin='5px'/>
+          <Input _onChange={(e) => {
+              setId(e.target.value);
+            }} placeholder="아이디를 입력하세요" margin='5px'/>
+          <Input _onChange={(e) => {
+              setPwd(e.target.value);
+            }}
+            value={pwd} placeholder="비밀번호를 입력하세요" margin='5px'/>
         </Grid>
 
-        <Button> 로그인 </Button>
+        <Button _onClick={login}> 로그인 </Button>
         <Grid padding='20px'>
           <Line/>
           <Image/>

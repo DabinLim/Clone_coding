@@ -25,7 +25,7 @@ const Main = (props) => {
         >
           <LoginImage />
 
-          <Grid flex_column  max_width='350px' border min_height="620px">
+          <Grid flex_column min_width='350px' max_width='350px' border height="620px">
             <Grid border height="380px" padding="10px 0px" margin="10px 0px">
                 {isSignup? <SignUp/> : <Login/>}
             </Grid>

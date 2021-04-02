@@ -9,8 +9,14 @@ const initialState = {
   list: [],
 };
 
-const loginTest = (data) => {
-  return function () {};
+const loginSV = (data) => {
+  return function () {
+      const login_data = {
+          user_id:data[0],
+          password:data[1]
+      }
+      console.log(login_data)
+  };
 };
 
 const signUpSV = (data) => {
@@ -38,7 +44,7 @@ export default handleActions(
 
 const actionCreators = {
   signUpSV,
-  loginTest,
+  loginSV,
 };
 
 export { actionCreators };

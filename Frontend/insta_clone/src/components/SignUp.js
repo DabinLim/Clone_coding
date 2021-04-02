@@ -11,6 +11,10 @@ const SignUp = (props) => {
     const [nickname, setNickname] = React.useState('');
     const [pwd, setPwd] = React.useState('');
     const signUp = () => {
+        if(!id || !name || !nickname || !pwd) {
+            window.alert('공란이 있습니다, 모든 정보를 입력하세요.')
+            return
+        }
         dispatch(testActions.signUpSV([id, name, nickname, pwd]))
     }
     return (
