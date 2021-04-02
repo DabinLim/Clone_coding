@@ -2,13 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Grid = (props) => {
-    const {flex_row, flex_column, width, height, margin, padding, bg_color, children, center, flex_detail, border, _onClick} = props;
+    const {flex_row, flex_column, width, height,min_height,max_height,min_width,max_width, margin, padding, bg_color, children, center, flex_detail, border, _onClick} = props;
 
     const styles = {
         flex_row,
         flex_column,
         width,
         height,
+        min_height,
+        max_height,
+        min_width,
+        max_width,
         margin,
         padding,
         bg_color,
