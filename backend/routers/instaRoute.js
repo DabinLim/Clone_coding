@@ -1,13 +1,11 @@
 const express = require("express");
 const User = require("../schemas/user");
 const jwt = require("jsonwebtoken");
-const authMiddleware = require("../middlewares/auth-middleware");
+// const authMiddleware = require("../middlewares/auth-middleware");
 const bcrypt = require("bcrypt");
 const fs = require('fs');
 const { response } = require('express');
-
 const app = express();
-
 const router = express.Router();
 
 //회원가입
@@ -35,11 +33,6 @@ router.post("/register", async (req, res) => {
             nickname,
             password: bcrypt.hashSync(password, 10),
         })
-        // const user = new User({ insta_Id, name_person, nickname, password: bcrypt.hashSync(password, 10), });
-
-        // // save는 저장하는 것
-        // await user.save();
-        // res.status(201).send({});
 
     } catch (err) {
         console.log(err);
@@ -77,9 +70,6 @@ router.post("/login", async (req, res) => {
         });
     }
 });
-
-
-
 
 module.exports = router;
 
