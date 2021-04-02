@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import {Grid, Text} from '../elements/index';
+import {Grid, Text, Button, Input} from '../elements/index';
+import Login from '../components/Login';
+import { history } from "../redux/configStore";
+import SignUp from '../components/SignUp';
+
 
 const Main = (props) => {
-
+    const [isSignup, setIsSignup] = React.useState(false)
     const notYet = () => {
         window.alert('아직 준비중입니다.')
     }
@@ -15,23 +19,24 @@ const Main = (props) => {
           flex_detail="align-items:center; justify-contents:center;"
           padding="2%"
           margin="32px auto 0"
-          max-width="935px"
+          max_width="935px"
           min_height="1000px"
           border
         >
           <LoginImage />
 
-          <Grid flex_column border min_height="620px">
+          <Grid flex_column  max_width='350px' border min_height="620px">
             <Grid border height="380px" padding="10px 0px" margin="10px 0px">
-              로그인 박스
+                {isSignup? <SignUp/> : <Login/>}
             </Grid>
             <Grid
+            center
               border
               height="63px"
               padding="10px 0px"
               margin="0px 0px 10px 0px"
             >
-              계정이 없으신가여?
+            {isSignup?<Text _onClick={()=>setIsSignup(false)}>돌아가기</Text>:<Text _onClick={()=>setIsSignup(true)}>가입하기</Text> }
             </Grid>
             <Grid border height="102px">
               앱을 다운로드 하세요.
