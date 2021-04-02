@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Grid from "../elements/Grid";
-import Text from '../elements/Text';
+import {Grid, Text} from '../elements/index';
 
 const Main = (props) => {
 
