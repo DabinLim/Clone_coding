@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const connect = require('./schemas');
 const app = express();
 
-
+connect();
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json());

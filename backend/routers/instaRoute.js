@@ -8,7 +8,7 @@ const { response } = require('express');
 const app = express();
 const router = express.Router();
 
-//회원가입
+//회원가입 method:post  url:api/register
 router.post("/register", async (req, res) => {
     console.log("회원가입")
     try {
@@ -42,8 +42,7 @@ router.post("/register", async (req, res) => {
     };
 });
 
-
-// 로그인
+// 로그인 method:post  url:api/login
 router.post("/login", async (req, res) => {
     console.log("로그인 시작")
     console.log(req.body)
