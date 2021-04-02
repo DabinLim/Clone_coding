@@ -10,8 +10,7 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 
-const instaRouter = require("./routers/insta");
-
+const instaRouter = require("./routers/instaRoute");
 app.use("/api", [instaRouter]);
 
 
