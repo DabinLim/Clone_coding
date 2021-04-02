@@ -2,7 +2,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/expressionengine,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=expressionengine,node
 
-##
+## 태진 예제용 파일 ##
+
 
 
 ### ExpressionEngine ###
@@ -152,4 +153,4 @@ dist/
 tmp/
 temp/
 
-# End of https://www.toptal.com/developers/gitignore/api/expressionengine,node
+# End of https://www.toptal.com/developers/gitignore/api/expressionengine,
