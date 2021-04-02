@@ -1,7 +1,7 @@
-import express from "express";
-import { home } from "../controller/homeController.js";
-import { deleteWrite, detail, getEditWrite, getWrite, postEditWrite, postWrite } from "../controller/postController.js";
-export const globalRouter = express.Router();
+const express = require("express");
+const { home } = require("../controller/homeController.js");
+const { deleteWrite, detail, getEditWrite, getWrite, postEditWrite, postWrite } = require("../controller/postController.js");
+const globalRouter = express.Router();
 
 
 globalRouter.get('/', home);
@@ -11,3 +11,6 @@ globalRouter.get('/detail', detail);
 globalRouter.get('/detail/:id/edit', getEditWrite);
 globalRouter.post('/detail/:id/edit', postEditWrite);
 globalRouter.delete('/detail/:id/delete', deleteWrite);
+
+module.exports = globalRouter;
+//이거 이렇게 export하는게 맞나요..?

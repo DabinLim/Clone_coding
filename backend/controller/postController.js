@@ -1,23 +1,23 @@
-export const postWrite = async (req, res) => {
+exports.postWrite = async (req, res) => {
   res.send('postWrite');
 };
 
-export const getWrite = async (req, res) => {
+exports.getWrite = async (req, res) => {
   res.send('getWrite');
 };
 
-export const detail = async (req, res) => {
+exports.detail = async (req, res) => {
   res.send('detail page');
 };
 
-export const getEditWrite = async (req, res) => {
+exports.getEditWrite = async (req, res) => {
   res.send('getEdit write');
 };
 
-export const postEditWrite = async (req, res) => {
+exports.postEditWrite = async (req, res) => {
   res.send('post Edit write');
 };
 
-export const deleteWrite = async (req, res) => {
+exports.deleteWrite = async (req, res) => {
   res.send('deltePage');
 };

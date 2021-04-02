@@ -1,11 +1,11 @@
-import { globalRouter } from "./routes/globalRoute.js";
-const express = require('express');
+const express = require("express");
+const { globalRouter } = require("./routes/globalRoute.js");
 const mongoose = require("mongoose");
 const connect = require('./schemas');
+const app = express();
 
 connect();
 
-const app = express();
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json());
@@ -13,6 +13,7 @@ app.use('/public', express.static('public'));
 app.use('/', globalRouter);
 
 const instaRouter = require("./routers/insta");
+
 app.use("/api", [instaRouter]);
 
 app.set('views', __dirname + '/views');
