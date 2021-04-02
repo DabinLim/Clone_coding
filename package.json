@@ -6,7 +6,9 @@
     "middleware": "^1.0.0",
     "mongoose": "^5.12.3",
     "qs": "^6.7.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^5.2.3",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
