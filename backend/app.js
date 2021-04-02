@@ -13,8 +13,7 @@ app.use(express.urlencoded({ extended: false }))
 const instaRouter = require("./routers/instaRoute");
 app.use("/api", [instaRouter]);
 
-
-// app.use('/', globalRouter);
+app.use('/', globalRouter);
 
 app.use('/public', express.static('public'));
 

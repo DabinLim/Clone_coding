@@ -4,7 +4,7 @@ const globalRouter = express.Router();
 
 
 globalRouter.get('/write', getWrite);
-globalRouter.get('/detail', detail);
+globalRouter.get('/detail/:id', detail);
 globalRouter.get('/detail/:id/edit', getEditWrite);
 globalRouter.post('/detail/:id/edit', postEditWrite);
 globalRouter.delete('/detail/:id/delete', deleteWrite);

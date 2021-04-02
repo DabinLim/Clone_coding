@@ -1,9 +1,13 @@
+// 글쓰기 
 const postWrite = async (req, res) => {
+  const {
+    body: 
+  }
   res.send('postWrite');
 };
 
 const getWrite = async (req, res) => {
-  res.send('getWrite');
+  res.render('view file 이름');
 };
 
 const detail = async (req, res) => {
