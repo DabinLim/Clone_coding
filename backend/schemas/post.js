@@ -1,12 +1,12 @@
-import mongoose from "mongoose";
-import { post } from "../routers/instaRoute";
+const mongoose = require("mongoose");
+
+// import { post } from "../routers/instaRoute";
 
 const { Schema } = mongoose;
 const postSchema = new Schema({
-  file : {
+  file: {
     type: String,
   },
-
   createAt: {
     type: Date,
     default: Date.now,
@@ -17,17 +17,13 @@ const postSchema = new Schema({
   },
   content: {
     type: String,
-
   },
-  comments:[ 
-          {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment'
-          }
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment'
+    }
   ],
-}) 
+})
 
-
-const model = mongoose.model("Post", postSchema);
-
-export default model;
+module.exports = mongoose.model("Post", postSchema)
