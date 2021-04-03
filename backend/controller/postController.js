@@ -1,9 +1,17 @@
+const Post = require("../schemas/post");
+
 // 글쓰기 
 const postWrite = async (req, res) => {
   const {
-    body: 
-  }
-  res.send('postWrite');
+    params: {id},
+    body: { author, content, file }
+  } = req;
+  const newPost = await Post.create({
+    author,
+    content,
+    file,
+  })
+  res.redirect(`detail/:${newPost.id}`)
 };
 
 const getWrite = async (req, res) => {
