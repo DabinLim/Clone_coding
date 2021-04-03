@@ -3,7 +3,6 @@ import { Button, Input, Text, Grid } from "../elements";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { history } from "../redux/configStore";
 
 const Login = (props) => {
   const dispatch = useDispatch();
@@ -14,7 +13,7 @@ const Login = (props) => {
         window.alert('아이디와 비밀번호 모두 입력해주세요')
         return
     }
-    dispatch(userActions.loginSV([id, pwd], history));
+    dispatch(userActions.loginSV([id, pwd]));
   };
   return (
     <React.Fragment>

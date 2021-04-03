@@ -3,6 +3,7 @@ const { globalRouter } = require("./routes/globalRoute.js");
 const mongoose = require("mongoose");
 const connect = require('./schemas');
 const app = express();
+const port =process.env.PORT || 3001;
 
 connect();
 
@@ -33,6 +34,8 @@ app.get('/home', (req, res) => {
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-app.listen(8080, () => {
-    console.log("서버가 요청을 받을 준비가 됐어요");
-});
+app.listen(port, ()=>{
+    console.log(`express is running on ${port}`);
+})
+
+

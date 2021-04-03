@@ -1,22 +1,34 @@
-import React from 'react';
+import "./App.css";
+import { BrowserRouter, Route } from "react-router-dom";
+import Main from "./pages/Main";
+import React from "react";
+import SignUp from "./components/SignUp";
+import NewPost from "./pages/NewPost";
+import PostWrite from "./pages/PostWrite";
+import { ConnectedRouter } from "connected-react-router";
+import { history } from "./redux/configStore";
+import Header from './components/Header';
+import {Grid} from './elements';
 
-function App () {
-  const [user_name, setUserName] = React.useState(null);
-
-  React.useEffect(()=>{
-    //fetch('http://localhost:3001/api')
-    fetch('api')  //client와 server의 도메인이 같기 때문에 full url이 아닌 router 사용가능.
-          .then(res=>res.json())
-          .then(data=>setUserName(data.username));
-  },[])
+function App() {
   return (
-    <div className="App">
-          <header className="App-header">
-            {user_name ? `Hello ${user_name}` : 'Hello World'}
-          </header>
-        </div>
-  )
+    <React.Fragment>
+      <Grid>
+      <ConnectedRouter history={history}>
+        <Header/>
+        <Grid padding='55px 0px 0px 0px'>
+        <BrowserRouter>
+          <Route path="/" exact component={Main} />
+          <Route path="/newpost" exact component={NewPost} />
+          <Route path="/postwrite" exact component={PostWrite} />
+          <Route path="/" exact component={Main} />
+          <Route path="/signup" exact component={SignUp} />
+        </BrowserRouter>
+        </Grid>
+      </ConnectedRouter>
+      </Grid>
+    </React.Fragment>
+  );
 }
 
 export default App;
-

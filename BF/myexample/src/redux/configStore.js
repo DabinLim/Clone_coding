@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
 });
 
 // 미들웨어 준비
-const middlewares = [thunk.withExtraArgument({history: history})];
+const middlewares = [thunk.withExtraArgument({ history: history })];
 
 // 현재 환경
 const env = process.env.NODE_ENV;

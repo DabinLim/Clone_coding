@@ -4,12 +4,8 @@ import {Grid, Text, Image} from '../elements/index';
 import HomeIcon from '@material-ui/icons/Home';
 import ExploreIcon from '@material-ui/icons/Explore';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { history } from "../redux/configStore";
-import { actionCreators as userActions } from "../redux/modules/user";
-import { useDispatch, useSelector } from 'react-redux';
 
 const Header = (props) => {
-    const dispatch = useDispatch()
 
     return (
         <React.Fragment>
@@ -20,7 +16,7 @@ const Header = (props) => {
                     </BannerContainer>
                 <TextContainer><Text bold> 여기는 헤더입니다.</Text></TextContainer>
                 <IconContainer>
-                    <HomeIcon onClick={()=>{dispatch(userActions.logOutSV(history))}} fontSize='large'/>
+                    <HomeIcon fontSize='large'/>
                     <ExploreIcon fontSize='large'/>
                     <FavoriteBorderIcon fontSize='large'/>
                     <Image shape='circle' size='24'/>

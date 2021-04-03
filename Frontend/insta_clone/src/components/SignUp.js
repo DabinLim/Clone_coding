@@ -3,19 +3,19 @@ import {Text, Grid, Button, Input} from '../elements';
 import {actionCreators as userActions} from '../redux/modules/user';
 import styled from 'styled-components';
 import {useDispatch, useSelector} from 'react-redux';
+import { history } from "../redux/configStore";
 
 const SignUp = (props) => {
     const dispatch = useDispatch()
     const [id, setId] = React.useState('');
     const [name, setName] = React.useState('');
-    const [nickname, setNickname] = React.useState('');
     const [pwd, setPwd] = React.useState('');
     const signUp = () => {
-        if(!id || !name || !nickname || !pwd) {
+        if(!id || !name || !pwd) {
             window.alert('공란이 있습니다, 모든 정보를 입력하세요.')
             return
         }
-        dispatch(userActions.signUpSV([id, name, nickname, pwd]))
+        dispatch(userActions.signUpSV([id, name, pwd], history))
     }
     return (
         <React.Fragment>
@@ -28,9 +28,6 @@ const SignUp = (props) => {
           <Input _onChange={(e) => {
               setName(e.target.value);
             }} placeholder="이름을 입력하세요" margin='5px'/>
-          <Input _onChange={(e) => {
-              setNickname(e.target.value);
-            }} placeholder="닉네임을 입력하세요" margin='5px'/>
           <Input _onChange={(e) => {
               setPwd(e.target.value);
             }}

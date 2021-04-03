@@ -4,18 +4,9 @@ import {Grid, Text, Button, Input} from '../elements/index';
 import Login from '../components/Login';
 import { history } from "../redux/configStore";
 import SignUp from '../components/SignUp';
-import { useDispatch } from "react-redux";
-import {actionCreators as userActions} from '../redux/modules/user';
 
 
 const Main = (props) => {
-  const dispatch = useDispatch();
-  const is_session = sessionStorage.getItem('token')? true: false;
-
-  React.useEffect(()=> {
-      dispatch(userActions.loginCheck(is_session,history))
-
-  })
     const [isSignup, setIsSignup] = React.useState(false)
     const notYet = () => {
         window.alert('아직 준비중입니다.')
