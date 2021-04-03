@@ -4,13 +4,21 @@ import { Grid, Text, Input, Button, Image } from "../elements/index";
 import Upload from "../shared/Upload";
 
 import { actionCreators as postActions } from "../redux/modules/post";
+import { useSelector, useDispatch } from "react-redux";
 
 const PostWrite = (props) => {
+  const dispatch = useDispatch();
+
+  const [value, setValue] = React.useState("");
   const [contents, setContents] = React.useState("");
   const changeContents = (e) => {
     setContents(e.target.value);
   };
   console.log(contents);
+
+  const addPost = () => {
+    dispatch(postActions.addPostSV(contents));
+  };
 
   return (
     <React.Fragment>
@@ -38,12 +46,11 @@ const PostWrite = (props) => {
           label="게시글 내용"
           placeholder="게시글 작성"
           multiLine
-          //   _onClick={addPost}
         />
       </Grid>
 
       <Grid padding="16px">
-        <Button text="게시글 작성"></Button>
+        <Button text="게시글 작성" _onClick={addPost}></Button>
       </Grid>
     </React.Fragment>
   );

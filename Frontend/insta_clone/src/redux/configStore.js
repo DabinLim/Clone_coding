@@ -4,19 +4,19 @@ import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
 import Test from "./modules/test";
-
+import Post from "./modules/post";
 
 export const history = createBrowserHistory();
 
 // rootReducer 만들기
 const rootReducer = combineReducers({
-    test:Test,
-    router: connectRouter(history),
-  });
-
+  test: Test,
+  post: Post,
+  router: connectRouter(history),
+});
 
 // 미들웨어 준비
-const middlewares = [thunk.withExtraArgument({history:history})];
+const middlewares = [thunk.withExtraArgument({ history: history })];
 
 // 현재 환경
 const env = process.env.NODE_ENV;
@@ -27,8 +27,7 @@ if (env === "development") {
   middlewares.push(logger);
 }
 
-
-// redux devTools 설정 
+// redux devTools 설정
 
 const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -39,16 +38,10 @@ const composeEnhancers =
 
 // 미월웨어 묶기
 
-const enhancer = composeEnhancers(
-    applyMiddleware(...middlewares)
-    );
-
+const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
 // 스토어 만들기
 
 let store = (initialStore) => createStore(rootReducer, enhancer);
 
-
-
 export default store();
-
