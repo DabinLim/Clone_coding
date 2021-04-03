@@ -1,6 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import moment from "moment";
+import {response} from './mockup';
 
 //목록 리덕스에 넣어주는 애
 const SET_POST = "SET_POST";
@@ -37,6 +38,14 @@ const addPostSV = (contents = "") => {
   };
 };
 
+const getPostSV = () => {
+  return function(dispatch){
+    const post_data = response.POST;
+    console.log(post_data.author)
+  }
+
+}
+
 // reducer
 export default handleActions(
   {
@@ -52,6 +61,7 @@ const actionCreators = {
   setPost,
   addPost,
   addPostSV,
+  getPostSV,
 };
 
 export { actionCreators };

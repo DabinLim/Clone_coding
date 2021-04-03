@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Grid, Text, Image, Input } from "../elements";
 import {useDispatch} from 'react-redux';
+import {actionCreators as postActions} from '../redux/modules/post'
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -14,6 +15,9 @@ const Post = (props) => {
     const commentWrite = () => {
         console.log(comment)
     }
+    React.useEffect(()=> {
+      dispatch(postActions.getPostSV());
+    },[])
 
   return (
     <React.Fragment>

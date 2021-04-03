@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Header = (props) => {
     const dispatch = useDispatch()
+    const token = sessionStorage.getItem('token')
 
     return (
         <React.Fragment>
@@ -21,7 +22,7 @@ const Header = (props) => {
                 <TextContainer><Text bold> 여기는 헤더입니다.</Text></TextContainer>
                 <IconContainer>
                     <HomeIcon onClick={()=>{dispatch(userActions.logOutSV(history))}} fontSize='large'/>
-                    <ExploreIcon fontSize='large'/>
+                    <ExploreIcon onClick={()=>{dispatch(userActions.testSV(token))}}fontSize='large'/>
                     <FavoriteBorderIcon fontSize='large'/>
                     <Image shape='circle' size='24'/>
                 </IconContainer>
