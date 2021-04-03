@@ -7,11 +7,16 @@ import NewPost from "./pages/NewPost";
 import PostWrite from "./pages/PostWrite";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "./redux/configStore";
+import Header from './components/Header';
+import {Grid} from './elements';
 
 function App() {
   return (
     <React.Fragment>
+      <Grid>
       <ConnectedRouter history={history}>
+        <Header/>
+        <Grid padding='55px 0px 0px 0px'>
         <BrowserRouter>
           <Route path="/" exact component={Main} />
           <Route path="/newpost" exact component={NewPost} />
@@ -20,7 +25,9 @@ function App() {
           <Route path="/newpost" exact component={NewPost} />
           <Route path="/signup" exact component={SignUp} />
         </BrowserRouter>
+        </Grid>
       </ConnectedRouter>
+      </Grid>
     </React.Fragment>
   );
 }
