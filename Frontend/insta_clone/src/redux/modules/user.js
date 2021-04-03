@@ -1,12 +1,17 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 
-const TEST_DATA = "TEST_DATA";
+const SET_USER = "SET_USER";
 
-const testData = createAction(TEST_DATA, (list) => ({ list }));
+const setUser = createAction(SET_USER, (list) => ({ list }));
 
 const initialState = {
-  list: [],
+  list: [{
+    user_id:'ekqls2143@naver.com',
+    name_person:'임다빈',
+    nickname:'beenstgrm',
+    password:'ekqls1234',
+  }],
 };
 
 const loginSV = (data) => {
@@ -34,7 +39,7 @@ const signUpSV = (data) => {
 
 export default handleActions(
   {
-    [TEST_DATA]: (state, action) =>
+    [SET_USER]: (state, action) =>
       produce(state, (draft) => {
         draft.list.push(action.payload.list);
       }),

@@ -1,9 +1,10 @@
 const express = require("express");
-const { deleteWrite, detail, getEditWrite, getWrite, postEditWrite, postWrite } = require("../controller/postController.js");
+const { deleteWrite, detail, getEditWrite, postEditWrite, getUpload, postUpload } = require("../controller/postController.js");
 const globalRouter = express.Router();
 
 
-globalRouter.get('/write', getWrite);
+globalRouter.get('/upload', getUpload);
+globalRouter.get('/upload', postUpload);
 globalRouter.get('/detail/:id', detail);
 globalRouter.get('/detail/:id/edit', getEditWrite);
 globalRouter.post('/detail/:id/edit', postEditWrite);

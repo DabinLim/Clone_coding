@@ -2,8 +2,15 @@ import React from "react";
 import styled from "styled-components";
 import { Text, Grid } from "./index";
 
+
 const Input = (props) => {
-  const { label, placeholder, _onChange, type, multiLine, value, is_Submit, onSubmit , margin} = props;
+  const { label, placeholder, _onChange, type, multiLine, value, is_Submit, onSubmit , margin, is_comment} = props;
+
+  if (is_comment) {
+    return (
+        <CommentInput margin={margin} type={type} placeholder={placeholder} onChange={_onChange} />
+    )
+  }
 
   if (multiLine) {
     return (
@@ -55,6 +62,7 @@ Input.defaultProps = {
   value: "",
   onSubmit: () => {},
   margin:false,
+  is_comment: false,
 };
 
 const ElTextArea = styled.textarea`
@@ -70,6 +78,15 @@ const ElInput = styled.input`
 ${(props) => props.margin? `margin:${props.margin}` : ''};
   border: 1px solid #212121;
   border-radius: 5px;
+  width: 100%;
+  padding: 12px 4px;
+  box-sizing: border-box;
+`;
+
+const CommentInput = styled.input`
+${(props) => props.margin? `margin:${props.margin}` : ''};
+  border-style:none;
+  
   width: 100%;
   padding: 12px 4px;
   box-sizing: border-box;

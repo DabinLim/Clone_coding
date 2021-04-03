@@ -25,7 +25,7 @@ const Main = (props) => {
         >
           <LoginImage />
 
-          <Grid flex_column min_width='350px' max_width='350px' border height="620px">
+          <Grid flex_column min_width='350px' max_width='350px' border height="620px" margin='auto'>
             <Grid border height="380px" padding="10px 0px" margin="10px 0px">
                 {isSignup? <SignUp/> : <Login/>}
             </Grid>
@@ -70,6 +70,9 @@ const LoginImage = styled.div`
   background-image: url("https://firebasestorage.googleapis.com/v0/b/dab-react.appspot.com/o/main.png?alt=media&token=195d5178-dd6c-4a28-a005-257dc9051fd4");
   background-size: contain;
   background-repeat: no-repeat;
+  @media (max-width:850px){
+    display:none;
+  };
 `;
 
 export default Main;
