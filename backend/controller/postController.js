@@ -6,20 +6,26 @@ const postUpload = async (req, res) => {
     params: {id},
     body: { author, content, file }
   } = req;
-  const newPost = await Post.create({
-    author,
-    content,
-    file,
-  })
-  res.redirect(`detail/:${newPost.id}`)
-};
+  try{
+      const newPost = await Post.create({
+        author,
+        content,
+        file,
+      })
+      res.redirect(`detail/:${newPost.id}`);
+  } catch (error) {
+    res.status(400).send({
+      error : '업로드하는 중 오류가 발생했습니다.'
+      });
+    console.log( error );  
+  };
 
-//글쓰기 화면 랜더링
+// 글쓰기 화면 랜더링
 const getUpload = async (req, res) => {
   res.render('view file 이름');
 };
 
-//상세페이지 랜더링
+// 상세페이지 랜더링
 const detail = async (req, res) => {
   const {
     params: {id},
@@ -29,9 +35,11 @@ const detail = async (req, res) => {
     const post = await Post.findById(id).populate('comments');
     res.render(`detail`, { post }); 
   } catch (error) {
-
-  }
-  res.send('detail page');
+    console.log(error);
+    res.status(400).send({
+      error : '상세페이지를 불러오는 중 오류가 발생했습니다.'
+    });
+  };
 };
 
 const getEditWrite = async (req, res) => {
