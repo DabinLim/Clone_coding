@@ -18,7 +18,7 @@ const initialState = {
 
 //게시글 하나에 꼭 들어가야하는 것 -> post에 있던 것 복붙
 const initialPost = {
-  user_name: "",
+  nickname: "",
   insert_dt: moment(),
   image_url:
     "https://postfiles.pstatic.net/MjAyMTAzMjZfMTEy/MDAxNjE2NzY1NTQ3OTE5.d0ZhJ52S4eu9u4T7A4i2zinM88z0eQE8EGgWZxpuy_4g.joSdh241qBCkzJVQvDobxC-2hFSm890KB4BH8rCpgoog.JPEG.xhrl0520/%EA%B1%B0%EC%8B%A4.jpg?type=w966",

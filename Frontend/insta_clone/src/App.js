@@ -5,6 +5,7 @@ import React from "react";
 import SignUp from "./components/SignUp";
 import NewPost from "./pages/NewPost";
 import PostWrite from "./pages/PostWrite";
+import Profile from "./pages/Profile";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "./redux/configStore";
 
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" exact component={Main} />
           <Route path="/newpost" exact component={NewPost} />
           <Route path="/postwrite" exact component={PostWrite} />
+          <Route path="/profile" exact component={Profile} />
           <Route path="/" exact component={Main} />
           <Route path="/signup" exact component={SignUp} />
         </BrowserRouter>
