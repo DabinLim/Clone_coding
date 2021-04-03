@@ -1,7 +1,7 @@
 const Post = require("../schemas/post");
 
 // 글쓰기 
-const postWrite = async (req, res) => {
+const postUpload = async (req, res) => {
   const {
     params: {id},
     body: { author, content, file }
@@ -14,7 +14,7 @@ const postWrite = async (req, res) => {
   res.redirect(`detail/:${newPost.id}`)
 };
 
-const getWrite = async (req, res) => {
+const getUpload = async (req, res) => {
   res.render('view file 이름');
 };
 
@@ -34,4 +34,4 @@ const deleteWrite = async (req, res) => {
   res.send('deltePage');
 };
 
-module.exports = { getWrite, detail, getEditWrite, postEditWrite, deleteWrite }
+module.exports = { getUpload, postUpload, detail, getEditWrite, postEditWrite, deleteWrite }
