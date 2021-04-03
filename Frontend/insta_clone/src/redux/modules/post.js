@@ -1,5 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+import moment from "moment";
 
 //목록 리덕스에 넣어주는 애
 const SET_POST = "SET_POST";
@@ -17,18 +18,23 @@ const initialState = {
 
 //게시글 하나에 꼭 들어가야하는 것 -> post에 있던 것 복붙
 const initialPost = {
-  // id: 0,
-  // user_info: {
-  //   user_name: "jin_win",
-  //   user_profile:
-  //     "https://postfiles.pstatic.net/MjAyMTAzMjlfODIg/MDAxNjE2OTgzNDI2MDIw.WI9-1pRAfZZ8X4LO1nCm-tbX55eq-mm90otILq6fH0Ig.jetZAspSyQLEQS1DuQu_5RnyT7pd7fSdHalRbtSQvxAg.JPEG.xhrl0520/%EB%A7%88%EC%9D%8C.jpg?type=w966",
-  // }, --> 리덕스에 있는 값을 가져올 것임 (로그인 한 상태니까 )
+  user_name: "",
+  insert_dt: moment(),
   image_url:
     "https://postfiles.pstatic.net/MjAyMTAzMjZfMTEy/MDAxNjE2NzY1NTQ3OTE5.d0ZhJ52S4eu9u4T7A4i2zinM88z0eQE8EGgWZxpuy_4g.joSdh241qBCkzJVQvDobxC-2hFSm890KB4BH8rCpgoog.JPEG.xhrl0520/%EA%B1%B0%EC%8B%A4.jpg?type=w966",
   contents: "",
   like_cnt: 0,
   //   insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
-  layout_type: "a",
+};
+
+const addPostSV = (contents = "") => {
+  return function () {
+    const _addpost = {
+      ...initialPost,
+      contents: contents,
+    };
+    console.log(_addpost);
+  };
 };
 
 // reducer
@@ -45,6 +51,7 @@ export default handleActions(
 const actionCreators = {
   setPost,
   addPost,
+  addPostSV,
 };
 
 export { actionCreators };

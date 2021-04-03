@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- j쿼리 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    번호 또는 이메일주소 <input type="text" id="inputId"> <br>
+    성명 <input type="text" id="name_person"> <br>
+    사용자 이름 <input type="text" id="nickname"> <br>
+    비밀 번호 <input type="text" id="password"> <br>+
+
+    <button onclick="sign_up()"> 가입 !</button>
+
+    <script>
+        function sign_up() {
+            alert("아이디 로그인시작")
+            const userId = $("#inputId").val();
+            const name_person = $("#name_person").val();
+            const nickname = $("#nickname").val();
+            const password = $("#password").val();
+
+            console.log(userId)
+            $.ajax({
+                type: "POST",
+                url: "/api/register",
+                data: {
+                    "insta_Id": userId,
+                    "name_person": name_person,
+                    "nickname": nickname,
+                    "password": password
+                },
+                success: function (response) {
+                    alert("안녕 회원가입 성공!")
+                },
+                error: function (error) {
+                    alert(error.responseJSON.errorMessage)
+                    // customAlert(error.responseJSON.errorMessage);
+                },
+            });
+            window.location.replace("/login");
+        }
+    </script>
+
+</body>
+
+</html>

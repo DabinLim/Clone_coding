@@ -22,7 +22,6 @@ function App() {
           <Route path="/newpost" exact component={NewPost} />
           <Route path="/postwrite" exact component={PostWrite} />
           <Route path="/" exact component={Main} />
-          <Route path="/newpost" exact component={NewPost} />
           <Route path="/signup" exact component={SignUp} />
         </BrowserRouter>
         </Grid>

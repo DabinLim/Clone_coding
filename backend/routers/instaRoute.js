@@ -53,9 +53,11 @@ router.post("/login", async (req, res) => {
         bcrypt.compare(password, user["password"], (err, same) => { // 비밀번호 일치 확인
             if (same) {
                 const token = jwt.sign({ userId: user.userId }, "team2-key");
+
                 res.send({
                     token,
                 });
+
             } else {
                 res.status(400).send({
                     errorMessage: "이메일 또는 패스워드가 잘못됐습니다.",
