@@ -1,32 +1,21 @@
 import React from 'react';
-import './App.css';
 
-class App extends React.Component {
+function App () {
+  const [user_name, setUserName] = React.useState(null);
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            username:null
-        };
-    }
-    
-    componentDidMount() {
-      fetch('http://localhost:3001/api')
+  React.useEffect(()=>{
+    fetch('http://localhost:3001/api')
           .then(res=>res.json())
-          .then(data=>this.setState({username:data.username}));
-  }
-
-  render() {
-    const {username} = this.state;
-    return (
-        <div className="App">
+          .then(data=>setUserName(data.username));
+  },[])
+  return (
+    <div className="App">
           <header className="App-header">
-            {username ? `Hello ${username}` : 'Hello World'}
+            {user_name ? `Hello ${user_name}` : 'Hello World'}
           </header>
         </div>
-    );
-    ;
-  }
+  )
 }
 
 export default App;
+

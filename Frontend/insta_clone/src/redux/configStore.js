@@ -3,14 +3,16 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
-import Test from "./modules/test";
+import User from "./modules/user";
+import Comment from './modules/comment';
 
 
 export const history = createBrowserHistory();
 
 // rootReducer 만들기
 const rootReducer = combineReducers({
-    test:Test,
+    comment:Comment,
+    user:User,
     router: connectRouter(history),
   });
 

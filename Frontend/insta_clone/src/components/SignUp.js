@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, Grid, Button, Input} from '../elements';
-import {actionCreators as testActions} from '../redux/modules/test';
+import {actionCreators as userActions} from '../redux/modules/user';
 import styled from 'styled-components';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -15,7 +15,7 @@ const SignUp = (props) => {
             window.alert('공란이 있습니다, 모든 정보를 입력하세요.')
             return
         }
-        dispatch(testActions.signUpSV([id, name, nickname, pwd]))
+        dispatch(userActions.signUpSV([id, name, nickname, pwd]))
     }
     return (
         <React.Fragment>

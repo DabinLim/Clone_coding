@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Button, Input, Text, Grid } from "../elements";
-import { actionCreators as testActions } from "../redux/modules/test";
+import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
@@ -13,7 +13,7 @@ const Login = (props) => {
         window.alert('아이디와 비밀번호 모두 입력해주세요')
         return
     }
-    dispatch(testActions.loginSV([id, pwd]));
+    dispatch(userActions.loginSV([id, pwd]));
   };
   return (
     <React.Fragment>
