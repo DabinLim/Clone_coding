@@ -2,17 +2,25 @@ import "./App.css";
 import { BrowserRouter, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import React from "react";
+import SignUp from "./components/SignUp";
 import NewPost from "./pages/NewPost";
 import PostWrite from "./pages/PostWrite";
+import { ConnectedRouter } from "connected-react-router";
+import { history } from "./redux/configStore";
 
 function App() {
   return (
     <React.Fragment>
-      <BrowserRouter>
-        <Route path="/" exact component={Main} />
-        <Route path="/newpost" exact component={NewPost} />
-        <Route path="/postwrite" exact component={PostWrite} />
-      </BrowserRouter>
+      <ConnectedRouter history={history}>
+        <BrowserRouter>
+          <Route path="/" exact component={Main} />
+          <Route path="/newpost" exact component={NewPost} />
+          <Route path="/postwrite" exact component={PostWrite} />
+          <Route path="/" exact component={Main} />
+          <Route path="/newpost" exact component={NewPost} />
+          <Route path="/signup" exact component={SignUp} />
+        </BrowserRouter>
+      </ConnectedRouter>
     </React.Fragment>
   );
 }

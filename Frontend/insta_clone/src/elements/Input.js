@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Text, Grid } from "./index";
 
 const Input = (props) => {
-  const { label, placeholder, _onChange, type, multiLine, value, is_Submit, onSubmit } = props;
+  const { label, placeholder, _onChange, type, multiLine, value, is_Submit, onSubmit , margin} = props;
 
   if (multiLine) {
     return (
@@ -26,6 +26,7 @@ const Input = (props) => {
         {/* 다른 인풋에 value값이 없기때문에 코멘트 작성 인풋에 isSubmit을 줘서 코멘트 작성 인풋만 value라는 props를 넣어주기 위함 */}
         {is_Submit ? (
           <ElInput
+            margin={margin}
             value={value}
             type={type}
             placeholder={placeholder}
@@ -37,7 +38,7 @@ const Input = (props) => {
             }}
           />
         ) : (
-          <ElInput type={type} placeholder={placeholder} onChange={_onChange} />
+          <ElInput argin={margin} type={type} placeholder={placeholder} onChange={_onChange} />
         )}
       </Grid>
     </React.Fragment>
@@ -53,9 +54,11 @@ Input.defaultProps = {
   type: "text",
   value: "",
   onSubmit: () => {},
+  margin:false,
 };
 
 const ElTextArea = styled.textarea`
+  
   border: 1px solid #212121;
   border-radius: 5px;
   width: 100%;
@@ -64,6 +67,7 @@ const ElTextArea = styled.textarea`
 `;
 
 const ElInput = styled.input`
+${(props) => props.margin? `margin:${props.margin}` : ''};
   border: 1px solid #212121;
   border-radius: 5px;
   width: 100%;

@@ -69,8 +69,7 @@ const AspectInner = styled.div`
     padding-top: 75%;
     overflow: hidden;
     background-image: url('${(props) => props.src}');
-    background-size:contain;
-    background-repeat:no-repeat;
+    background-size:cover;
 `;
 
 export default Image;
