@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 부트스트랩 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous" />
+
+    <!-- j쿼리 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <!-- 구글폰트 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Serif+KR&family=Stylish&display=swap"
+        rel="stylesheet" />
+
+    <!-- font-family: 'Black Han Sans', sans-serif; -->
+    <!-- font-family: 'Noto Serif KR', serif; -->
+    <!-- font-family: 'Stylish', sans-serif; -->
+
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="margin:auto; text-align:center;">
+        <div style="margin-bottom:50px; font-family: 'Noto Serif KR', serif;">
+
+            <h1>로그인이 성공했어^^ </h1> <br>
+            <h1>가서 토큰ㅇ을 보세요 ^^</h1>
+        </div>
+
+        <div style="font-family: 'Black Han Sans', sans-serif; font-size:20px;">
+            <hr>메인 게시판 <span style="font-family: 'Noto Serif KR', serif;">(친구의 글만 보인답니다 ㅇㅅㅇ)</span>
+            <hr>
+        </div>
+        <div id="board_list">
+        </div>
+
+        <div style="margin:auto;"> 게시글 작성 <input type="text" id="boardInput"> <button onclick="write_board()">작성
+                완료</button>
+        </div>
+
+        <div id="friend_list_show_recommend"
+            style="font-family: 'Black Han Sans', sans-serif; font-size:20px; margin-top:100px;">
+            <hr>친구 추천
+            <hr>
+        </div>
+
+        <div style="font-family: 'Black Han Sans', sans-serif; font-size:20px; margin-top:100px;">
+
+            <hr>
+            <button onclick="my_friend_show()" style="font-family: 'Stylish', sans-serif;">친구 목록 확 인</button>
+            <hr>
+
+        </div>
+        <div id="my_freind_list_show" style="font-family: 'Stylish', sans-serif;"></div>
+    </div>
+
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const instaId = urlParams.get("instaId");
+
+        $(document).ready(function () {
+            get_friend_detail()
+            get_show_board()
+        });
+
+        // 친구 추천 뿌려주기
+        function get_friend_detail() {
+            $.ajax({
+                type: "POST",
+                url: '/api/friend_list',
+                headers: { token: localStorage.getItem('token') },
+                data: {},
+                success: function (response) {
+
+                    let my_nick = response["nickname"]
+
+                    console.log(my_nick)
+                    let friend = response["friend_list"];
+                    for (let i = 0; i < friend.length; i++) {
+
+                        if (my_nick !== friend[i]["nickname"]) {
+
+                            let nickname = friend[i]["nickname"];
+                            let tempHtml = `
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="width:500px; margin:auto;">
+                <strong style="font-family: 'Stylish', sans-serif; color:hotpink;">${nickname}</strong> <span style="font-family: 'Noto Serif KR', serif; color:black;"></span>
+
+                <button class="login_Btn" type="button" onclick="add_friend('${nickname}')" style="font-size:20px; font-family: 'Stylish', sans-serif; border:none; outline:none; background:none; float:right;">친추^^</button>
+                    </div>`;
+                            $("#friend_list_show_recommend").append(tempHtml);
+                        }
+                    }
+                },
+            });
+        }
+
+        // 친구 추가하기
+        function add_friend(nickname) {
+            const result = confirm(nickname + "님을 친구 추가 하시겠습니까?")
+
+            if (result) {
+                $.ajax({
+                    type: "POST",
+                    url: "/api/add_friend",
+                    headers: { token: localStorage.getItem('token') },
+                    data: {
+                        "nickname": nickname,
+                    },
+                    success: function (response) {
+                        alert(response)
+                    },
+                });
+                window.location.href = "/home";
+            }
+        }
+
+
+
+
+        // 친구 목록 보여주기
+        function my_friend_show() {
+            $('#my_freind_list_show').empty()
+            $.ajax({
+                type: "GET",
+                url: '/api/my_friend_list_show',
+                headers: { token: localStorage.getItem('token') },
+                data: {},
+                success: function (response) {
+                    let friend_list = response['my_friend_list_show']
+                    let nickname = response['nickname']
+                    for (let i = 0; i < friend_list.length; i++) {
+                        let tempHtml = `
+                        <h3 style="color:orange" >${friend_list[i]} <button onclick="delete_friend('${friend_list[i]}')" style="border:none; outline:none; background:none;">❌</button>
+                            </h3>`
+                        $("#my_freind_list_show").append(tempHtml);
+                    }
+                },
+            });
+        }
+
+        // 친구 삭제
+        function delete_friend(nickname) {
+            $.ajax({
+                type: "POST",
+                url: "/api/delete_friend",
+                headers: { token: localStorage.getItem('token') },
+                data: {
+                    "nickname": nickname,
+                },
+                success: function (response) {
+                },
+            });
+            alert("삭제 완료!")
+            window.location.href = "/home";
+        }
+
+
+        // 글쓰기
+        function write_board(nickname) {
+            board_list = $('#boardInput').val();
+            $.ajax({
+                type: "POST",
+                url: "/api/write",
+                headers: { token: localStorage.getItem('token') },
+                data: {
+                    "board": board_list,
+                },
+                success: function (response) {
+                },
+            });
+            window.location.href = "/home";
+            alert("작성 완료!")
+        }
+
+        // 게시글 피드 보여주기
+        function get_show_board() {
+            $.ajax({
+                type: "POST",
+                headers: { token: localStorage.getItem('token') },
+                url: "/api/show_board",
+                data: {
+
+                },
+                success: function (response) {
+                    let nickname_check = response['nickname']
+                    let board_list = response['show_board']
+                    let board_Id_check = response['board_Id_check']
+
+                    console.log(board_Id_check)
+
+                    // else 써서 닉네임이 있는 경우에 하트 꺼진거 붙여주기
+                    for (let i = 0; i < board_list.length; i++) {
+
+                        // friend_list.includes(board_list[i]["nickname"]
+
+                        if (board_list[i]["like_user"].includes(nickname_check) == true) {
+                            let tempHtml = ` 
+                        <div style="width:500px; margin:auto;">
+                            <hr>
+                            <button onclick="location.href='/detail?instaId=${board_list[i]["board_Id"]}'" style = "float:left; border:none; outline:none; background:none;" >  ▶ </button >
+                        <h3 style="color:orange">글쓴이 : ${board_list[i]["nickname"]}
+                            <button style="float:right; border:none; outline:none; background:none;" onclick="like(${board_list[i]["board_Id"]})">❤  ${board_list[i]["like_count"]}</button>
+                            
+                            </h3>
+                            <h4>내용 : ${board_list[i]["board_show"]}</h4>
+                            <hr>
+                            </div>
+                            `
+                            $("#board_list").append(tempHtml);
+                        }
+
+                        if (board_list[i]["like_user"].includes(nickname_check) == false) {
+
+                            let tempHtml = `
+                        <div style="width:500px; margin:auto;"
+                            <hr>
+                            <button onclick="location.href='/detail?instaId=${board_list[i]["board_Id"]}'" style = "float:left; border:none; outline:none; background:none;" >  ▶ </button >
+                        <h3 style="color:orange" ["board_Id"]}'">글쓴이 : ${board_list[i]["nickname"]}
+                            <button style="float:right; border:none; outline:none; background:none;" onclick="like(${board_list[i]["board_Id"]})">🤍  ${board_list[i]["like_count"]}</button>
+                           
+                            </h3>
+                            <h4>내용 : ${board_list[i]["board_show"]}</h4>
+                            <hr>
+                            
+                            </div>
+                            `
+                            $("#board_list").append(tempHtml);
+
+                        }
+                    }
+
+                },
+            });
+        }
+
+
+        //좋아요!
+        function like(board_Id) {
+            $.ajax({
+                type: "POST",
+                headers: { token: localStorage.getItem('token') },
+                url: "/api/like",
+                data: {
+                    board_Id: board_Id
+                },
+                success: function (response) {
+                }
+
+            });
+            window.location.href = "/home";
+        }
+    </script>
+</body>
+
+</html>

@@ -3,12 +3,10 @@ import styled from 'styled-components';
 import {Grid, Text, Image} from '../elements';
 import Story from '../components/Story';
 import Post from '../components/Post';
-import {useSelector} from 'react-redux';
 
 
 const NewPost = (props) => {
-    const data = useSelector(state => state.user.user)
-    console.log(data)
+
     return (
         <React.Fragment>
             <Container>

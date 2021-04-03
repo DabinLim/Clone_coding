@@ -1,23 +1,24 @@
-import React from "react";
-import { Button, Input, Text, Grid } from "../elements";
-import { actionCreators as userActions } from "../redux/modules/user";
-import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-import { history } from "../redux/configStore";
+import React from 'react';
+import {Text, Grid, Button, Input} from '../elements';
+import {actionCreators as userActions} from '../redux/modules/user';
+import styled from 'styled-components';
+import {useDispatch, useSelector} from 'react-redux';
 
-const Login = (props) => {
-  const dispatch = useDispatch();
-  const [id, setId] = React.useState('');
-  const [pwd, setPwd] = React.useState('');
-  const login = () => {
-    if(!id || !pwd){
-        window.alert('아이디와 비밀번호 모두 입력해주세요')
-        return
+const SignUp = (props) => {
+    const dispatch = useDispatch()
+    const [id, setId] = React.useState('');
+    const [name, setName] = React.useState('');
+    const [nickname, setNickname] = React.useState('');
+    const [pwd, setPwd] = React.useState('');
+    const signUp = () => {
+        if(!id || !name || !nickname || !pwd) {
+            window.alert('공란이 있습니다, 모든 정보를 입력하세요.')
+            return
+        }
+        dispatch(userActions.signUpSV([id, name, nickname, pwd]))
     }
-    dispatch(userActions.loginSV([id, pwd], history));
-  };
-  return (
-    <React.Fragment>
+    return (
+        <React.Fragment>
       <Grid flex_column padding="0 10%" max_height="380px">
         <Banner/>       
         <Grid min_height='100px' flex_column flex_detail="align-items:center;">
@@ -25,20 +26,23 @@ const Login = (props) => {
               setId(e.target.value);
             }} placeholder="아이디를 입력하세요" margin='5px'/>
           <Input _onChange={(e) => {
+              setName(e.target.value);
+            }} placeholder="이름을 입력하세요" margin='5px'/>
+          <Input _onChange={(e) => {
+              setNickname(e.target.value);
+            }} placeholder="닉네임을 입력하세요" margin='5px'/>
+          <Input _onChange={(e) => {
               setPwd(e.target.value);
             }}
             value={pwd} placeholder="비밀번호를 입력하세요" margin='5px'/>
         </Grid>
 
-        <Button _onClick={login}> 로그인 </Button>
-        <Grid padding='20px'>
-          <Line/>
-          <Image/>
-        </Grid>
+        <Button _onClick={signUp}> 회원가입 </Button>
+
       </Grid>
     </React.Fragment>
-  );
-};
+    )
+}
 
 
 const Banner = styled.div`
@@ -63,4 +67,4 @@ const Line = styled.hr`
   border: 1px dotted #ddd;
 `;
 
-export default Login;
+export default SignUp;
