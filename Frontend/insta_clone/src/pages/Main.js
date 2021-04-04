@@ -12,10 +12,10 @@ const Main = (props) => {
   const dispatch = useDispatch();
   const is_session = sessionStorage.getItem('token')? true: false;
 
-  React.useEffect(()=> {
-      dispatch(userActions.loginCheck(is_session,history))
+  // React.useEffect(()=> {
+  //     dispatch(userActions.loginCheck(is_session))
 
-  })
+  // })
     const [isSignup, setIsSignup] = React.useState(false)
     const notYet = () => {
         window.alert('아직 준비중입니다.')

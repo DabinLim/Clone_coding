@@ -19,7 +19,7 @@ const Post = (props) => {
 
   return (
     <React.Fragment>
-      {props.name && (
+      
         <Grid flex_column>
         <DetailContainer>
           <UserInfo>
@@ -37,7 +37,7 @@ const Post = (props) => {
               <MoreHorizIcon />
             </Grid>
           </UserInfo>
-          <Grid>
+          <Grid height='auto'>
             <Image shape="rectangle"></Image>
             <Grid
               flex_row
@@ -57,10 +57,10 @@ const Post = (props) => {
               flex_row
               flex_detail="align-items:center;"
               padding="20px"
-              height="60px"
+              height="80px"
               border
             >
-              <Grid flex_column width="80px" height="50px" margin="auto">
+              <Grid flex_column width="80px" margin="auto">
                 <Text NotP bold>
                   {props.name}
                 </Text>
@@ -86,7 +86,7 @@ const Post = (props) => {
           </Grid>
         </DetailContainer>
       </Grid>
-      )}
+      
     </React.Fragment>
   );
 };

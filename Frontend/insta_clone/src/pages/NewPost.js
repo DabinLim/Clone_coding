@@ -6,6 +6,7 @@ import Post from '../components/Post';
 import {useDispatch, useSelector} from 'react-redux';
 import {actionCreators as postActions} from '../redux/modules/post';
 import {history} from '../redux/configStore';
+import FriendList from '../components/FriendList';
 
 
 const NewPost = (props) => {
@@ -15,7 +16,7 @@ const NewPost = (props) => {
     const token = sessionStorage.getItem('token');
     React.useEffect(()=> {
         if (post_data.length < 2) {
-            dispatch(postActions.getPostSV(token, history));
+            dispatch(postActions.getFriendPostSV(token, history));
         }
       },[])
     console.log(post_data)
@@ -24,7 +25,9 @@ const NewPost = (props) => {
             <Container>
                 <PostContainer>
                     <Story/>
+                        {/* <Post/> */}
                     {post_data.map((p, idx) => {
+                        console.log(p)
                         return(
                         <Grid key={idx}
                             margin='10px 0px'>
@@ -32,14 +35,21 @@ const NewPost = (props) => {
                         </Grid>
                         )
                     })}
-                    <Post/>
                 </PostContainer>
+                <FriendContainer>
+                    <FriendList/>
+                </FriendContainer>
             </Container>
+  
         </React.Fragment>
     )
 }
 
 const Container=styled.section`
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    
     box-sizing:border-box;
     padding-top:30px;
     margin: 0 auto;
@@ -48,11 +58,24 @@ const Container=styled.section`
     width: 100%;
 `;
 
+const FriendContainer = styled.div`
+    min-width:300px;
+    box-sizing: border-box;
+    display:flex;
+    height:100%;
+    margin-left:30px;
+    flex-direction:flex-start;
+    @media (max-width:1000px) {
+        display:none;
+    }
+`;
+
 
 const PostContainer=styled.div`
     box-sizing:border-box;
     display:flex;
     flex-direction:column;
+    justify-items: center;
 `;
 
 

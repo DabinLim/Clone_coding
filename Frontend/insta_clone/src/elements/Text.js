@@ -42,7 +42,7 @@ const P = styled.p`
   ${(props) => (props.cursor ? `cursor: ${props.cursor}` : "")};
 `;
 
-const T = styled.text`
+const T = styled.div`
   color: ${(props) => props.color};
 
   vertical-align: center;

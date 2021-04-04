@@ -11,20 +11,27 @@ import { history } from "./redux/configStore";
 import Header from "./components/Header";
 import { Grid } from "./elements";
 import Login from "./components/Login";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {actionCreators as userActions} from './redux/modules/user';
 
 function App() {
+  const dispatch = useDispatch();
+  const is_session = sessionStorage.getItem('token')? true: false;
   const is_login = useSelector((state) => state.user.is_login);
+  React.useEffect(()=> {
+    dispatch(userActions.loginCheck(is_session))
+    if(is_login && history.location.pathname == '/'){
+      history.push('/newpost')
+    }
+})
   return (
     <React.Fragment>
       <Grid>
         {is_login ? <Header /> : ""}
         <Grid padding={is_login ? "55px 0px 0px 0px" : ""}>
           <BrowserRouter>
-            <ConnectedRouter history={history}>
+            <ConnectedRouter history={history} is_login={is_login}>
               <Route path="/" exact component={Main} />
-              <Route path="/Login" component={Login} />
-              <Route path="/signup" component={SignUp} />
               <Route path="/newpost" exact component={NewPost} />
               <Route path="/postwrite" exact component={PostWrite} />
               <Route path="/profile" exact component={Profile} />

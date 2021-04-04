@@ -7,6 +7,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import { useSelector, useDispatch } from "react-redux";
 
 import styled from "styled-components";
+import {history} from '../redux/configStore';
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
@@ -18,7 +19,16 @@ const PostWrite = (props) => {
   };
 
   const addPost = () => {
-    dispatch(postActions.addPostSV(contents));
+    const token = sessionStorage.getItem('token');
+    if(token){
+      dispatch(postActions.addPostSV(contents,token,history));
+    }else if (!token) {
+      window.alert('로그인 상태가 아닙니다.');
+      return
+    }else if (!contents){
+      window.alert('내용을 입력하세요.');
+      return
+    }
   };
 
   return (
