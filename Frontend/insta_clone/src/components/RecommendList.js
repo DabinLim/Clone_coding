@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import {Image, Text} from '../elements';
+import {history} from '../redux/configStore';
 
-const FriendList = (props) => {
+const RecommendList = (props) => {
 
     return (
         <React.Fragment>
@@ -11,15 +12,16 @@ const FriendList = (props) => {
                     <MyInfo>
                     <Image shape='circle' size='60'/>
                     <TextBox>
-                    <Text NotP bold> beenstgrm </Text>
+                    <Text cursor='Pointer' _onClick={()=>{history.push('/profile')}} NotP bold> beenstgrm </Text>
                     <Text NotP>임다빈</Text>
                     </TextBox>
                     </MyInfo>
-                    <Text>전환</Text>
+                    <Text cursor='Pointer' _onClick={()=>{window.alert('아직 준비중 입니다.')}}>전환</Text>
                 </MyProfileContainer>
                 <RecommendContainer>
                     <RecommendTextBox>
                         <Text NotP bold>회원님을 위한 추천</Text>
+                        <Text NotP bold>모두 보기</Text>
                     </RecommendTextBox>
                 </RecommendContainer>
             </Container>
@@ -65,8 +67,11 @@ const RecommendContainer = styled.div`
 `;
 
 const RecommendTextBox = styled.div`
-
+    display:flex;
+    width:100%;
+    flex-direction:row;
+    justify-content:space-between;
 `;
 
 
-export default FriendList;
+export default RecommendList;

@@ -22,7 +22,7 @@ const Main = (props) => {
     }
   return (
     <React.Fragment>
-      <Grid flex_column border padding="2%" margin="2% auto">
+      <Grid flex_column  padding="2%" margin="2% auto">
         <Grid
           flex_row
           flex_detail="align-items:center; justify-contents:center;"
@@ -30,24 +30,25 @@ const Main = (props) => {
           margin="32px auto 0"
           max_width="935px"
           min_height="1000px"
-          border
+          
         >
           <LoginImage />
 
-          <Grid flex_column min_width='350px' max_width='350px' border height="620px" margin='auto'>
+          <Grid flex_column min_width='350px' max_width='350px' height="620px" margin='auto'>
             <Grid border height="380px" padding="10px 0px" margin="10px 0px">
                 {isSignup? <SignUp/> : <Login/>}
             </Grid>
             <Grid
             center
+            bg_color='white'
               border
               height="63px"
               padding="10px 0px"
               margin="0px 0px 10px 0px"
             >
-            {isSignup?<Text _onClick={()=>setIsSignup(false)}>돌아가기</Text>:<Text _onClick={()=>setIsSignup(true)}>가입하기</Text> }
+            {isSignup?<Text cursor='Pointer' _onClick={()=>setIsSignup(false)}>돌아가기</Text>:<Text cursor='Pointer'_onClick={()=>setIsSignup(true)}>가입하기</Text> }
             </Grid>
-            <Grid border height="102px">
+            <Grid bg_color='white' border height="102px">
               앱을 다운로드 하세요.
             </Grid>
           </Grid>

@@ -33,7 +33,7 @@ const Header = (props) => {
 }
 
 const HeaderContainer = styled.div`
-    border:1px solid black;
+    border:1px solid #dbdbdb;
     width:100%;
     height:55px;
     position:fixed;

@@ -37,14 +37,14 @@ const Post = (props) => {
               <MoreHorizIcon />
             </Grid>
           </UserInfo>
-          <Grid height='auto'>
-            <Image shape="rectangle"></Image>
+          <Grid bg_color='white' height='auto'>
+            <Image src={props.image} shape="rectangle"></Image>
             <Grid
               flex_row
               flex_detail="align-items:center;"
               padding="4px"
               height="60px"
-              border
+              
             >
               <Grid width="auto" height="auto" margin="0px 8px">
                 <FavoriteBorderIcon fontSize="large" />
@@ -57,10 +57,10 @@ const Post = (props) => {
               flex_row
               flex_detail="align-items:center;"
               padding="20px"
-              height="80px"
-              border
+              height="60px"
+              
             >
-              <Grid flex_column width="80px" margin="auto">
+              <Grid flex_column width="80px" height="50px" margin="auto">
                 <Text NotP bold>
                   {props.name}
                 </Text>
@@ -73,7 +73,8 @@ const Post = (props) => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid border flex_row height="50px">
+          <Line/>
+          <Grid bg_color='white' flex_row height="50px">
             <Grid width="auto" height="auto" margin="auto 10px">
               <InsertEmoticonIcon fontSize="large" onClick={()=>{window.alert('아직 준비중입니다.')}} />
             </Grid>
@@ -92,14 +93,23 @@ const Post = (props) => {
 };
 
 const DetailContainer = styled.div`
-  padding: 30px 0px;
+  margin: 30px 0px;
+  border: 1px solid #dbdbdb;
+  width:100%;
+  background-color:white;
 `;
 
 const UserInfo = styled.div`
+background-color:white;
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
+  
   padding: 15px;
+`;
+
+const Line = styled.hr`
+  border: 1px dotted #dbdbdb;
+
 `;
 
 export default Post;

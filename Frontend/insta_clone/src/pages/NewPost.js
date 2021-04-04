@@ -6,7 +6,7 @@ import Post from '../components/Post';
 import {useDispatch, useSelector} from 'react-redux';
 import {actionCreators as postActions} from '../redux/modules/post';
 import {history} from '../redux/configStore';
-import FriendList from '../components/FriendList';
+import RecommendList from '../components/RecommendList';
 
 
 const NewPost = (props) => {
@@ -25,7 +25,6 @@ const NewPost = (props) => {
             <Container>
                 <PostContainer>
                     <Story/>
-                        {/* <Post/> */}
                     {post_data.map((p, idx) => {
                         console.log(p)
                         return(
@@ -37,7 +36,7 @@ const NewPost = (props) => {
                     })}
                 </PostContainer>
                 <FriendContainer>
-                    <FriendList/>
+                    <RecommendList/>
                 </FriendContainer>
             </Container>
   
@@ -49,7 +48,6 @@ const Container=styled.section`
     display:flex;
     flex-direction:row;
     justify-content:center;
-    
     box-sizing:border-box;
     padding-top:30px;
     margin: 0 auto;
@@ -76,6 +74,7 @@ const PostContainer=styled.div`
     display:flex;
     flex-direction:column;
     justify-items: center;
+    width:100%;
 `;
 
 

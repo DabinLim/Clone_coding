@@ -18,7 +18,7 @@ const Login = (props) => {
   };
   return (
     <React.Fragment>
-      <Grid flex_column padding="0 10%" max_height="380px">
+      <Grid bg_color='white' flex_column padding="0 10%" max_height="380px">
         <Banner/>       
         <Grid min_height='100px' flex_column flex_detail="align-items:center;">
           <Input _onChange={(e) => {

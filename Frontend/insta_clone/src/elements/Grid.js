@@ -56,9 +56,10 @@ const GridBox = styled.div`
     max-height: ${(props) => props.max_height};
     min-height: ${(props) => props.min_height};
     box-sizing:border-box;
-    ${(props) => props.border? `border: 1px solid black`: ''};
+    ${(props) => props.border? `border: 1px solid #dbdbdb`: ''};
     ${(props) => props.padding? `padding:${props.padding}` : ''};
     ${(props) => props.margin? `margin:${props.margin}` : ''};
+    ${(props) => props.bg_color? `background-color:${props.bg_color}` : ''};
     ${(props) => props.flex_row? `display:flex; flex-direction:row; ${props.flex_detail}`: ''};
     ${(props) => props.flex_column? `display:flex; flex-direction:column; ${props.flex_detail}`: ''};
     ${(props) => props.center? `text-align: center;`: ''};

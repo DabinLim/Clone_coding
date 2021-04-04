@@ -43,7 +43,8 @@ const StoryContainer = styled.div`
     flex-direction:row;
     width:100%;
     height:100%;
-    border: 1px solid black;
+    border: 1px solid #dbdbdb;
+    background-color: white;
     padding: 10px;
     overflow: auto;
 `;
