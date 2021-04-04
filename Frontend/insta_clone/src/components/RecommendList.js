@@ -23,6 +23,9 @@ const RecommendList = (props) => {
                         <Text NotP bold>회원님을 위한 추천</Text>
                         <Text NotP bold>모두 보기</Text>
                     </RecommendTextBox>
+                    <Recommended>
+
+                    </Recommended>
                 </RecommendContainer>
             </Container>
         </React.Fragment>
@@ -71,6 +74,10 @@ const RecommendTextBox = styled.div`
     width:100%;
     flex-direction:row;
     justify-content:space-between;
+`;
+
+const Recommended = styled.div`
+    
 `;
 
 
