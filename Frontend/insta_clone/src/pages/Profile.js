@@ -12,7 +12,6 @@ const ProfileDetail = () => {
   return (
     <React.Fragment>
       <Container>
-        <Header />
         <ProfileHeader />
         <ProfilePost />
         <ProfilePost />

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Grid, Text, Image, Button } from "../elements/index";
 import Story from "./Story";
+import { history } from "../redux/configStore";
 
 const ProfileHeader = (props) => {
   return (
@@ -21,7 +22,7 @@ const ProfileHeader = (props) => {
             <Text size="60" bold>
               user_id
             </Text>
-            <Button width="80px">게시글 작성</Button>
+            <Button _onClick={()=> {history.push('/postwrite')}} width="80px">게시글 작성</Button>
           </IdButton>
           <Text bold>user_name</Text>
           <Text bold>안녕!</Text>
