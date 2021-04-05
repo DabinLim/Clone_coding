@@ -17,13 +17,14 @@ import {actionCreators as userActions} from './redux/modules/user';
 function App() {
   const dispatch = useDispatch();
   const is_session = sessionStorage.getItem('token')? true: false;
+  const token = sessionStorage.getItem('token')
   const is_login = useSelector((state) => state.user.is_login);
   React.useEffect(()=> {
-    dispatch(userActions.loginCheck(is_session))
-    if(is_login && history.location.pathname == '/'){
+    dispatch(userActions.loginCheck(is_session, token))
+    if(token && history.location.pathname == '/'){
       history.push('/newpost')
     }
-})
+  })
   return (
     <React.Fragment>
       <Grid>

@@ -3,6 +3,7 @@ import { produce } from "immer";
 import moment from "moment";
 import {response} from './mockup';
 import axios from "axios";
+import {actionCreators as likeActions} from './like';
 
 //목록 리덕스에 넣어주는 애
 const SET_POST = "SET_POST";
@@ -56,54 +57,63 @@ const addPostSV = (contents, token, history) => {
 
 const getFriendPostSV = (token, history) => {
   return function(dispatch, getState ){
-    const res = response.post_list
-    let post_data = []
-    for(let i =0; i < res.length; i++){
-      post_data.push(
-        {
-          image:res[i].file,
-          name:res[i].name,
-          createAt:res[i].createAt,
-          content:res[i].content
-        }
-      )
-    }
-    
-    dispatch(setPost(post_data))
-    // console.log(token)
-    // const options = {
-    //   url: "http://13.209.10.75/api/show",
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json;charset=UTF-8",
-    //     token: token
-    //   },
-    // };
-    // axios(options)
-    //   .then((response) => {
-    //     let post_data =[]
 
-    //     for(let i =0; i < response.data.post_list.length; i ++){
-    //       post_data.push({
-    //         post_id:response.data.post_list[i].post_Id,
-    //         name: response.data.post_list[i].name,
-    //       content: response.data.post_list[i].content,
-    //       image: response.data.post_list[i].file,
-    //       createAt: response.data.post_list[i].createAt,
-    //       })
+    // const res = response.post_list
+    // let post_data = []
+    // for(let i =0; i < res.length; i++){
+    //   post_data.push(
+    //     {
+    //       image:res[i].file,
+    //       name:res[i].name,
+    //       createAt:res[i].createAt,
+    //       content:res[i].content
     //     }
-    //     console.log(response.data)
-    //     console.log(post_data)
-    //     dispatch(setPost(post_data))
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.response.data.errorMessage);
-    //     console.log(error.reaponse)
-    //   });
+    //   )
+    // }
+    
+    // dispatch(setPost(post_data))
+    // console.log(token)
+    const options = {
+      url: "http://13.209.10.75/api/show",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+        token: token
+      },
+    };
+    axios(options)
+      .then((response) => {
+        console.log(response)
+        let post_data =[]
+        let like_data =[]
+        for(let i =0; i < response.data.post_list.length; i ++){
+          post_data.push({
+            post_id:response.data.post_list[i].post_Id,
+            name: response.data.post_list[i].name,
+          content: response.data.post_list[i].content,
+          image: response.data.post_list[i].file_name,
+          createAt: response.data.post_list[i].createAt,
+          })
+          like_data.push({
+            post_id:response.data.post_list[i].post_Id,
+            like_user: response.data.post_list[i].like_user,
+
+          })
+        }
+        console.log(response.data)
+        console.log(post_data)
+        dispatch(setPost(post_data))
+        dispatch(likeActions.setLike(like_data))
+      })
+      .catch((error) => {
+        console.log(error.response.data.errorMessage);
+        console.log(error.reaponse)
+      });
   }
 
 }
+
 
 // reducer
 export default handleActions(

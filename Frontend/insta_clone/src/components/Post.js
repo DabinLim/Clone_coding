@@ -9,13 +9,14 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import {history} from '../redux/configStore';
+import Like from './Like';
 
 const Post = (props) => {
     const [comment, setComment] = React.useState();
     const commentWrite = () => {
         console.log(comment)
     }
-    console.log(props)
+  
 
   return (
     <React.Fragment>
@@ -47,7 +48,7 @@ const Post = (props) => {
               
             >
               <Grid width="auto" height="auto" margin="0px 8px">
-                <FavoriteBorderIcon fontSize="large" />
+                <Like {...props}/>
               </Grid>
               <Grid width="auto" height="auto" margin="0px 8px">
                 <ChatBubbleOutlineIcon fontSize="large" />
