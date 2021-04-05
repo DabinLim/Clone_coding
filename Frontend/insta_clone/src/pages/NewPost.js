@@ -19,7 +19,7 @@ const NewPost = (props) => {
             dispatch(postActions.getFriendPostSV(token, history));
         }
       },[])
-    console.log(post_data)
+    
     return (
         <React.Fragment>
             <Container>

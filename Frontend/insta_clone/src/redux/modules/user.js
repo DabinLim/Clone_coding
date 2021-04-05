@@ -13,11 +13,27 @@ const initialState = {
   is_login: false,
 };
 
-const loginCheck = (session_info, history) => {
+const loginCheck = (session_info, token) => {
   return function (dispatch) {
     if (session_info) {
-      dispatch(setUser());
-      // history.push("/newpost");
+      const options = {
+        url: "http://13.209.10.75/api/check",
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+          token:token
+        },
+      };
+      axios(options)
+        .then((response) => {
+          console.log(response.data)
+          dispatch(setUser(response.data))
+          
+        })
+        .catch((error) => {
+          window.alert(error.response.data.errorMessage);
+        });
     } else {
       dispatch(logOut());
     }
@@ -29,6 +45,7 @@ const logOutSV = (history) => {
     sessionStorage.removeItem("token");
     dispatch(logOut());
     history.replace("/");
+    dispatch(setUser());
   };
 };
 
@@ -64,43 +81,43 @@ const loginSV = (data, history) => {
       password: data[1],
     };
     // 클라이언트 시험
-    const user_data = {
-      insta_Id: data[0],
-      name: data[1],
-    }
-    dispatch(setUser(user_data))
-    sessionStorage.setItem("token", data.token)
+    // const user_data = {
+    //   insta_Id: data[0],
+    //   name: data[1],
+    // }
+    // dispatch(setUser(user_data))
+    // sessionStorage.setItem("token", data.token)
 
-      // const options = {
-      //   url: "http://13.209.10.75/api/login",
-      //   method: "POST",
-      //   headers: {
-      //     Accept: "application/json",
-      //     "Content-Type": "application/json;charset=UTF-8",
-      //   },
-      //   data: {
-      //     insta_Id: login_data.user_id,
-      //     password: login_data.password,
-      //   },
-      // };
-      // axios(options)
-      //   .then((response) => {
-      //     sessionStorage.setItem("token", response.data.token)
-      //     window.alert('로그인 완료')
-      //     console.log(response)
-      //     dispatch(setUser())
-      //   })
-      //   .catch((error) => {
-      //     window.alert(error.response.data.errorMessage);
-      //   });
+      const options = {
+        url: "http://13.209.10.75/api/login",
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        data: {
+          insta_Id: login_data.user_id,
+          password: login_data.password,
+        },
+      };
+      axios(options)
+        .then((response) => {
+          sessionStorage.setItem("token", response.data.token)
+          window.alert('로그인 완료')
+          console.log(response)
+          
+          
+        })
+        .catch((error) => {
+          window.alert(error.response.data.errorMessage);
+        });
 
-    history.push("/");
   };
 };
 
 const signUpSV = (data, history) => {
   return function (dispatch) {
-    console.log(history);
+    // console.log(history);
     const signup_data = {
       user_id: data[0],
       name: data[1],
@@ -108,13 +125,13 @@ const signUpSV = (data, history) => {
     };
 
     // 클라이언트 시험
-    const user_data = {
-      insta_Id: data[0],
-      name: data[1],
-    }
+    // const user_data = {
+    //   insta_Id: data[0],
+    //   name: data[1],
+    // }
 
-    dispatch(setUser(user_data))
-    sessionStorage.setItem("token", data.token)
+    // dispatch(setUser(user_data))
+    // sessionStorage.setItem("token", data.token)
 
     // fetch("http://13.209.10.75/api/register", {
     //   headers: {
@@ -132,28 +149,28 @@ const signUpSV = (data, history) => {
     //     window.alert(error);
     //     console.log(error.errorMessage);
     //   });
-    // const options = {
-    //   url: "http://13.209.10.75/api/register",
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json;charset=UTF-8",
-    //   },
-    //   data: {
-    //     insta_Id: signup_data.user_id,
-    //     name: signup_data.name,
-    //     password: signup_data.password,
-    //   },
-    // };
-    // axios(options)
-    //   .then((response) => {
-    //     console.log(response);
-    //     console.log(response.data);
-    //     console.log(response['data']);
-    //   })
-    //   .catch((error) => {
-    //     window.alert(error.response.data.errorMessage);
-    //   });
+    const options = {
+      url: "http://13.209.10.75/api/register",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      data: {
+        insta_Id: signup_data.user_id,
+        name: signup_data.name,
+        password: signup_data.password,
+      },
+    };
+    axios(options)
+      .then((response) => {
+        console.log(response);
+        console.log(response.data);
+        console.log(response['data']);
+      })
+      .catch((error) => {
+        window.alert(error.response.data.errorMessage);
+      });
     //   $.ajax({
     //     type: "POST",
     //     url: "http://13.209.10.75/api/register",
