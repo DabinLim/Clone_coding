@@ -21,10 +21,11 @@ function App() {
   const is_login = useSelector((state) => state.user.is_login);
   React.useEffect(()=> {
     dispatch(userActions.loginCheck(is_session, token))
-    if(token && history.location.pathname == '/'){
-      history.push('/newpost')
-    }
   })
+  console.log(history)
+  if(token && history.location.pathname === '/'){
+    history.push('/newpost')
+  }
   return (
     <React.Fragment>
       <Grid>

@@ -49,7 +49,10 @@ const addPostSV = (contents, token, history) => {
       console.log(response)
       history.push('/profile')
     }).catch((error) => {
-      window.alert(error.response.data.errorMessage)
+      console.log(error)
+            if(error.response){
+                window.alert(error.response.data.errorMessage);
+            }
     })
     
   };
@@ -101,14 +104,14 @@ const getFriendPostSV = (token, history) => {
 
           })
         }
-        console.log(response.data)
-        console.log(post_data)
         dispatch(setPost(post_data))
         dispatch(likeActions.setLike(like_data))
       })
       .catch((error) => {
-        console.log(error.response.data.errorMessage);
-        console.log(error.reaponse)
+        console.log(error)
+            if(error.response){
+                window.alert(error.response.data.errorMessage);
+            }
       });
   }
 

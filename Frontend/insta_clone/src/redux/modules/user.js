@@ -32,7 +32,10 @@ const loginCheck = (session_info, token) => {
           
         })
         .catch((error) => {
-          window.alert(error.response.data.errorMessage);
+          console.log(error)
+          if(error.response){
+            window.alert(error.response.data.errorMessage);
+          }
         });
     } else {
       dispatch(logOut());
@@ -49,30 +52,6 @@ const logOutSV = (history) => {
   };
 };
 
-const testSV = (token) => {
-  console.log(token)
-  return function() {
-    const options = {
-      url: "http://13.209.10.75/api/test",
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      },
-      data: {
-        token: token
-      },
-    };
-    axios(options)
-      .then((response) => {
-        console.log(response)
-      })
-      .catch((error) => {
-        window.alert(error.response.data.errorMessage);
-      });
-  
-  }
-}
 
 const loginSV = (data, history) => {
   return function (dispatch) {
@@ -104,12 +83,15 @@ const loginSV = (data, history) => {
         .then((response) => {
           sessionStorage.setItem("token", response.data.token)
           window.alert('로그인 완료')
-          console.log(response)
+          dispatch(setUser(login_data.user_id))
           
           
         })
         .catch((error) => {
-          window.alert(error.response.data.errorMessage);
+          console.log(error)
+          if(error.response){
+            window.alert(error.response.data.errorMessage);
+          }
         });
 
   };
@@ -213,7 +195,6 @@ const actionCreators = {
   loginSV,
   loginCheck,
   logOutSV,
-  testSV
 };
 
 export { actionCreators };

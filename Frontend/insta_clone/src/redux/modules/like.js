@@ -3,7 +3,7 @@ import {produce} from 'immer';
 import axios from 'axios';
 
 const SET_LIKE = 'SET_LIKE';
-const CHANGE_LIKE = 'CHANGE_LIKE';
+
 
 const setLike = createAction(SET_LIKE, (like_user) => ({like_user}));
 
