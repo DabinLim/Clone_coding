@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Text, Input, Button, Image } from "../elements/index";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as postActions } from "../redux/modules/post";
+import post, { actionCreators as postActions } from "../redux/modules/post";
 import { history } from "../redux/configStore";
 
 import Header from "../components/Header";
@@ -10,6 +10,7 @@ import Header from "../components/Header";
 //프로필 포스트들에 필요한 요소들
 import ProfileHeader from "../components/ProfileHeader";
 import ProfilePost from "../components/ProfilePost";
+import user from "../redux/modules/user";
 
 const Profile = (props) => {
   const dispatch = useDispatch();
@@ -21,7 +22,16 @@ const Profile = (props) => {
       dispatch(postActions.getMyPostSV(token, history));
     }
   }, []);
-  console.log(post_data);
+  // console.log(post_data);
+  console.log(data);
+
+  // // 해당하는 사람 포스트만 보여주기
+  // console.log(data.name);
+  // console.log(post_data[1].name);
+
+  // if (data.name = post_data[i].name) {
+
+  // }
 
   return (
     <React.Fragment>
@@ -29,7 +39,9 @@ const Profile = (props) => {
         <ProfileHeader />
         <PostContainer>
           {post_data.map((p, idx) => {
-            return <ProfilePost key={idx} {...p} />;
+            if (data.name == post_data[idx].name) {
+              return <ProfilePost key={idx} {...p} />;
+            }
           })}
         </PostContainer>
       </Container>

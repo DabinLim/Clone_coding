@@ -22,14 +22,13 @@ const loginCheck = (session_info, token) => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json;charset=UTF-8",
-          token:token
+          token: token,
         },
       };
       axios(options)
         .then((response) => {
-          console.log(response.data)
-          dispatch(setUser(response.data))
-          
+          console.log(response.data);
+          dispatch(setUser(response.data));
         })
         .catch((error) => {
           window.alert(error.response.data.errorMessage);
@@ -50,8 +49,8 @@ const logOutSV = (history) => {
 };
 
 const testSV = (token) => {
-  console.log(token)
-  return function() {
+  console.log(token);
+  return function () {
     const options = {
       url: "http://13.209.10.75/api/test",
       method: "POST",
@@ -60,19 +59,18 @@ const testSV = (token) => {
         "Content-Type": "application/json;charset=UTF-8",
       },
       data: {
-        token: token
+        token: token,
       },
     };
     axios(options)
       .then((response) => {
-        console.log(response)
+        console.log(response);
       })
       .catch((error) => {
         window.alert(error.response.data.errorMessage);
       });
-  
-  }
-}
+  };
+};
 
 const loginSV = (data, history) => {
   return function (dispatch) {
@@ -80,38 +78,36 @@ const loginSV = (data, history) => {
       user_id: data[0],
       password: data[1],
     };
-    // 클라이언트 시험
+
+    // //클라이언트 시험
     // const user_data = {
     //   insta_Id: data[0],
     //   name: data[1],
-    // }
-    // dispatch(setUser(user_data))
-    // sessionStorage.setItem("token", data.token)
+    // };
+    // dispatch(setUser(user_data));
+    // sessionStorage.setItem("token", data.token);
 
-      const options = {
-        url: "http://13.209.10.75/api/login",
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json;charset=UTF-8",
-        },
-        data: {
-          insta_Id: login_data.user_id,
-          password: login_data.password,
-        },
-      };
-      axios(options)
-        .then((response) => {
-          sessionStorage.setItem("token", response.data.token)
-          window.alert('로그인 완료')
-          console.log(response)
-          
-          
-        })
-        .catch((error) => {
-          window.alert(error.response.data.errorMessage);
-        });
-
+    const options = {
+      url: "http://13.209.10.75/api/login",
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json;charset=UTF-8",
+      },
+      data: {
+        insta_Id: login_data.user_id,
+        password: login_data.password,
+      },
+    };
+    axios(options)
+      .then((response) => {
+        sessionStorage.setItem("token", response.data.token);
+        window.alert("로그인 완료");
+        console.log(response);
+      })
+      .catch((error) => {
+        window.alert(error.response.data.errorMessage);
+      });
   };
 };
 
@@ -166,7 +162,7 @@ const signUpSV = (data, history) => {
       .then((response) => {
         console.log(response);
         console.log(response.data);
-        console.log(response['data']);
+        console.log(response["data"]);
       })
       .catch((error) => {
         window.alert(error.response.data.errorMessage);
@@ -197,6 +193,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.user = action.payload.user;
         draft.is_login = true;
+        console.log(draft.user);
       }),
 
     [LOG_OUT]: (state, action) =>
@@ -213,7 +210,7 @@ const actionCreators = {
   loginSV,
   loginCheck,
   logOutSV,
-  testSV
+  testSV,
 };
 
 export { actionCreators };
