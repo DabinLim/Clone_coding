@@ -17,7 +17,7 @@ const loginCheck = (session_info, history) => {
   return function (dispatch) {
     if (session_info) {
       dispatch(setUser());
-      history.push("/newpost");
+      // history.push("/newpost");
     } else {
       dispatch(logOut());
     }

@@ -27,23 +27,32 @@ const Profile = (props) => {
     <React.Fragment>
       <Container>
         <ProfileHeader />
-        {post_data.map((p, idx) => {
-          return (
-            <Grid key={idx}>
-              <ProfilePost {...p} />
-            </Grid>
-          );
-        })}
+        <PostContainer>
+          {post_data.map((p, idx) => {
+            return <ProfilePost key={idx} {...p} />;
+          })}
+        </PostContainer>
       </Container>
     </React.Fragment>
   );
 };
-const Container = styled.section`
+const Container = styled.div`
   box-sizing: border-box;
   padding-top: 30px;
   margin: 0 auto;
   max-width: 930px;
-  position: relative;
+  /* position: relative; */
+  width: 100vh;
+`;
+
+const PostContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  margin-right: 3px;
+  margin-left: 3px;
+  justify-content: space-between;
   width: 100%;
 `;
 

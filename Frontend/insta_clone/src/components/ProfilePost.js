@@ -12,22 +12,9 @@ const ProfilePost = (props) => {
 
   return (
     <React.Fragment>
-      <PostImage>
-        <Image shape="square" size="250" src={props.image}></Image>
-      </PostImage>
+      <Image size="250" shape="square" src={props.image}></Image>
     </React.Fragment>
   );
 };
-
-const PostImage = styled.div`
-  size: 250;
-  display: flex;
-  position: relative;
-  margin-top: 30px;
-  margin-right: 14px;
-  margin-left: 14px;
-  width: auto;
-  justify-content: space-between;
-`;
 
 export default ProfilePost;
