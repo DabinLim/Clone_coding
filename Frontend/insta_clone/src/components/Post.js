@@ -1,28 +1,31 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid, Text, Image, Input } from "../elements";
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {actionCreators as postActions} from '../redux/modules/post'
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
+import {history} from '../redux/configStore';
 
 const Post = (props) => {
-    const dispatch = useDispatch();
     const [comment, setComment] = React.useState();
     const commentWrite = () => {
         console.log(comment)
     }
+    console.log(props)
 
   return (
     <React.Fragment>
-      <Grid flex_column>
+      {props.name && (
+        <Grid flex_column>
         <DetailContainer>
           <UserInfo>
             <Grid flex_row>
               <Image shape="circle" size="36"></Image>
-              <Text bold> Dabin </Text>
+              <Text bold>{props.name}</Text>
             </Grid>
             <Grid
               width="auto"
@@ -59,14 +62,14 @@ const Post = (props) => {
             >
               <Grid flex_column width="80px" height="50px" margin="auto">
                 <Text NotP bold>
-                  Dabin
+                  {props.name}
                 </Text>
                 <Text NotP size="6px">
-                  10분전
+                  {props.createAt}
                 </Text>
               </Grid>
               <Grid height="auto">
-                <Text>#항해스타그램</Text>
+                <Text>{props.content}</Text>
               </Grid>
             </Grid>
           </Grid>
@@ -83,6 +86,7 @@ const Post = (props) => {
           </Grid>
         </DetailContainer>
       </Grid>
+      )}
     </React.Fragment>
   );
 };

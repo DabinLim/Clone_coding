@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Image = (props) => {
-  const { shape, src, size } = props;
+  const { shape, src, size, _onClick } = props;
 
   const styles = {
     src: src,
@@ -10,7 +10,7 @@ const Image = (props) => {
   };
 
   if (shape === "circle") {
-    return <ImageCircle {...styles}></ImageCircle>;
+    return <ImageCircle {...styles} onClick={_onClick}></ImageCircle>;
   }
 
   if (shape === "rectangle") {
@@ -37,6 +37,7 @@ Image.defaultProps = {
   src:
     "https://firebasestorage.googleapis.com/v0/b/dab-react.appspot.com/o/%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF.jpeg?alt=media&token=aa5058f2-2495-4ef3-acde-b30699096de9",
   size: 36,
+  _onClick: () => {},
 };
 
 const ImageDefault = styled.div`

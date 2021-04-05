@@ -1,6 +1,9 @@
 import React from "react";
 import { Grid, Text, Input, Button, Image } from "../elements/index";
 import styled from "styled-components";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
+import { history } from "../redux/configStore";
 
 import Header from "../components/Header";
 
@@ -8,15 +11,29 @@ import Header from "../components/Header";
 import ProfileHeader from "../components/ProfileHeader";
 import ProfilePost from "../components/ProfilePost";
 
-const ProfileDetail = () => {
+const Profile = (props) => {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.user.user);
+  const post_data = useSelector((state) => state.post.list);
+  const token = sessionStorage.getItem("token");
+  React.useEffect(() => {
+    if (post_data.length == 0) {
+      dispatch(postActions.getMyPostSV(token, history));
+    }
+  }, []);
+  console.log(post_data);
+
   return (
     <React.Fragment>
       <Container>
         <ProfileHeader />
-        <ProfilePost />
-        <ProfilePost />
-        <ProfilePost />
-        <ProfilePost />
+        {post_data.map((p, idx) => {
+          return (
+            <Grid key={idx}>
+              <ProfilePost {...p} />
+            </Grid>
+          );
+        })}
       </Container>
     </React.Fragment>
   );
@@ -30,4 +47,4 @@ const Container = styled.section`
   width: 100%;
 `;
 
-export default ProfileDetail;
+export default Profile;
