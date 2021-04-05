@@ -20,11 +20,20 @@ const ProfileHeader = (props) => {
         <TextContainer>
           <IdButton>
             <Text size="60" bold>
-              user_id
+              id
             </Text>
-            <Button _onClick={()=> {history.push('/postwrite')}} width="80px">게시글 작성</Button>
+            <Button
+              _onClick={() => {
+                history.push("/postwrite");
+              }}
+              width="80px"
+            >
+              게시글 작성
+            </Button>
           </IdButton>
-          <Text bold>user_name</Text>
+          <Text size="60" bold>
+            name
+          </Text>
           <Text bold>안녕!</Text>
         </TextContainer>
       </Container>
