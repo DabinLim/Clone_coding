@@ -37,7 +37,7 @@ const addPostSV = (contents, file, token, history) => {
     let formData = new FormData();
     formData.append("file", file);
     formData.append("content", contents);
-    
+
     const options = {
       url: "http://13.209.10.75/upload",
       method: "POST",
@@ -59,9 +59,9 @@ const addPostSV = (contents, file, token, history) => {
         };
         let like_data = {
           post_id: response.data.post_list.post_Id,
-            like_user: response.data.post_list.like_user,
+          like_user: response.data.post_list.like_user,
         };
-        console.log(post_data, like_data)
+        console.log(post_data, like_data);
         dispatch(addPost(post_data));
         dispatch(likeActions.addLike(like_data));
         window.alert("게시물 작성이 완료되었습니다.");

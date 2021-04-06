@@ -21,8 +21,8 @@ const PostWrite = (props) => {
   const addPost = () => {
     const token = sessionStorage.getItem("token");
     if (token) {
-      console.log('작성시작')
-      console.log(file)
+      console.log("작성시작");
+      console.log(file);
       dispatch(postActions.addPostSV(contents, file, token, history));
     } else if (!token) {
       window.alert("로그인 상태가 아닙니다.");
@@ -38,7 +38,7 @@ const PostWrite = (props) => {
   const fileInput = React.useRef();
 
   const selectFile = (e) => {
-    setFile(e.target.files[0])
+    setFile(e.target.files[0]);
   };
 
   return (

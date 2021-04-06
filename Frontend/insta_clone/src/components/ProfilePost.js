@@ -13,7 +13,7 @@ const ProfilePost = (props) => {
 
   return (
     <React.Fragment>
-      <Image size="250" shape="square" src={props.image}></Image>
+      <Image size="250" shape="square" src={props.image[0]}></Image>
     </React.Fragment>
   );
 };
