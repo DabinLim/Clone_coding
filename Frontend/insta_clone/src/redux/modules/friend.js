@@ -6,13 +6,15 @@ import axios from 'axios';
 const SET_RECOMMEND = 'SET_RECOMMEND';
 const SET_FRIEND = 'SET_FRIEND';
 const ADD_FRIEND = 'ADD_FRIEND';
-const UPDATE_RECOMMEND = 'UPDATE_RECOMMEND';
+const ADD_RECOMMEND = 'ADD_RECOMMEND';
+const DELETE_RECOMMEND = 'DELETE_RECOMMEND';
 const DELETE_FRIEND = 'DELETE_FRIEND';
 
 const setRecommend = createAction(SET_RECOMMEND, (list) => ({list}));
 const setFriendList = createAction(SET_FRIEND, (list) => ({list}));
 const addFriend = createAction(ADD_FRIEND, (new_friend) => ({new_friend}));
-const updateRecommend = createAction(UPDATE_RECOMMEND, (list) => ({list}));
+const deleteRecommend = createAction(DELETE_RECOMMEND, (list) => ({list}));
+const addRecommend = createAction(ADD_RECOMMEND, (list) => ({list}));
 
 const deleteFriend = createAction(DELETE_FRIEND, (list) => ({list}));
 
@@ -38,7 +40,7 @@ const setRecommendSV = (token) => {
                 recommended_list.push({
                     recommended_id: response.data.friend_list[i].insta_Id,
                     recommended_name: response.data.friend_list[i].name,
-                    recommended_image: response.data.friend_list[i].profile_image
+                    recommended_image: response.data.friend_list[i].profile_img
                 })
             }
             dispatch(setRecommend(recommended_list))
@@ -62,8 +64,14 @@ const getFriendListSV = (token) => {
             },
         };
         axios(options).then((response) => {
-            console.log(response.data)
-            dispatch(setFriendList(response.data.my_friend_list_show))
+            let friend_list = [];
+            for(let i =0; i< response.data.my_friend_list_show.length; i++){
+                friend_list.push({
+                    name: response.data.my_friend_list_show[i].name,
+                    profile_image: response.data.my_friend_list_show[i].profile_img,
+                })
+            }
+            dispatch(setFriendList(friend_list))
             
         }).catch((error)=> {
             console.log(error)
@@ -88,9 +96,12 @@ const addFriendSV = (token, name) => {
             }
         };
         axios(options).then((response) => {
-            console.log(response.data)
-            dispatch(addFriend(response.data))
-            dispatch(updateRecommend(response.data))
+            let friend_list = {
+                name: response.data.new_friend.name,
+                profile_image: response.data.new_friend.profile_img,
+            }
+            dispatch(addFriend(friend_list))
+            dispatch(deleteRecommend(friend_list))
             
         }).catch((error)=> {
             console.log(error)
@@ -115,9 +126,14 @@ const deleteFriendSV = (name, token) => {
             }
         };
         axios(options).then((response) => {
-            console.log(response)
+            console.log(response.data)
+            let new_recommend = {
+                recommended_name: response.data.delete_friend.name,
+                recommended_image: response.data.delete_friend.profile_img,
+            }
+            dispatch(addRecommend(new_recommend))
             dispatch(deleteFriend(name))
-            
+
         }).catch((error)=> {
             console.log(error)
             if(error.response){
@@ -143,9 +159,9 @@ export default handleActions(
             draft.friend_list.unshift(action.payload.new_friend) 
       }),
 
-      [UPDATE_RECOMMEND] : (state, action) => produce(state, (draft) => {
+      [DELETE_RECOMMEND] : (state, action) => produce(state, (draft) => {
           let new_recommend = draft.list.filter((v) => {
-              if(v.recommended_name !== action.payload.list){
+              if(v.recommended_name !== action.payload.list.name){
                   return v;
               }
           })
@@ -154,12 +170,16 @@ export default handleActions(
 
       [DELETE_FRIEND] : (state, action) => produce(state, (draft) => {
           let new_friend_list = draft.friend_list.filter((v) => {
-              if(v !== action.payload.list){
+              if(v.name !== action.payload.list){
                   return v
               }
           })
 
           draft.friend_list = new_friend_list;
+      }),
+
+      [ADD_RECOMMEND]: (state, action) => produce(state, (draft) => {
+          draft.list.unshift(action.payload.list)
       })
 
     },

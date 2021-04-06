@@ -3,18 +3,23 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import {useDispatch, useSelector} from 'react-redux';
 import {actionCreators as likeActions} from '../redux/modules/like'
+import {Text} from '../elements';
 
 const Like = (props) => {
     const dispatch = useDispatch()
     const [nowLike,setLike] = React.useState(false)
     const user_info = useSelector(state => state.user)
     const like_data = useSelector(state => state.like.like)
+    console.log(like_data)
     let like_user;
+    let like_count;
     for(let i = 0; i < like_data.length; i ++) {
         if(like_data[i].post_id === props.post_id){
             like_user = like_data[i].like_user
+            like_count = like_data[i].like_count
         }
     }
+    console.log(like_count)
     const token = sessionStorage.getItem('token')
 
     let num = 0;
@@ -37,12 +42,14 @@ const Like = (props) => {
         return (
             <React.Fragment>
                 <FavoriteIcon onClick={()=>{dispatch(likeActions.changeLikeSV(props.post_id,token))}} color='secondary' fontSize='large'/>
+                <Text margin='0px 0px 0px 4px' bold>{like_count}</Text>
             </React.Fragment>
         )
     } 
         return (
         <React.Fragment>
             <FavoriteBorderIcon onClick={()=>{dispatch(likeActions.changeLikeSV(props.post_id,token))}}fontSize='large'/>
+            <Text margin='0px 0px 0px 4px' bold>{like_count}</Text>
         </React.Fragment>
         )
 }
