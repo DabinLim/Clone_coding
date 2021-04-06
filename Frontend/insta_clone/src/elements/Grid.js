@@ -25,7 +25,7 @@ const Grid = (props) => {
 
     return(
     <React.Fragment>
-        <GridBox {...styles}>{children}</GridBox>
+        <GridBox {...styles} onClick={_onClick}>{children}</GridBox>
     </React.Fragment>
     )
 }
@@ -45,6 +45,7 @@ Grid.defaultProps = {
     center: false,
     flex_detail: false,
     border: false,
+    _onClick:()=>{},
     
 }
 

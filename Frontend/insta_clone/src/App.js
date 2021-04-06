@@ -13,11 +13,12 @@ import { Grid } from "./elements";
 import Login from "./components/Login";
 import { useSelector, useDispatch } from "react-redux";
 import {actionCreators as userActions} from './redux/modules/user';
+import PostDetail from './components/PostDetail';
 
 function App() {
   const dispatch = useDispatch();
-  const is_session = sessionStorage.getItem('token')? true: false;
   const token = sessionStorage.getItem('token')
+  const is_session = token? true: false;
   const is_login = useSelector((state) => state.user.is_login);
   React.useEffect(()=> {
     dispatch(userActions.loginCheck(is_session, token))
@@ -37,6 +38,7 @@ function App() {
               <Route path="/newpost" exact component={NewPost} />
               <Route path="/postwrite" exact component={PostWrite} />
               <Route path="/profile" exact component={Profile} />
+              <Route path="/postdetail/:id" exact component={PostDetail} />
             </ConnectedRouter>
           </BrowserRouter>
         </Grid>

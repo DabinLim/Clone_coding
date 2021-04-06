@@ -50,8 +50,8 @@ const Post = (props) => {
               <Grid width="auto" height="auto" margin="0px 8px">
                 <Like {...props}/>
               </Grid>
-              <Grid width="auto" height="auto" margin="0px 8px">
-                <ChatBubbleOutlineIcon fontSize="large" />
+              <Grid width="auto" height="auto" margin="0px 8px" _onClick={()=>{history.push('/postdetail/'+props.post_id)}}>
+                <ChatBubbleOutlineIcon fontSize="large"/>
               </Grid>
             </Grid>
             <Grid

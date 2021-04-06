@@ -7,7 +7,7 @@ import {actionCreators as friendActions} from '../redux/modules/friend';
 
 const FollowList = (props) => {
   const { className, visible, maskClosable, closable, onClose } = props;
-
+  const token = sessionStorage.getItem('token');
     const dispatch = useDispatch();
     const onMaskClick = (e) => {
         if (e.target === e.currentTarget) {
@@ -22,8 +22,13 @@ const FollowList = (props) => {
     }
     const friend_list = useSelector(state => state.friend.friend_list)
     console.log(friend_list)
+
+    const deleteFriend = (v) =>{
+      console.log(v)
+      dispatch(friendActions.deleteFriendSV(v, token))
+    }
+  
     React.useEffect(() => {
-        const token = sessionStorage.getItem('token');
         dispatch(friendActions.getFriendListSV(token));
     },[])
 
@@ -38,30 +43,26 @@ const FollowList = (props) => {
                   팔로잉
                   </Title>
                     <Follow>
-                    <Info>
+                    {friend_list.map((v)=>{
+                      return(
+                        <InfoBox>
+                        <Info>
                     <Image shape="circle" />
                     <TextBox>
                       <Text NotP bold>
-                        name
+                        {v}
                       </Text>
                     </TextBox>
                   </Info>
-                  <Info>
-                    <Image shape="circle" />
-                    <TextBox>
-                      <Text NotP bold>
-                        name
-                      </Text>
-                    </TextBox>
-                  </Info>
-                  <Info>
-                    <Image shape="circle" />
-                    <TextBox>
-                      <Text NotP bold>
-                        name
-                      </Text>
-                    </TextBox>
-                  </Info>
+                  <DeleteBox>
+                    <Text cursor='Pointer' _onClick={()=> {
+                      deleteFriend(v)
+                    }}>삭제</Text>
+                  </DeleteBox>
+                 
+                        </InfoBox>
+                      )
+                    })}
                     </Follow>
               </FollowContainer>
               </ModalInner>
@@ -145,17 +146,35 @@ const Title = styled.div`
 const Follow = styled.div`
  display: flex;
  flex-direction:column;
+ height: 300px;
+ width:100%;
  overflow:auto;
+`;
+
+const InfoBox = styled.div`
+   display:flex;
+   flex-direction:row;
+   justify-content:space-between;
+   align-items:center;
+   width:100%;
 `;
 
 const Info = styled.div`
   display: flex;
+  width:100%;
 `;
 
 const TextBox = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto 10px;
+`;
+
+const DeleteBox = styled.div`
+  display:flex;
+  justify-content:flex-end;
+  width:60px;
+  margin: auto 2px;
 `;
 
 export default FollowList;
