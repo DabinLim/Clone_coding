@@ -71,6 +71,7 @@ const ProfileHeader = (props) => {
         <Container>
           <Grid width="291px" height="150px">
             <Image
+              cursor='Pointer'
               shape="circle"
               size="150"
               display="block"

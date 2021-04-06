@@ -28,9 +28,11 @@ const RecommendList = (props) => {
 
   let user_name;
   let user_id;
+  let user_profile;
   if (user.user) {
     user_name = user.user.name;
     user_id = user.user.insta_Id;
+    user_profile = user.user.profile_img;
   }
   const recommended_list = useSelector((state) => state.friend.list);
 
@@ -44,7 +46,7 @@ const RecommendList = (props) => {
       <Container>
         <MyProfileContainer>
           <MyInfo>
-            <Image shape="circle" size="60" />
+            <Image src={user_profile} shape="circle" size="60" />
             <TextBox>
               <Text
                 cursor="Pointer"
@@ -82,7 +84,7 @@ const RecommendList = (props) => {
               return (
                 <RecommendedUser>
                   <MyInfo>
-                    <Image shape="circle" />
+                    <Image src={v.recommended_image}shape="circle" />
                     <TextBox>
                       <Text NotP bold>
                         {v.recommended_name}

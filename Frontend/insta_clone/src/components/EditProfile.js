@@ -37,6 +37,7 @@ const EditProfile = (props) => {
   //   dispatch(editProfile(file, token, history));
   // };    onClick={editMyProfile}
   const editMyProfile = () => {
+    console.log('a')
     const token = sessionStorage.getItem("token");
     dispatch(editActions.editProfile(file, token, history));
   };

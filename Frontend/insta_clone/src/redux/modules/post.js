@@ -48,13 +48,14 @@ const addPostSV = (contents, file, token, history) => {
     };
     axios(options)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
         let post_data = {
           post_id: response.data.post_list.post_Id,
-          name: response.data.post_list.name,
-          content: response.data.post_list.content,
-          image: response.data.post_list.file_name,
-          createAt: response.data.post_list.createAt,
+            name: response.data.post_list.name,
+            content: response.data.post_list.content,
+            image: response.data.post_list.file_name,
+            createAt: response.data.post_list.createAt,
+            profile_image: response.data.post_list.profile_img,
         };
         let like_data = {
           post_id: response.data.post_list.post_Id,
@@ -120,7 +121,7 @@ const getFriendPostSV = (token, history) => {
     };
     axios(options)
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
         let post_data = [];
         let like_data = [];
         for (let i = 0; i < response.data.post_list.length; i++) {
@@ -130,6 +131,8 @@ const getFriendPostSV = (token, history) => {
             content: response.data.post_list[i].content,
             image: response.data.post_list[i].file_name,
             createAt: response.data.post_list[i].createAt,
+            profile_image: response.data.post_list[i].profile_img,
+
           });
           like_data.push({
             post_id: response.data.post_list[i].post_Id,
