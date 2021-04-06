@@ -8,6 +8,7 @@ import Comment from "./modules/comment";
 import Post from "./modules/post";
 import Like from "./modules/like";
 import Friend from "./modules/friend";
+import Image from "./modules/Image";
 
 export const history = createBrowserHistory();
 
@@ -18,11 +19,12 @@ const rootReducer = combineReducers({
   post: Post,
   like: Like,
   friend: Friend,
+  image: Image,
   router: connectRouter(history),
 });
 
 // 미들웨어 준비
-const middlewares = [thunk.withExtraArgument({history: history})];
+const middlewares = [thunk.withExtraArgument({ history: history })];
 
 // 현재 환경
 const env = process.env.NODE_ENV;

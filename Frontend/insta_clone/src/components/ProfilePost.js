@@ -5,8 +5,9 @@ import { Grid, Image } from "../elements/index";
 import { useDispatch, useSelector } from "react-redux";
 
 const ProfilePost = (props) => {
-  const { image, name } = props;
   const dispatch = useDispatch();
+  const user_data = useSelector((state) => state.user);
+  console.log(user_data);
   const post_data = useSelector((state) => state.post.list);
   console.log(post_data);
 

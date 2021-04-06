@@ -3,43 +3,91 @@ import styled from "styled-components";
 import { Grid, Text, Image, Button } from "../elements/index";
 import Story from "./Story";
 import { history } from "../redux/configStore";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProfileHeader = (props) => {
-  return (
-    <React.Fragment>
-      <Container>
-        <Grid width="291px" height="150px">
-          <Image
-            shape="circle"
-            size="150"
-            display="block"
-            margin-left="auto"
-            margin-right="auto"
-          />
-        </Grid>
-        <TextContainer>
-          <IdButton>
+  let name;
+  let insta_Id;
+  const post_data = useSelector((state) => state.user);
+  console.log(post_data);
+
+  if (post_data.user) {
+    return (
+      <React.Fragment>
+        <Container>
+          <Grid width="291px" height="150px">
+            <Image
+              shape="circle"
+              size="150"
+              display="block"
+              margin-left="auto"
+              margin-right="auto"
+            />
+          </Grid>
+          <TextContainer>
+            <IdButton>
+              <Text size="60" bold>
+                {post_data.user.insta_Id}
+              </Text>
+              <Button
+                _onClick={() => {
+                  history.push("/postwrite");
+                }}
+                width="80px"
+              >
+                게시글 작성
+              </Button>
+            </IdButton>
             <Text size="60" bold>
-              id
+              {post_data.user.name}
             </Text>
-            <Button
-              _onClick={() => {
-                history.push("/postwrite");
-              }}
-              width="80px"
-            >
-              게시글 작성
-            </Button>
-          </IdButton>
-          <Text size="60" bold>
-            name
-          </Text>
-          <Text bold>안녕!</Text>
-        </TextContainer>
-      </Container>
-      <Story />
-    </React.Fragment>
-  );
+            <Text bold>안녕!</Text>
+          </TextContainer>
+        </Container>
+        <Story />
+      </React.Fragment>
+    );
+  } else {
+    return (
+      <React.Fragment>
+        <Container>
+          <Grid width="291px" height="150px">
+            <Image
+              shape="circle"
+              size="150"
+              display="block"
+              margin-left="auto"
+              margin-right="auto"
+            />
+          </Grid>
+          <TextContainer>
+            e
+            <IdButton>
+              <Text size="60" bold>
+                {insta_Id}
+              </Text>
+              <Button
+                _onClick={() => {
+                  history.push("/postwrite");
+                }}
+                width="80px"
+              >
+                게시글 작성
+              </Button>
+            </IdButton>
+            <Text size="60" bold>
+              {name}
+            </Text>
+            <Text bold>안녕!</Text>
+          </TextContainer>
+        </Container>
+        <Story />
+      </React.Fragment>
+    );
+  }
+
+  // const user_info = useSelector((state) => state.post.list);
+  // console.log(user_info);
 };
 
 const Container = styled.div`

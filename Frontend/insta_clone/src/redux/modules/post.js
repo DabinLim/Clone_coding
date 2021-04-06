@@ -32,31 +32,32 @@ const initialPost = {
   //   insert_dt: moment().format("YYYY-MM-DD hh:mm:ss"),
 };
 
-const addPostSV = (contents, token, history) => {
+const addPostSV = (contents, file, token, history) => {
   return function () {
+    let formData = new FormData();
+    formData.append("file", file);
+    formData.append("content", contents);
+
     const options = {
       url: "http://13.209.10.75/upload",
       method: "POST",
       headers: {
         token: token,
       },
-      data: {
-        file:
-          "https://postfiles.pstatic.net/MjAyMTAzMjZfMTEy/MDAxNjE2NzY1NTQ3OTE5.d0ZhJ52S4eu9u4T7A4i2zinM88z0eQE8EGgWZxpuy_4g.joSdh241qBCkzJVQvDobxC-2hFSm890KB4BH8rCpgoog.JPEG.xhrl0520/%EA%B1%B0%EC%8B%A4.jpg?type=w966",
-        content: contents,
-      },
+      data: formData,
     };
-    axios(options).then((response) => {
-      window.alert('게시물 작성이 완료되었습니다.');
-      console.log(response)
-      history.push('/profile')
-    }).catch((error) => {
-      console.log(error)
-            if(error.response){
-                window.alert(error.response.data.errorMessage);
-            }
-    })
-    
+    axios(options)
+      .then((response) => {
+        window.alert("게시물 작성이 완료되었습니다.");
+        console.log(response);
+        history.push("/profile");
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.response) {
+          window.alert(error.response.data.errorMessage);
+        }
+      });
   };
 };
 
@@ -121,14 +122,14 @@ const getFriendPostSV = (token, history) => {
             like_user: response.data.post_list[i].like_user,
           });
         }
-        dispatch(setPost(post_data))
-        dispatch(likeActions.setLike(like_data))
+        dispatch(setPost(post_data));
+        dispatch(likeActions.setLike(like_data));
       })
       .catch((error) => {
-        console.log(error)
-            if(error.response){
-                window.alert(error.response.data.errorMessage);
-            }
+        console.log(error);
+        if (error.response) {
+          window.alert(error.response.data.errorMessage);
+        }
       });
   };
 };
