@@ -9,18 +9,20 @@ import { history } from "../redux/configStore";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
-
+  const [file, setFile] = React.useState(null);
   const [value, setValue] = React.useState("");
   const [contents, setContents] = React.useState("");
   const changeContents = (e) => {
     setContents(e.target.value);
   };
 
-  console.log(contents);
+  console.log(file);
 
   const addPost = () => {
     const token = sessionStorage.getItem("token");
     if (token) {
+      console.log('작성시작')
+      console.log(file)
       dispatch(postActions.addPostSV(contents, file, token, history));
     } else if (!token) {
       window.alert("로그인 상태가 아닙니다.");
@@ -32,17 +34,11 @@ const PostWrite = (props) => {
   };
 
   //사진 업로드
-  let file;
+
   const fileInput = React.useRef();
 
   const selectFile = (e) => {
-    console.log(e.target.files);
-    console.log(e.target.files[0]);
-
-    //ref로 확인해본 결과
-    console.log(fileInput.current.files[0]);
-    file = fileInput.current.files[0];
-    console.log(file);
+    setFile(e.target.files[0])
   };
 
   return (

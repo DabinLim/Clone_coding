@@ -33,11 +33,11 @@ const initialPost = {
 };
 
 const addPostSV = (contents, file, token, history) => {
-  return function () {
+  return function (dispatch) {
     let formData = new FormData();
     formData.append("file", file);
     formData.append("content", contents);
-
+    
     const options = {
       url: "http://13.209.10.75/upload",
       method: "POST",
@@ -48,8 +48,22 @@ const addPostSV = (contents, file, token, history) => {
     };
     axios(options)
       .then((response) => {
-        window.alert("게시물 작성이 완료되었습니다.");
         console.log(response);
+        let post_data = {
+          post_id: response.data.post_list.post_Id,
+            name: response.data.post_list.name,
+            content: response.data.post_list.content,
+            image: response.data.post_list.file_name,
+            createAt: response.data.post_list.createAt,
+        };
+        let like_data = {
+          post_id: response.data.post_list.post_Id,
+            like_user: response.data.post_list.like_user,
+        };
+        console.log(post_data, like_data)
+        dispatch(addPost(post_data));
+        dispatch(likeActions.addLike(like_data));
+        window.alert("게시물 작성이 완료되었습니다.");
         history.push("/profile");
       })
       .catch((error) => {
@@ -153,7 +167,7 @@ export default handleActions(
 
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.push(action.payload.profilepost_data);
+        draft.list.unshift(action.payload.post);
       }),
   },
   initialState
@@ -162,7 +176,7 @@ export default handleActions(
 //우리가 만든 액션 생성자들 export해주기
 const actionCreators = {
   setPost,
-  addPost,
+
   addPostSV,
   getFriendPostSV,
   getMyPostSV,
