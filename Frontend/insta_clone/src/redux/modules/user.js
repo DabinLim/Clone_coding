@@ -235,9 +235,9 @@ const editProfile = (file, token, history) => {
       .then((response) => {
         console.log(response.data);
         let profile_data = {
-          insta_Id: response.data.post_list.post_Id,
+          insta_Id: response.data.insta_Id,
           name: response.data.post_list.name,
-          image: response.data.post_list.file_name,
+          profile_img: response.data.post_list.profile_img,
         };
         console.log(profile_data);
         dispatch(setUser(profile_data));

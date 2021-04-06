@@ -53,7 +53,7 @@ const EditProfile = (props) => {
           <ModalInner tabIndex="0">
             {closable && <CloseButton onClick={close}>x</CloseButton>}
             <input type="file" ref={fileInput} onChange={selectFile} />
-            <Button onClick={editMyProfile}>프로필 사진 변경하기</Button>
+            <Button _onClick={editMyProfile}>프로필 사진 변경하기</Button>
           </ModalInner>
         </ModalContainer>
       </ModalOverlay>
