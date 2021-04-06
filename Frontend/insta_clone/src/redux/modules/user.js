@@ -217,6 +217,43 @@ const signUpSV = (data, history) => {
   };
 };
 
+const editProfile = (file, token, history) => {
+  return function (dispatch) {
+    let formData = new FormData();
+    formData.append("file", file);
+    console.log("넘어왔음");
+
+    const options = {
+      url: "http://13.209.10.75/api/profile_img_save",
+      method: "POST",
+      headers: {
+        token: token,
+      },
+      data: formData,
+    };
+    axios(options)
+      .then((response) => {
+        console.log(response.data);
+        let profile_data = {
+          insta_Id: response.data.post_list.post_Id,
+          name: response.data.post_list.name,
+          image: response.data.post_list.file_name,
+        };
+        console.log(profile_data);
+        dispatch(setUser(profile_data));
+        // dispatch(likeActions.addLike(like_data));
+        window.alert("게시물 작성이 완료되었습니다.");
+        // history.push("/profile");
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.response) {
+          window.alert(error.response.data.errorMessage);
+        }
+      });
+  };
+};
+
 export default handleActions(
   {
     [SET_USER]: (state, action) =>
@@ -241,6 +278,7 @@ const actionCreators = {
   loginCheck,
   logOutSV,
   testSV,
+  editProfile,
 };
 
 export { actionCreators };

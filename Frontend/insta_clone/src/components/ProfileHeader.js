@@ -4,19 +4,18 @@ import { Grid, Text, Image, Button } from "../elements/index";
 import Story from "./Story";
 import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
-import EditProfile from '../components/EditProfile';
+import EditProfile from "../components/EditProfile";
 
 const ProfileHeader = (props) => {
-
-  const [modalVisible, setModalVisible] = React.useState(false)
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   const openModal = () => {
-      setModalVisible(true)
-  }
+    setModalVisible(true);
+  };
 
   const closeModal = () => {
-      setModalVisible(false)
-  }
+    setModalVisible(false);
+  };
   let name;
   let insta_Id;
   const post_data = useSelector((state) => state.user);
@@ -34,6 +33,7 @@ const ProfileHeader = (props) => {
               display="block"
               margin-left="auto"
               margin-right="auto"
+              src={post_data.user.profile_img}
             />
           </Grid>
           <TextContainer>
@@ -57,7 +57,12 @@ const ProfileHeader = (props) => {
           </TextContainer>
         </Container>
         <Story />
-        <EditProfile visible={modalVisible} onClose={closeModal} maskClosable={true} closable={true}/>
+        <EditProfile
+          visible={modalVisible}
+          onClose={closeModal}
+          maskClosable={true}
+          closable={true}
+        />
       </React.Fragment>
     );
   } else {

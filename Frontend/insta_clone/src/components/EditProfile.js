@@ -1,7 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
+import { Button } from "../elements";
+
+import { history } from "../redux/configStore";
+
+import { actionCreators as editActions } from "../redux/modules/user";
+import { useDispatch } from "react-redux";
+
 const EditProfile = (props) => {
+  const dispatch = useDispatch();
+  const [file, setFile] = React.useState(null);
   const { className, visible, maskClosable, closable, onClose } = props;
 
   const onMaskClick = (e) => {
@@ -16,6 +25,22 @@ const EditProfile = (props) => {
     }
   };
 
+  //프로필 사진 업로드
+  const fileInput = React.useRef();
+
+  const selectFile = (e) => {
+    setFile(e.target.files[0]);
+    console.log(e.target.files[0]);
+  };
+
+  // const editMyProfile = () => {
+  //   dispatch(editProfile(file, token, history));
+  // };    onClick={editMyProfile}
+  const editMyProfile = () => {
+    const token = sessionStorage.getItem("token");
+    dispatch(editActions.editProfile(file, token, history));
+  };
+
   return (
     <React.Fragment>
       <ModalOverlay visible={visible}>
@@ -27,6 +52,8 @@ const EditProfile = (props) => {
         >
           <ModalInner tabIndex="0">
             {closable && <CloseButton onClick={close}>x</CloseButton>}
+            <input type="file" ref={fileInput} onChange={selectFile} />
+            <Button onClick={editMyProfile}>프로필 사진 변경하기</Button>
           </ModalInner>
         </ModalContainer>
       </ModalOverlay>
@@ -88,6 +115,5 @@ const CloseButton = styled.button`
   border-radius: 10px;
   background-color: white;
 `;
-
 
 export default EditProfile;
