@@ -51,30 +51,6 @@ const logOutSV = (history) => {
   };
 };
 
-//incoming에서 없었는데 받은 부분
-const testSV = (token) => {
-  console.log(token);
-  return function () {
-    const options = {
-      url: "http://13.209.10.75/api/test",
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json;charset=UTF-8",
-      },
-      data: {
-        token: token,
-      },
-    };
-    axios(options)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        window.alert(error.response.data.errorMessage);
-      });
-  };
-};
 
 const loginSV = (data, history) => {
   return function (dispatch) {
@@ -240,7 +216,6 @@ const actionCreators = {
   loginSV,
   loginCheck,
   logOutSV,
-  testSV,
 };
 
 export { actionCreators };

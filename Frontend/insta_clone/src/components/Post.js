@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Grid, Text, Image, Input } from "../elements";
 import {useDispatch, useSelector} from 'react-redux';
 import {actionCreators as postActions} from '../redux/modules/post'
+import {actionCreators as commentActions} from '../redux/modules/comment'
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -13,8 +14,10 @@ import Like from './Like';
 
 const Post = (props) => {
     const [comment, setComment] = React.useState();
+    const dispatch = useDispatch()
+    const token = sessionStorage.getItem('token')
     const commentWrite = () => {
-        console.log(comment)
+        dispatch(commentActions.addCommentSV(props.post_id, comment, token))
     }
   
 
@@ -25,7 +28,7 @@ const Post = (props) => {
         <DetailContainer>
           <UserInfo>
             <Grid flex_row>
-              <Image shape="circle" size="36"></Image>
+              <Image src={props.profile_image}shape="circle" size="36"></Image>
               <Text bold>{props.name}</Text>
             </Grid>
             <Grid

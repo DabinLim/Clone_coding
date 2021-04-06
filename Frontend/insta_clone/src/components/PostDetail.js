@@ -1,33 +1,48 @@
 import React from 'react';
 import styled from 'styled-components';
 import Post from './Post';
-import {useSelector} from 'react-redux';
-import {Image,Text} from '../elements';
+import {useSelector, useDispatch} from 'react-redux';
+import CommentItem from './CommentItem';
+
 
 const PostDetail = (props) => {
-    const post_data = useSelector(state => state.post.list)
-
+    const post_data = useSelector(state => state.post.list);
+    const comment_list = useSelector(state => state.comment.list);
     let url = document.location.href.split("/");
     let post_id = url[url.length - 1];
- 
+    
+    const dispatch = useDispatch();
+
     const checkPost = (e) => {
         if (e.post_id == post_id) {
             return true;
         }
     }
 
+
     const thisPost = post_data.filter(checkPost);
     console.log(thisPost)
+
+    React.useEffect(() => {
+        // dispatch(commentActions.getCommentSV(post_id));
+      }, []);
 
     return (
         <React.Fragment>
             <DetailContainer>
-                <ImageContainer>
-                    <Image shape='rectangle'/>
-                </ImageContainer>
-                <CommentContainer>
-
-                </CommentContainer>
+            {thisPost.map((v)=> {
+                return(
+                    <Post key={v.post_id} {...v}/>
+                )
+            })
+            }
+            <CommentContainer>
+                {comment_list.map((v) =>{
+                    return(
+                        <CommentItem key={v.comment_id} {...v}/>
+                    )
+                })}
+            </CommentContainer>
             </DetailContainer>
         </React.Fragment>
     )
@@ -36,11 +51,11 @@ const PostDetail = (props) => {
 
 const DetailContainer = styled.div`
     display:flex;
-    flex-direction:row;
+    flex-direction:column;
     justify-content:center;
     width: 100%;
     height:auto;
-    max-width: 1000px;
+    max-width: 800px;
     margin: 50px auto;
     @media (max-width:600px) {
         flex-direction:column;
@@ -48,16 +63,15 @@ const DetailContainer = styled.div`
     }
 `;
 
-const ImageContainer = styled.div`
+const CommentContainer = styled.div`
     width:100%;
-    height:auto;
-    max-width: 500px;
+    margin-top: -30px;
+    border:1px solid black;
+    height: auto;
 `;
 
-const CommentContainer = styled.div`
-  width:350px;
-  max-width:350px;
-  border: 1px solid #dbdbdb;
-`;
+
+
+
 
 export default PostDetail;

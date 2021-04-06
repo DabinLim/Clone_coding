@@ -38,6 +38,7 @@ const setRecommendSV = (token) => {
                 recommended_list.push({
                     recommended_id: response.data.friend_list[i].insta_Id,
                     recommended_name: response.data.friend_list[i].name,
+                    recommended_image: response.data.friend_list[i].profile_image
                 })
             }
             dispatch(setRecommend(recommended_list))
@@ -88,8 +89,8 @@ const addFriendSV = (token, name) => {
         };
         axios(options).then((response) => {
             console.log(response.data)
-            dispatch(addFriend(name))
-            dispatch(updateRecommend(name))
+            dispatch(addFriend(response.data))
+            dispatch(updateRecommend(response.data))
             
         }).catch((error)=> {
             console.log(error)
