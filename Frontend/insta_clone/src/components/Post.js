@@ -39,7 +39,7 @@ const Post = (props) => {
             </Grid>
           </UserInfo>
           <Grid bg_color='white' height='auto'>
-            <Image src={props.image} shape="rectangle"></Image>
+            <Image src={props.image[0]} shape="rectangle"></Image>
             <Grid
               flex_row
               flex_detail="align-items:center;"

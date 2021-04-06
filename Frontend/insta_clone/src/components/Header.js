@@ -19,7 +19,7 @@ const Header = (props) => {
                     <BannerContainer>
                 <Banner onClick={()=>{history.push('/newpost')}}></Banner>
                     </BannerContainer>
-                <TextContainer><Text bold> 여기는 헤더입니다.</Text></TextContainer>
+                <TextContainer><Text bold>검색은 못만들겠다 진짜</Text></TextContainer>
                 <IconContainer>
                     <HomeIcon onClick={()=>{dispatch(userActions.logOutSV(history))}} fontSize='large'/>
                     <ExploreIcon onClick={()=>{dispatch(userActions.testSV(token))}}fontSize='large'/>

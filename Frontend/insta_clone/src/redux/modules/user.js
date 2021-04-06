@@ -31,7 +31,10 @@ const loginCheck = (session_info, token) => {
           dispatch(setUser(response.data));
         })
         .catch((error) => {
-          window.alert(error.response.data.errorMessage);
+          console.log(error);
+          if (error.response) {
+            window.alert(error.response.data.errorMessage);
+          }
         });
     } else {
       dispatch(logOut());
@@ -48,6 +51,7 @@ const logOutSV = (history) => {
   };
 };
 
+//incoming에서 없었는데 받은 부분
 const testSV = (token) => {
   console.log(token);
   return function () {
@@ -83,9 +87,9 @@ const loginSV = (data, history) => {
     // const user_data = {
     //   insta_Id: data[0],
     //   name: data[1],
-    // };
-    // dispatch(setUser(user_data));
-    // sessionStorage.setItem("token", data.token);
+    // }
+    // dispatch(setUser(user_data))
+    // sessionStorage.setItem("token", data.token)
 
     const options = {
       url: "http://13.209.10.75/api/login",
@@ -103,11 +107,37 @@ const loginSV = (data, history) => {
       .then((response) => {
         sessionStorage.setItem("token", response.data.token);
         window.alert("로그인 완료");
-        console.log(response);
+        dispatch(setUser(login_data.user_id));
       })
       .catch((error) => {
-        window.alert(error.response.data.errorMessage);
+        console.log(error);
+        if (error.response) {
+          window.alert(error.response.data.errorMessage);
+        }
       });
+
+    //밑에 주석단 부분
+    // const options = {
+    //   url: "http://13.209.10.75/api/login",
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json;charset=UTF-8",
+    //   },
+    //   data: {
+    //     insta_Id: login_data.user_id,
+    //     password: login_data.password,
+    //   },
+    // };
+    // axios(options)
+    //   .then((response) => {
+    //     sessionStorage.setItem("token", response.data.token);
+    //     window.alert("로그인 완료");
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     window.alert(error.response.data.errorMessage);
+    //   });
   };
 };
 

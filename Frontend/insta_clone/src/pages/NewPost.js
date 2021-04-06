@@ -26,7 +26,6 @@ const NewPost = (props) => {
                 <PostContainer>
                     <Story/>
                     {post_data.map((p, idx) => {
-                        console.log(p)
                         return(
                         <Grid key={idx}
                             margin='10px 0px'>

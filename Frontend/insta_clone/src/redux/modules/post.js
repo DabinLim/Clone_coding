@@ -46,15 +46,17 @@ const addPostSV = (contents, token, history) => {
         content: contents,
       },
     };
-    axios(options)
-      .then((response) => {
-        window.alert("게시물 작성이 완료되었습니다.");
-        console.log(response);
-        history.push("/profile");
-      })
-      .catch((error) => {
-        window.alert(error.response.data.errorMessage);
-      });
+    axios(options).then((response) => {
+      window.alert('게시물 작성이 완료되었습니다.');
+      console.log(response)
+      history.push('/profile')
+    }).catch((error) => {
+      console.log(error)
+            if(error.response){
+                window.alert(error.response.data.errorMessage);
+            }
+    })
+    
   };
 };
 
@@ -119,14 +121,14 @@ const getFriendPostSV = (token, history) => {
             like_user: response.data.post_list[i].like_user,
           });
         }
-        console.log(response.data);
-        console.log(post_data);
-        dispatch(setPost(post_data));
-        dispatch(likeActions.setLike(like_data));
+        dispatch(setPost(post_data))
+        dispatch(likeActions.setLike(like_data))
       })
       .catch((error) => {
-        console.log(error.response.data.errorMessage);
-        console.log(error.reaponse);
+        console.log(error)
+            if(error.response){
+                window.alert(error.response.data.errorMessage);
+            }
       });
   };
 };

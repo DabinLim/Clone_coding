@@ -9,16 +9,13 @@ const Like = (props) => {
     const [nowLike,setLike] = React.useState(false)
     const user_info = useSelector(state => state.user)
     const like_data = useSelector(state => state.like.like)
-    console.log(like_data)
     let like_user;
     for(let i = 0; i < like_data.length; i ++) {
         if(like_data[i].post_id === props.post_id){
             like_user = like_data[i].like_user
         }
     }
-    console.log(like_user)
     const token = sessionStorage.getItem('token')
-    console.log(props.post_id)
 
     let num = 0;
     if(user_info.user && like_user){
@@ -28,7 +25,6 @@ const Like = (props) => {
             }
         }
     }
-    console.log(num)
     if(num >= 1 && !nowLike){
         setLike(true)
     }else if(num === 0 && nowLike){
