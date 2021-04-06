@@ -31,14 +31,15 @@ const getCommentSV = (post_id) => {
         }
       };
       axios(options).then((response) => {
+        console.log(response.data)
         let comment_list =[];
         for (let i =0; i<response.data.comment.length; i++) {
           comment_list.push({
-            profile_image: response.data.comment[i].profile_image,
-            user_name: response.data.comment[i].user_name,
-            content: response.data.comment[i].content,
+            profile_image: response.data.comment[i].profile_img,
+            user_name: response.data.comment[i].name,
+            content: response.data.comment[i].text,
             createAt: response.data.comment[i].createAt,
-            comment_id: response.data.comment[i].comment_id
+            comment_id: response.data.comment[i]._id
           })
         }
         dispatch(setComment(comment_list))
@@ -52,6 +53,7 @@ const getCommentSV = (post_id) => {
 };
 
 const addCommentSV = (post_id, comment, token) => {
+  console.log(post_id, comment)
   return function (dispatch) {
     const options = {
       url: 'http://13.209.10.75/api/add_comment',
@@ -62,17 +64,18 @@ const addCommentSV = (post_id, comment, token) => {
         token: token
       },
       data: {
-        post_id: post_id,
+        post_Id: post_id,
         content: comment,
       }
     };
     axios(options).then((response) => {
+      console.log(response.data.realTimeComment)
       let comment_list ={
-          profile_image: response.data.comment.profile_image,
-          user_name: response.data.comment.user_name,
-          content: response.data.comment.content,
-          createAt: response.data.comment.createAt,
-          comment_id: response.data.comment.comment_id
+          profile_image: response.data.realTimeComment.profile_img,
+          user_name: response.data.realTimeComment.name,
+          content: response.data.realTimeComment.text,
+          createAt: response.data.realTimeComment.createAt,
+          comment_id: response.data.realTimeComment._id
       }
       dispatch(addComment(comment_list))
     }).catch((error) => {
@@ -123,7 +126,8 @@ export default handleActions(
       }),
 
     [ADD_COMMENT]: (state, action) => produce(state, (draft) => {
-      draft.list.unshift = action.payload.comment;
+        draft.list.unshift(action.payload.comment) 
+
     }),
 
     [DELETE_COMMENT]: (state,action) => produce(state, (draft) => {

@@ -10,6 +10,11 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Header = (props) => {
     const dispatch = useDispatch()
+    const user = useSelector(state=> state.user)
+    let profile;
+    if(user.user){
+        profile = user.user.profile_img
+    }
     const token = sessionStorage.getItem('token')
 
     return (
@@ -24,7 +29,7 @@ const Header = (props) => {
                     <HomeIcon onClick={()=>{dispatch(userActions.logOutSV(history))}} fontSize='large'/>
                     <ExploreIcon onClick={()=>{dispatch(userActions.testSV(token))}}fontSize='large'/>
                     <FavoriteBorderIcon fontSize='large'/>
-                    <Image _onClick={()=> {history.push('/profile')}} shape='circle' size='24'/>
+                    <Image _onClick={()=> {history.push('/profile')}} src={profile} shape='circle' size='24'/>
                 </IconContainer>
                 </HeaderContents>
             </HeaderContainer>
