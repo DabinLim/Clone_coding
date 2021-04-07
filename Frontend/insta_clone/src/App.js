@@ -12,20 +12,21 @@ import Header from "./components/Header";
 import { Grid } from "./elements";
 import Login from "./components/Login";
 import { useSelector, useDispatch } from "react-redux";
-import {actionCreators as userActions} from './redux/modules/user';
-import PostDetail from './components/PostDetail';
+import { actionCreators as userActions } from "./redux/modules/user";
+import PostDetail from "./components/PostDetail";
+import FriendsProfile from "./pages/FriendsProfile";
 
 function App() {
   const dispatch = useDispatch();
-  const token = sessionStorage.getItem('token')
-  const is_session = token? true: false;
+  const token = sessionStorage.getItem("token");
+  const is_session = token ? true : false;
   const is_login = useSelector((state) => state.user.is_login);
-  React.useEffect(()=> {
-    dispatch(userActions.loginCheck(is_session, token))
-  })
-  console.log(history)
-  if(token && history.location.pathname === '/'){
-    history.push('/newpost')
+  React.useEffect(() => {
+    dispatch(userActions.loginCheck(is_session, token));
+  });
+  console.log(history);
+  if (token && history.location.pathname === "/") {
+    history.push("/newpost");
   }
   return (
     <React.Fragment>
@@ -39,6 +40,7 @@ function App() {
               <Route path="/postwrite" exact component={PostWrite} />
               <Route path="/profile" exact component={Profile} />
               <Route path="/postdetail/:id" exact component={PostDetail} />
+              <Route path="/friends" exact component={FriendsProfile} />
             </ConnectedRouter>
           </BrowserRouter>
         </Grid>

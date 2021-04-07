@@ -50,7 +50,7 @@ const Post = (props) => {
               height="60px"
               
             >
-              <Grid width="auto" height="auto" margin="0px 8px">
+              <Grid flex_row flex_detail='justify-content:center; align-items:center;' width="auto" height="auto" margin="0px 8px">
                 <Like {...props}/>
               </Grid>
               <Grid width="auto" height="auto" margin="0px 8px" _onClick={()=>{history.push('/postdetail/'+props.post_id)}}>

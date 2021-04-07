@@ -35,6 +35,7 @@ const changeLikeSV = (postid,token) => {
             like_data.push({
                 post_id:response.data.post_list[i].post_Id,
                 like_user:response.data.post_list[i].like_user,
+                like_count:response.data.post_list[i].like_count,
             })
         }
         console.log(like_data)

@@ -59,6 +59,7 @@ const addPostSV = (contents, file, token, history) => {
         };
         let like_data = {
           post_id: response.data.post_list.post_Id,
+          like_count: response.data.post_list.like_count,
           like_user: response.data.post_list.like_user,
         };
         console.log(post_data, like_data);
@@ -132,11 +133,13 @@ const getFriendPostSV = (token, history) => {
             image: response.data.post_list[i].file_name,
             createAt: response.data.post_list[i].createAt,
             profile_image: response.data.post_list[i].profile_img,
+            like_count: response.data.post_list[i].like_count
 
           });
           like_data.push({
             post_id: response.data.post_list[i].post_Id,
             like_user: response.data.post_list[i].like_user,
+            like_count: response.data.post_list[i].like_count
           });
         }
         dispatch(setPost(post_data));

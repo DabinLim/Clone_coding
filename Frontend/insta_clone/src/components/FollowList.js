@@ -23,9 +23,9 @@ const FollowList = (props) => {
     const friend_list = useSelector(state => state.friend.friend_list)
     console.log(friend_list)
 
-    const deleteFriend = (v) =>{
-      console.log(v)
-      dispatch(friendActions.deleteFriendSV(v, token))
+    const deleteFriend = (name) =>{
+      
+      dispatch(friendActions.deleteFriendSV(name, token))
     }
   
     React.useEffect(() => {
@@ -47,16 +47,16 @@ const FollowList = (props) => {
                       return(
                         <InfoBox>
                         <Info>
-                    <Image shape="circle" />
+                    <Image src={v.profile_image}shape="circle" />
                     <TextBox>
                       <Text NotP bold>
-                        {v}
+                        {v.name}
                       </Text>
                     </TextBox>
                   </Info>
                   <DeleteBox>
                     <Text cursor='Pointer' _onClick={()=> {
-                      deleteFriend(v)
+                      deleteFriend(v.name)
                     }}>삭제</Text>
                   </DeleteBox>
                  
