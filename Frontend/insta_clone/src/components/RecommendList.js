@@ -82,7 +82,7 @@ const RecommendList = (props) => {
           <Recommended>
             {recommended_list.map((v) => {
               return (
-                <RecommendedUser>
+                <RecommendedUser key={v.recommended_id}>
                   <MyInfo>
                     <Image cursor='pointer'_onClick={()=>{history.push('/friends/'+v.recommended_id)}} src={v.recommended_image} shape="circle" />
                     <TextBox>

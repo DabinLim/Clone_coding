@@ -61,7 +61,7 @@ const FollowList = (props) => {
                     <Follow>
                     {friends.map((v)=>{
                       return(
-                        <InfoBox>
+                        <InfoBox key={v.insta_id}>
                         <Info>
                     <Image cursor='pointer' _onClick={()=>{history.push('/friends/'+v.insta_id)}} src={v.profile_image}shape="circle" />
                     <TextBox>

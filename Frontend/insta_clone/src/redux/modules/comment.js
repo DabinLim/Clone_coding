@@ -39,7 +39,7 @@ const getCommentSV = (post_id) => {
             user_name: response.data.comments[i].name,
             content: response.data.comments[i].text,
             createAt: response.data.comments[i].createAt,
-            comment_id: response.data.comments[i]._id,
+            comment_id: response.data.comments[i].comment_Id,
             insta_id: response.data.comments[i].insta_Id
           })
         }
@@ -76,7 +76,7 @@ const addCommentSV = (post_id, comment, token) => {
           user_name: response.data.realTimeComment.name,
           content: response.data.realTimeComment.text,
           createAt: response.data.realTimeComment.createAt,
-          comment_id: response.data.realTimeComment._id,
+          comment_id: response.data.realTimeComment.comment_Id,
           insta_id: response.data.realTimeComment.insta_Id,
       }
       dispatch(addComment(comment_list))
@@ -94,6 +94,7 @@ const addCommentSV = (post_id, comment, token) => {
 
 
   const deleteCommentSV = (comment_id) => {
+    console.log(comment_id)
     return function(dispatch) {
       const options = {
         url: 'http://13.209.10.75/api/delete_comment',
@@ -103,7 +104,7 @@ const addCommentSV = (post_id, comment, token) => {
           'Content-Type': 'application/json;charset=UTF-8',
         },
         data: {
-          comment_id:comment_id
+          comment_Id:comment_id
         }
       };
       axios(options).then((response) => {

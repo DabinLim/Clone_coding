@@ -25,7 +25,7 @@ const Story = (props) => {
             <StoryContainer>
                 {friends.map((v) => {
                     return(
-                        <ImageContainer>
+                        <ImageContainer key={v.insta_id}>
                         <Image cursor='pointer' src={v.profile_image}shape='circle' size='80' _onClick={()=> {
                             history.push('/friends/'+v.insta_id)
                         }}></Image>
