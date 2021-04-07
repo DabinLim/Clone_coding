@@ -25,7 +25,7 @@ function App() {
   React.useEffect(() => {
     dispatch(userActions.loginCheck(is_session, token));
   });
-  console.log(history);
+  // console.log(history);
   if (token && history.location.pathname === "/") {
     history.push("/newpost");
   }

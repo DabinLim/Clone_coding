@@ -33,7 +33,7 @@ const loginCheck = (session_info, token) => {
       };
       axios(options)
         .then((response) => {
-          console.log(response.data);
+          
           dispatch(setUser(response.data));
         })
         .catch((error) => {
@@ -252,13 +252,13 @@ const FriendsPostSV = (friend_id, token, history) => {
     };
     axios(options)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         let friendsprofile_data = {
           insta_Id: response.data.insta_Id,
           name: response.data.name,
           profile_img: response.data.profile_img,
         };
-        console.log(friendsprofile_data);
+        // console.log(friendsprofile_data);
         dispatch(friendPost(friendsprofile_data));
         // dispatch(likeActions.addLike(like_data));
         // window.alert("프로필 변경이 완료되었습니다.");
@@ -279,7 +279,7 @@ export default handleActions(
       produce(state, (draft) => {
         draft.user = action.payload.user;
         draft.is_login = true;
-        console.log(draft.user);
+        // console.log(draft.user);
       }),
 
     [LOG_OUT]: (state, action) =>

@@ -13,10 +13,10 @@ const FriendsHeader = (props) => {
   let name;
   let insta_Id;
   const post_data = useSelector((state) => state.user);
-  console.log(post_data);
+  // console.log(post_data);
 
   const frinedpost_data = useSelector((state) => state.user.friend);
-  console.log(frinedpost_data);
+  // console.log(frinedpost_data);
 
   const token = sessionStorage.getItem("token");
   let url = document.location.href.split("/");

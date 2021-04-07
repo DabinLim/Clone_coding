@@ -30,7 +30,7 @@ const changeLikeSV = (postid,token) => {
     };
     axios(options)
       .then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         let like_data = [];
         for(let i =0; i< response.data.post_list.length; i++){
             like_data.push({
@@ -39,7 +39,7 @@ const changeLikeSV = (postid,token) => {
                 like_count:response.data.post_list[i].like_count,
             })
         }
-        console.log(like_data)
+        // console.log(like_data)
         dispatch(setLike(like_data))
     })
       .catch((error) => {

@@ -8,11 +8,11 @@ import { history } from "../redux/configStore";
 const ProfilePost = (props) => {
   const dispatch = useDispatch();
   const user_data = useSelector((state) => state.user);
-  console.log(user_data);
+  // console.log(user_data);
   const post_data = useSelector((state) => state.post.list);
-  console.log(post_data);
+  // console.log(post_data);
 
-  console.log(props.post_id);
+  // console.log(props.post_id);
 
   return (
     <React.Fragment>

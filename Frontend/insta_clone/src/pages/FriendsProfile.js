@@ -34,7 +34,7 @@ const FriendsProfile = (props) => {
 
 
 const friendPost = f_post_data.filter(checkFriend);
-console.log(friendPost)
+// console.log(friendPost)
  
 
   // // 해당하는 사람 포스트만 보여주기

@@ -33,7 +33,7 @@ const setRecommendSV = (token) => {
     };
     axios(options)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         let recommended_list = [];
         for (let i = 0; i < response.data.friend_list.length; i++) {
           recommended_list.push({
@@ -64,7 +64,7 @@ const getFriendListSV = (token) => {
     };
     axios(options)
       .then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         let friend_list = [];
         for (let i = 0; i < response.data.my_friend_list_show.length; i++) {
           friend_list.push({
@@ -98,7 +98,7 @@ const addFriendSV = (token, name) => {
     };
     axios(options)
       .then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         let friend_list = {
           name: response.data.new_friend.name,
           profile_image: response.data.new_friend.profile_img,
@@ -131,7 +131,7 @@ const deleteFriendSV = (name, token) => {
     };
     axios(options)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         let new_recommend = {
           recommended_name: response.data.delete_friend.name,
           recommended_image: response.data.delete_friend.profile_img,

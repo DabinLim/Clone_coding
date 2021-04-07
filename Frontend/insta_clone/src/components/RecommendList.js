@@ -63,6 +63,8 @@ const RecommendList = (props) => {
           </MyInfo>
           <Text
             cursor="Pointer"
+            color='#0095f6'
+            bold
             _onClick={() => {
               window.alert("아직 준비중 입니다.");
             }}
@@ -72,7 +74,7 @@ const RecommendList = (props) => {
         </MyProfileContainer>
         <RecommendContainer>
           <RecommendTextBox>
-            <Text NotP bold>
+            <Text NotP bold color='#8e8e8e'>
               회원님을 위한 추천
             </Text>
             <Text cursor='Pointer' _onClick={openModal} NotP bold>
@@ -94,7 +96,7 @@ const RecommendList = (props) => {
                       </Text>
                     </TextBox>
                   </MyInfo>
-                  <Text cursor="Pointer" _onClick={()=>{addFriend(v.recommended_name)}}>팔로우</Text>
+                  <Text cursor="Pointer" color='#0095f6' bold _onClick={()=>{addFriend(v.recommended_name)}}>팔로우</Text>
                 </RecommendedUser>
               );
             })}

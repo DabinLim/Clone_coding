@@ -19,7 +19,7 @@ const ProfileHeader = (props) => {
   let name;
   let insta_Id;
   const post_data = useSelector((state) => state.user);
-  console.log(post_data);
+  // console.log(post_data);
 
   if (post_data.user) {
     return (

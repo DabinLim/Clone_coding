@@ -10,7 +10,7 @@ const Like = (props) => {
     const [nowLike,setLike] = React.useState(false)
     const user_info = useSelector(state => state.user)
     const like_data = useSelector(state => state.like.like)
-    console.log(like_data)
+    // console.log(like_data)
     let like_user;
     let like_count;
     for(let i = 0; i < like_data.length; i ++) {
@@ -19,7 +19,7 @@ const Like = (props) => {
             like_count = like_data[i].like_count
         }
     }
-    console.log(like_count)
+    // console.log(like_count)
     const token = sessionStorage.getItem('token')
 
     let num = 0;
@@ -49,7 +49,7 @@ const Like = (props) => {
         return (
         <React.Fragment>
             <FavoriteBorderIcon onClick={()=>{dispatch(likeActions.changeLikeSV(props.post_id,token))}}fontSize='large'/>
-            <Text margin='0px 0px 0px 4px' bold>{like_count}</Text>
+            <Text >{like_count}</Text>
         </React.Fragment>
         )
 }

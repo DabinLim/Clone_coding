@@ -14,7 +14,7 @@ import Like from "./Like";
 import EditPost from "./EditPost";
 
 const Post = (props) => {
-  console.log(props);
+  
 
   const [modalVisible, setModalVisible] = React.useState(false);
 
@@ -35,7 +35,7 @@ const Post = (props) => {
       window.alert("댓글 내용을 입력하세요");
       return;
     }
-    console.log(comment);
+  
     dispatch(commentActions.addCommentSV(props.post_id, comment, token));
   };
   const user = useSelector((state) => state.user);
@@ -45,7 +45,12 @@ const Post = (props) => {
   }
 
   const deletePost = () => {
-    dispatch(postActions.deletePostSV(props.post_id));
+    if(window.confirm('정말 삭제하시겠습니까?')){
+      dispatch(postActions.deletePostSV(props.post_id));
+    }else{
+      return
+    }
+ 
   };
 
   return (

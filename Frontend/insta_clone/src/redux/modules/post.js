@@ -57,7 +57,7 @@ const addPostSV = (contents, file, token, history) => {
     };
     axios(options)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         let post_data = {
           post_id: response.data.post_list.post_Id,
           name: response.data.post_list.name,
@@ -72,7 +72,7 @@ const addPostSV = (contents, file, token, history) => {
           like_count: response.data.post_list.like_count,
           like_user: response.data.post_list.like_user,
         };
-        console.log(post_data, like_data);
+        // console.log(post_data, like_data);
         dispatch(addPost(post_data));
         dispatch(likeActions.addLike(like_data));
         window.alert("게시물 작성이 완료되었습니다.");
@@ -132,7 +132,7 @@ const getAllPostSV = (token, history) => {
     };
     axios(options)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         let post_data = [];
         let like_data = [];
         for (let i = 0; i < response.data.post_list.length; i++) {
@@ -178,7 +178,7 @@ const getFriendsPostSV = (token, history) => {
     };
     axios(options)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         let post_data = [];
         let like_data = [];
         for (let i = 0; i < response.data.post_list.length; i++) {
@@ -222,7 +222,7 @@ const deletePostSV = (post_id) => {
       }
     };
     axios(options).then((response) => {
-      console.log(response)
+      // console.log(response)
       dispatch(deletePost(post_id))
     }).catch((error) => {
       console.log(error);
@@ -248,7 +248,7 @@ const editPostSV = (content, post_id) => {
       }
     };
     axios(options).then((response) => {
-      console.log(response.data)
+      // console.log(response.data)
       let post_data = {
         post_id: post_id,
         content: content

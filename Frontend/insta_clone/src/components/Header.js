@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { Grid, Text, Image } from "../elements/index";
 import HomeIcon from "@material-ui/icons/Home";
 import ExploreIcon from "@material-ui/icons/Explore";
-import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { history } from "../redux/configStore";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useDispatch, useSelector } from "react-redux";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const Header = (props) => {
     const dispatch = useDispatch()
@@ -19,6 +19,14 @@ const Header = (props) => {
     }
     const token = sessionStorage.getItem('token')
 
+    const logOut = () => {
+      if(window.confirm('로그아웃 하시겠어요?')){
+        dispatch(userActions.logOutSV(history))
+      } else{
+        return
+      }
+    }
+
     return (
         <React.Fragment>
             <HeaderContainer>
@@ -28,9 +36,9 @@ const Header = (props) => {
                     </BannerContainer>
                 <TextContainer><Text bold>{user_name}님</Text></TextContainer>
                 <IconContainer>
-                    <HomeIcon cursor='pointer'onClick={()=>{dispatch(userActions.logOutSV(history))}} fontSize='large'/>
-                    <ExploreIcon cursor='pointer' onClick={()=>{dispatch(userActions.testSV(token))}}fontSize='large'/>
-                    <FavoriteBorderIcon cursor='pointer'fontSize='large'/>
+                    <HomeIcon cursor='pointer'onClick={()=>{history.push('/newpost')}} />
+                    <ExploreIcon cursor='pointer' onClick={()=>{window.alert('아직 준비중입니다.')}}/>
+                    <ExitToAppIcon cursor='pointer' onClick={logOut}/>
                     <Image cursor='pointer'_onClick={()=> {history.push('/profile')}} src={profile} shape='circle' size='24'/>
                 </IconContainer>
                 </HeaderContents>
@@ -84,9 +92,11 @@ const TextContainer = styled.div`
 `;
 
 const IconContainer = styled.div`
-  margin-right: 20px;
+  width: 130px;
+  margin-right: 10px;
   display: flex;
   flex-direction: row;
+  align-items:center;
   justify-content: space-between;
 `;
 

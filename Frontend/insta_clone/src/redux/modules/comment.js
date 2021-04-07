@@ -31,7 +31,7 @@ const getCommentSV = (post_id) => {
         }
       };
       axios(options).then((response) => {
-        console.log(response.data)
+        // console.log(response.data)
         let comment_list =[];
         for (let i =0; i<response.data.comments.length; i++) {
           comment_list.push({
@@ -70,7 +70,7 @@ const addCommentSV = (post_id, comment, token) => {
       }
     };
     axios(options).then((response) => {
-      console.log(response.data.realTimeComment)
+      // console.log(response.data.realTimeComment)
       let comment_list ={
           profile_image: response.data.realTimeComment.profile_img,
           user_name: response.data.realTimeComment.name,
@@ -108,7 +108,7 @@ const addCommentSV = (post_id, comment, token) => {
         }
       };
       axios(options).then((response) => {
-        console.log(response)
+        // console.log(response)
         dispatch(deleteComment(comment_id))
       }).catch((error) => {
         console.log(error);

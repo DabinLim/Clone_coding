@@ -8,7 +8,9 @@ import {history} from '../redux/configStore';
 const CommentItem = (props) => {
   const dispatch = useDispatch();
     const deleteComment = () => {
+      if(window.confirm('정말 삭제하시겠습니까?')){
         dispatch(commentActions.deleteCommentSV(props.comment_id))
+      }
     }
 
     const user = useSelector(state=> state.user)

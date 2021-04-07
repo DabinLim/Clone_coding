@@ -24,7 +24,7 @@ const PostDetail = (props) => {
 
 
     const thisPost = post_data.filter(checkPost);
-    console.log(thisPost)
+    // console.log(thisPost)
     const token = sessionStorage.getItem('token')
     React.useEffect(() => {
         dispatch(postActions.getAllPostSV(token, history))

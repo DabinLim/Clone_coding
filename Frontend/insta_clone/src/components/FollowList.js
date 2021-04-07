@@ -28,7 +28,7 @@ const FollowList = (props) => {
         }
     }
     const friend_list = useSelector(state => state.friend.friend_list)
-    console.log(friend_list)
+    
 
     const checkFriend = (e) => {
       if (e.name !== user_name) {
