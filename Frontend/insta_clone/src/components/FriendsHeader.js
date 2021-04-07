@@ -15,10 +15,20 @@ const FriendsHeader = (props) => {
   const post_data = useSelector((state) => state.user);
   console.log(post_data);
 
-  const frinedpost_data = useSelector((state) => state.user.data);
+  const frinedpost_data = useSelector((state) => state.user.friend);
   console.log(frinedpost_data);
 
-  if (post_data.user) {
+  const token = sessionStorage.getItem("token");
+  let url = document.location.href.split("/");
+  let friend_id = url[url.length - 1];
+
+  React.useEffect(() => {
+
+      dispatch(friendActions.FriendsPostSV(friend_id, token, history))
+  }, []);
+  
+
+  if (frinedpost_data) {
     return (
       <React.Fragment>
         <Container>
@@ -30,13 +40,13 @@ const FriendsHeader = (props) => {
               display="block"
               margin-left="auto"
               margin-right="auto"
-              src={post_data.user.profile_img}
+              src={frinedpost_data.profile_img}
             />
           </Grid>
           <TextContainer>
             <IdButton>
               <Text size="60" bold>
-                {post_data.user.insta_Id}
+                {frinedpost_data.insta_Id}
               </Text>
               {/* <Button
                 _onClick={() => {
@@ -48,7 +58,7 @@ const FriendsHeader = (props) => {
               </Button> */}
             </IdButton>
             <Text size="60" bold>
-              {post_data.user.name}
+              {frinedpost_data.name}
             </Text>
             <Text bold>안녕!</Text>
           </TextContainer>

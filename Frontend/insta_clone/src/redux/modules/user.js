@@ -237,9 +237,9 @@ const editProfile = (file, token, history) => {
 };
 
 //친구 개인 상세 페이지
-const FriendsPostSV = (name, token, history) => {
+const FriendsPostSV = (friend_id, token, history) => {
   return function (dispatch) {
-    console.log(name);
+    
     const options = {
       url: "http://13.209.10.75/api/personal_feed",
       method: "POST",
@@ -247,7 +247,7 @@ const FriendsPostSV = (name, token, history) => {
         token: token,
       },
       data: {
-        name: name,
+        insta_Id: friend_id,
       },
     };
     axios(options)
@@ -296,11 +296,11 @@ export default handleActions(
           draft.is_signup = true;
         }
       }),
-    [FRIEND_POST]: (state, action) => {
+    [FRIEND_POST]: (state, action) => 
       produce(state, (draft) => {
         draft.friend = action.payload.friend;
-      });
-    },
+      })
+    
   },
   initialState
 );

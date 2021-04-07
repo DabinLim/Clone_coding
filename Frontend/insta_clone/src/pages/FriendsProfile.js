@@ -12,30 +12,30 @@ import Header from "../components/Header";
 // import ProfilePost from "../components/ProfilePost";
 // import user from "../redux/modules/user";
 
-import FriendsHeadr from "../components/FriendsHeader";
+import FriendsHeader from "../components/FriendsHeader";
 import FriendsPost from "../components/FriendsPost";
 
 const FriendsProfile = (props) => {
   const dispatch = useDispatch();
   //이 data는 포스트 쓴 유저들의 정보를 가져온다
-  const data = useSelector((state) => state.user.friend);
   //현재 id의 정보를 가져옴
   const f_post_data = useSelector((state) => state.post.list);
-  console.log(f_post_data);
-  const token = sessionStorage.getItem("token");
-
+  
+  
   //들어온 url에 붙은 이름으로 name을 만든다 -> 한글은 좀 이상하게 나옴
   let url = document.location.href.split("/");
-  let post_name = url[url.length - 1];
-  console.log(post_name);
-  const name = post_name;
+  let friend_id = url[url.length - 1];
   // console.log(data.name);
-
-  React.useEffect(() => {
-    if (post_name) {
-      dispatch(friendActions.FriendsPostSV(name, token, history));
+  const checkFriend = (e) => {
+    if (e.insta_id == friend_id) {
+        return true;
     }
-  }, []);
+}
+
+
+const friendPost = f_post_data.filter(checkFriend);
+console.log(friendPost)
+ 
 
   // // 해당하는 사람 포스트만 보여주기
   // console.log(data.name);
@@ -48,12 +48,12 @@ const FriendsProfile = (props) => {
   return (
     <React.Fragment>
       <Container>
-        <FriendsHeadr />
+        <FriendsHeader />
         <PostContainer>
-          {f_post_data.map((p, idx) => {
-            if (data.name == f_post_data[idx].name) {
+          {friendPost && friendPost.map((p, idx) => {
+            
               return <FriendsPost key={idx} {...p} />;
-            }
+            
           })}
         </PostContainer>
       </Container>
