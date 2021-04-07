@@ -12,6 +12,7 @@ const SET_FRIEND_POST = "SET_FRIEND_POST";
 //목록 추가해주는 애
 const ADD_POST = "ADD_POST";
 const DELETE_POST = 'DELETE_POST';
+const EDIT_POST = 'EDIT_POST';
 
 
 const setPost = createAction(SET_POST, (post_data) => ({
@@ -23,6 +24,8 @@ const setFriendPost = createAction(SET_FRIEND_POST, (post_data) => ({
 const addPost = createAction(ADD_POST, (post) => ({ post }));
 
 const deletePost = createAction(DELETE_POST, (post) => ({post}));
+
+const editPost = createAction(EDIT_POST, (post) => ({post}));
 
 
 const initialState = {
@@ -230,6 +233,37 @@ const deletePostSV = (post_id) => {
   }
 }
 
+const editPostSV = (content, post_id) => {
+  return function(dispatch) {
+    const options = {
+      url: 'http://13.209.10.75/detail/edit',
+      method: 'PUT',
+      headers: {
+        Accept: 'application.json',
+        'Content-Type': 'application/json;charset=UTF-8',
+      },
+      data: {
+        post_Id: post_id,
+        content:content
+      }
+    };
+    axios(options).then((response) => {
+      console.log(response.data)
+      let post_data = {
+        post_id: post_id,
+        content: content
+      };
+    
+      dispatch(editPost(post_data))
+    }).catch((error) => {
+      console.log(error);
+      if (error.response) {
+        window.alert(error.response.data.errorMessage);
+      }
+    })
+  }
+}
+
 // reducer
 export default handleActions(
   {
@@ -274,6 +308,13 @@ export default handleActions(
       })
 
       draft.list = new_post_list;
+    }),
+
+    [EDIT_POST] : (state, action) => produce(state, (draft) => {
+      let idx = draft.list.findIndex((p) => p.post_id === action.payload.post.post_id);
+  
+        // 인덱스를 이용해 list 정보와, action의 포스트 정보를 함께 업데이트한다.
+        draft.list[idx].content = action.payload.post.content
     })
   },
   initialState
@@ -287,6 +328,7 @@ const actionCreators = {
   getAllPostSV,
   getMyPostSV,
   deletePostSV,
+  editPostSV,
 };
 
 export { actionCreators };

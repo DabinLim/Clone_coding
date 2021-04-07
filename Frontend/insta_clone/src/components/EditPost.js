@@ -1,15 +1,18 @@
 import { Modal } from "@material-ui/core";
 import React from "react";
 import styled from "styled-components";
-import {Input} from '../elements';
+import {Button, Grid, Input} from '../elements';
+
 import { useDispatch, useSelector, useSeletor } from 'react-redux';
 import {actionCreators as friendActions} from '../redux/modules/friend';
+import {actionCreators as postActions} from '../redux/modules/post';
 import { history } from "../redux/configStore";
 
 const EditPost = (props) => {
-  const { className, visible, maskClosable, closable, onClose } = props;
+  const { className, visible, maskClosable, closable, onClose, post_id } = props;
   const token = sessionStorage.getItem('token');
-
+    const [content, setContent] = React.useState(props.content);
+    
     const user = useSelector(state=> state.user)
     let user_name;
     if(user.user){
@@ -21,11 +24,16 @@ const EditPost = (props) => {
             onClose(e)
         }
     }
-
+    
     const close = (e) => {
         if(onClose) {
             onClose(e)
         }
+    }
+
+    const editPost = () => {
+        dispatch(postActions.editPostSV(content, props.post_id))
+        close()
     }
     
 
@@ -36,7 +44,10 @@ const EditPost = (props) => {
         <ModalContainer className={className} tabIndex="-1" visible={visible} onClick={maskClosable ? onMaskClick: null}>
           <ModalInner tabIndex="0">
               {closable && <CloseButton onClick={close}>x</CloseButton>}
-              
+              <Grid flex_row>
+              <Input multiLine value={content}_onChange={(e)=>{setContent(e.target.value)}} placeholder='수정할 내용을 입력하세요.'/>
+              <Button margin='auto 20px' height='40px' width='60px' _onClick={editPost}>수정</Button>
+              </Grid>
               </ModalInner>
         </ModalContainer>
       </ModalOverlay>

@@ -53,6 +53,8 @@ const Post = (props) => {
       {user_name == props.name ? (
         <Grid flex_column margin="0px">
           <EditPost
+            content={props.content}
+            post_id={props.post_id}
             visible={modalVisible}
             onClose={closeModal}
             maskClosable={true}

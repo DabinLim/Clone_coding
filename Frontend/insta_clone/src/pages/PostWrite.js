@@ -9,6 +9,7 @@ import { history } from "../redux/configStore";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
+  const [preview, setPreview] = React.useState('http://via.placeholder.com/400x300')
   const [file, setFile] = React.useState(null);
   const [value, setValue] = React.useState("");
   const [contents, setContents] = React.useState("");
@@ -16,7 +17,6 @@ const PostWrite = (props) => {
     setContents(e.target.value);
   };
 
-  console.log(file);
 
   const addPost = () => {
     const token = sessionStorage.getItem("token");
@@ -39,6 +39,11 @@ const PostWrite = (props) => {
 
   const selectFile = (e) => {
     setFile(e.target.files[0]);
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      setPreview(reader.result)
+    }
   };
 
   return (
@@ -59,7 +64,7 @@ const PostWrite = (props) => {
               </Text>
               <Image
                 shape="rectangle"
-                src={"http://via.placeholder.com/400x300"}
+                src={preview}
               />
             </Grid>
           </ImageContainer>
