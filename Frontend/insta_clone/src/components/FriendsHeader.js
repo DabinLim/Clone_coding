@@ -6,20 +6,22 @@ import { history } from "../redux/configStore";
 import { useDispatch, useSelector } from "react-redux";
 import EditProfile from "../components/EditProfile";
 
+import { actionCreators as friendActions } from "../redux/modules/user";
+
 const FriendsHeader = (props) => {
-  const [modalVisible, setModalVisible] = React.useState(false);
-
-  const openModal = () => {
-    setModalVisible(true);
-  };
-
-  const closeModal = () => {
-    setModalVisible(false);
-  };
+  const dispatch = useDispatch();
   let name;
   let insta_Id;
   const post_data = useSelector((state) => state.user);
   console.log(post_data);
+
+  const frinedpost_data = useSelector((state) => state.user);
+  console.log(frinedpost_data);
+
+  const friendsprofile_data = (name) => {
+    dispatch(friendActions.FriendsPostSV(name));
+  };
+  console.log(friendsprofile_data);
 
   if (post_data.user) {
     return (
@@ -27,7 +29,7 @@ const FriendsHeader = (props) => {
         <Container>
           <Grid width="291px" height="150px">
             <Image
-              _onClick={openModal}
+              // _onClick={openModal}
               shape="circle"
               size="150"
               display="block"
@@ -41,14 +43,14 @@ const FriendsHeader = (props) => {
               <Text size="60" bold>
                 {post_data.user.insta_Id}
               </Text>
-              <Button
+              {/* <Button
                 _onClick={() => {
                   history.push("/postwrite");
                 }}
                 width="80px"
-              >
-                게시글 작성
-              </Button>
+              > */}
+              {/* 게시글 작성
+              </Button> */}
             </IdButton>
             <Text size="60" bold>
               {post_data.user.name}
@@ -57,12 +59,12 @@ const FriendsHeader = (props) => {
           </TextContainer>
         </Container>
         <Story />
-        <EditProfile
+        {/* <EditProfile
           visible={modalVisible}
           onClose={closeModal}
           maskClosable={true}
           closable={true}
-        />
+        /> */}
       </React.Fragment>
     );
   } else {
@@ -85,14 +87,14 @@ const FriendsHeader = (props) => {
               <Text size="60" bold>
                 {insta_Id}
               </Text>
-              <Button
+              {/* <Button
                 _onClick={() => {
                   history.push("/postwrite");
                 }}
                 width="80px"
               >
                 게시글 작성
-              </Button>
+              </Button> */}
             </IdButton>
             <Text size="60" bold>
               {name}

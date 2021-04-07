@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Text, Input, Button, Image } from "../elements/index";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import post, { actionCreators as postActions } from "../redux/modules/post";
+import post, { actionCreators as friendActions } from "../redux/modules/user";
 import { history } from "../redux/configStore";
 
 import Header from "../components/Header";
@@ -18,14 +18,18 @@ import FriendsPost from "../components/FriendsPost";
 const FriendsProfile = (props) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.user.user);
-  const post_data = useSelector((state) => state.post.list);
+  const f_post_data = useSelector((state) => state.post.list);
   const token = sessionStorage.getItem("token");
+
+  // let url = document.location.href.split("/");
+  // let post_id = url[url.length - 1];
+
   React.useEffect(() => {
-    if (post_data.length == 0) {
-      dispatch(postActions.getMyPostSV(token, history));
+    if (f_post_data.length == 0) {
+      dispatch(friendActions.FriendsPostSV(token, history));
     }
   }, []);
-  // console.log(post_data);
+  console.log(f_post_data);
   console.log(data);
 
   // // 해당하는 사람 포스트만 보여주기
@@ -41,8 +45,8 @@ const FriendsProfile = (props) => {
       <Container>
         <FriendsHeadr />
         <PostContainer>
-          {post_data.map((p, idx) => {
-            if (data.name == post_data[idx].name) {
+          {f_post_data.map((p, idx) => {
+            if (data.name == f_post_data[idx].name) {
               return <FriendsPost key={idx} {...p} />;
             }
           })}

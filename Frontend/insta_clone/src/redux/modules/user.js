@@ -229,6 +229,42 @@ const editProfile = (file, token, history) => {
   };
 };
 
+//친구 개인 상세 페이지
+const FriendsPostSV = (name, token, history) => {
+  return function (dispatch) {
+    const options = {
+      url: "http://13.209.10.75/api/personal_feed",
+      method: "POST",
+      headers: {
+        token: token,
+      },
+      data: {
+        name: name,
+      },
+    };
+    axios(options)
+      .then((response) => {
+        console.log(response.data);
+        let friendsprofile_data = {
+          insta_Id: response.data.insta_Id,
+          name: response.data.name,
+          profile_img: response.data.profile_img,
+        };
+        console.log(friendsprofile_data);
+        dispatch(setUser(friendsprofile_data));
+        // dispatch(likeActions.addLike(like_data));
+        // window.alert("프로필 변경이 완료되었습니다.");
+        // history.push("/profile");
+      })
+      .catch((error) => {
+        console.log(error);
+        if (error.response) {
+          window.alert(error.response.data.errorMessage);
+        }
+      });
+  };
+};
+
 export default handleActions(
   {
     [SET_USER]: (state, action) =>
@@ -253,6 +289,7 @@ const actionCreators = {
   loginCheck,
   logOutSV,
   editProfile,
+  FriendsPostSV,
 };
 
 export { actionCreators };

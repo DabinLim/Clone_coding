@@ -44,7 +44,12 @@ const Header = (props) => {
               }}
               fontSize="large"
             />
-            <FavoriteBorderIcon fontSize="large" />
+            <FavoriteBorderIcon
+              fontSize="large"
+              onClick={() => {
+                history.push("/friends");
+              }}
+            />
             <Image
               _onClick={() => {
                 history.push("/profile");
