@@ -4,16 +4,19 @@ import axios from "axios";
 
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
-const IS_SIGNUP = 'IS_SIGNUP';
+const IS_SIGNUP = "IS_SIGNUP";
+const FRIEND_POST = "FRIEND_POST";
 
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
-const is_Signup = createAction(IS_SIGNUP, (user) => ({user}));
+const is_Signup = createAction(IS_SIGNUP, (user) => ({ user }));
+const friendPost = createAction(FRIEND_POST, (friend) => ({ friend }));
 
 const initialState = {
   user: null,
   is_login: false,
-  is_signup:false,
+  is_signup: false,
+  friend: null,
 };
 
 const loginCheck = (session_info, token) => {
@@ -235,6 +238,7 @@ const editProfile = (file, token, history) => {
 //친구 개인 상세 페이지
 const FriendsPostSV = (name, token, history) => {
   return function (dispatch) {
+    console.log(name);
     const options = {
       url: "http://13.209.10.75/api/personal_feed",
       method: "POST",
@@ -254,7 +258,7 @@ const FriendsPostSV = (name, token, history) => {
           profile_img: response.data.profile_img,
         };
         console.log(friendsprofile_data);
-        dispatch(setUser(friendsprofile_data));
+        dispatch(friendPost(friendsprofile_data));
         // dispatch(likeActions.addLike(like_data));
         // window.alert("프로필 변경이 완료되었습니다.");
         // history.push("/profile");
@@ -283,13 +287,19 @@ export default handleActions(
         draft.is_login = false;
       }),
 
-      [IS_SIGNUP] : (state, action) => produce(state, (draft) => {
-        if(draft.is_signup){
-          draft.is_signup = false
-        }else{
-          draft.is_signup = true
+    [IS_SIGNUP]: (state, action) =>
+      produce(state, (draft) => {
+        if (draft.is_signup) {
+          draft.is_signup = false;
+        } else {
+          draft.is_signup = true;
         }
-      })
+      }),
+    [FRIEND_POST]: (state, action) => {
+      produce(state, (draft) => {
+        draft.friend = action.payload.friend;
+      });
+    },
   },
   initialState
 );
@@ -300,7 +310,8 @@ const actionCreators = {
   loginCheck,
   logOutSV,
   editProfile,
-  is_Signup
+  is_Signup,
+  FriendsPostSV,
 };
 
 export { actionCreators };

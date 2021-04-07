@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 const FriendsPost = (props) => {
   const dispatch = useDispatch();
-  const user_data = useSelector((state) => state.user);
-  console.log(user_data);
+  const freinds_data = useSelector((state) => state.user);
+  console.log(freinds_data);
   const post_data = useSelector((state) => state.post.list);
   console.log(post_data);
 
