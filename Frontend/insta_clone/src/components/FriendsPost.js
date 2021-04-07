@@ -14,7 +14,6 @@ const FriendsPost = (props) => {
   return (
     <React.Fragment>
       <Image size="250" shape="square" src={props.image[0]}></Image>
-      <text>친구 개인 포스트 </text>
     </React.Fragment>
   );
 };
