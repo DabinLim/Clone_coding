@@ -21,7 +21,7 @@ const CommentItem = (props) => {
     <React.Fragment>
       {user_name == props.user_name ? <InfoBox>
         <Info>
-          <Image src={props.profile_image} shape="circle" />
+          <Image _onClick={()=> {history.push('/profile')}} src={props.profile_image} shape="circle" />
           <TextBox>
             <Text NotP bold>
               {props.user_name}

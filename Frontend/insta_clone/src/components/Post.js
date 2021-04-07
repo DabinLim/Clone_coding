@@ -65,7 +65,7 @@ const Post = (props) => {
               <Grid flex_row>
                 <Image
                   _onClick={() => {
-                    history.push("/friends/" + props.insta_id);
+                    history.push("/profile");
                   }}
                   src={props.profile_image}
                   shape="circle"
