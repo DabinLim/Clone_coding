@@ -4,6 +4,8 @@ import Post from './Post';
 import {useSelector, useDispatch} from 'react-redux';
 import {actionCreators as commentActions} from '../redux/modules/comment';
 import CommentItem from './CommentItem';
+import {history} from '../redux/configStore';
+import {actionCreators as postActions} from '../redux/modules/post';
 
 
 const PostDetail = (props) => {
@@ -23,8 +25,9 @@ const PostDetail = (props) => {
 
     const thisPost = post_data.filter(checkPost);
     console.log(thisPost)
-
+    const token = sessionStorage.getItem('token')
     React.useEffect(() => {
+        dispatch(postActions.getAllPostSV(token, history))
         dispatch(commentActions.getCommentSV(post_id));
       }, []);
 
@@ -68,6 +71,7 @@ const CommentContainer = styled.div`
     width:100%;
     margin-top: -30px;
     height: auto;
+    background-color:white;
 `;
 
 

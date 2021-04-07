@@ -11,9 +11,21 @@ import ChatBubbleOutlineIcon from "@material-ui/icons/ChatBubbleOutline";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import { history } from "../redux/configStore";
 import Like from "./Like";
+import EditPost from "./EditPost";
 
 const Post = (props) => {
   console.log(props);
+
+  const [modalVisible, setModalVisible] = React.useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   const [comment, setComment] = React.useState();
   const dispatch = useDispatch();
   const token = sessionStorage.getItem("token");
@@ -35,12 +47,17 @@ const Post = (props) => {
   const deletePost = () => {
     dispatch(postActions.deletePostSV(props.post_id));
   };
-  console.log(props.post_id);
 
   return (
     <React.Fragment>
       {user_name == props.name ? (
         <Grid flex_column margin="0px">
+          <EditPost
+            visible={modalVisible}
+            onClose={closeModal}
+            maskClosable={true}
+            closable={true}
+          />
           <DetailContainer>
             <UserInfo>
               <Grid flex_row>
@@ -61,20 +78,16 @@ const Post = (props) => {
                 flex_row
                 flex_detail="justify-content:space-between;"
               >
-                <Text>수정</Text>
+                <Text cursor="pointer" _onClick={openModal}>
+                  수정
+                </Text>
                 <Text cursor="pointer" _onClick={deletePost}>
                   삭제
                 </Text>
               </Grid>
             </UserInfo>
             <Grid bg_color="white" height="auto">
-              <Image
-                _onClick={() => {
-                  history.push("/postdetail/" + props.post_id);
-                }}
-                src={props.image[0]}
-                shape="rectangle"
-              ></Image>
+              <Image src={props.image[0]} shape="rectangle"></Image>
               <Grid
                 flex_row
                 flex_detail="align-items:center;"

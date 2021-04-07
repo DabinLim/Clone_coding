@@ -208,7 +208,7 @@ const getFriendsPostSV = (token, history) => {
 const deletePostSV = (post_id) => {
   return function(dispatch) {
     const options = {
-      url: 'http://13.209.10.75/api/delete_comment',
+      url: 'http://13.209.10.75/detail/delete',
       method: 'DELETE',
       headers: {
         Accept: 'application.json',
