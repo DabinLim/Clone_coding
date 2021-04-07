@@ -17,6 +17,12 @@ const Post = (props) => {
     const dispatch = useDispatch()
     const token = sessionStorage.getItem('token')
     const commentWrite = () => {
+      setComment('')
+      if(!comment){
+        window.alert('댓글 내용을 입력하세요')
+        return
+      }
+      console.log(comment)
         dispatch(commentActions.addCommentSV(props.post_id, comment, token))
     }
   
@@ -53,7 +59,7 @@ const Post = (props) => {
               <Grid flex_row flex_detail='justify-content:center; align-items:center;' width="auto" height="auto" margin="0px 8px">
                 <Like {...props}/>
               </Grid>
-              <Grid width="auto" height="auto" margin="0px 8px" _onClick={()=>{history.push('/postdetail/'+props.post_id)}}>
+              <Grid flex_row flex_detail='justify-content:center; align-items:center;' width="auto" height="auto" margin="0px 8px" _onClick={()=>{history.push('/postdetail/'+props.post_id)}}>
                 <ChatBubbleOutlineIcon fontSize="large"/>
               </Grid>
             </Grid>
@@ -82,7 +88,7 @@ const Post = (props) => {
             <Grid width="auto" height="auto" margin="auto 10px">
               <InsertEmoticonIcon fontSize="large" onClick={()=>{window.alert('아직 준비중입니다.')}} />
             </Grid>
-            <Input _onChange={(e)=>{
+            <Input value={comment} _onChange={(e)=>{
                 setComment(e.target.value)
             }} is_comment />
             <Grid width="40px" margin="auto 10px">

@@ -15,7 +15,9 @@ const SignUp = (props) => {
             window.alert('공란이 있습니다, 모든 정보를 입력하세요.')
             return
         }
+        dispatch(userActions.is_Signup())
         dispatch(userActions.signUpSV([id, name, pwd], history))
+
     }
     return (
         <React.Fragment>

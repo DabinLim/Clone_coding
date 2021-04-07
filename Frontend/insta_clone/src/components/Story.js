@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {Image} from '../elements';
 import {useSelector} from 'react-redux'
+import { history } from "../redux/configStore";
 
 const Story = (props) => {
     const friend_list = useSelector(state => state.friend.friend_list)
@@ -12,7 +13,9 @@ const Story = (props) => {
                 {friend_list.map((v) => {
                     return(
                         <ImageContainer>
-                        <Image src={v.profile_image}shape='circle' size='80'></Image>
+                        <Image cursor='pointer' src={v.profile_image}shape='circle' size='80' _onClick={()=> {
+                            history.push('/profile/'+v.name)
+                        }}></Image>
                         </ImageContainer>
                     )
                 })}
@@ -56,7 +59,7 @@ const StoryContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-    cursor:pointer;
+    
 `;
 
 

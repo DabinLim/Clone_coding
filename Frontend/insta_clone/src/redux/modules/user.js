@@ -4,13 +4,16 @@ import axios from "axios";
 
 const SET_USER = "SET_USER";
 const LOG_OUT = "LOG_OUT";
+const IS_SIGNUP = 'IS_SIGNUP';
 
 const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
+const is_Signup = createAction(IS_SIGNUP, (user) => ({user}));
 
 const initialState = {
   user: null,
   is_login: false,
+  is_signup:false,
 };
 
 const loginCheck = (session_info, token) => {
@@ -244,6 +247,14 @@ export default handleActions(
         draft.user = null;
         draft.is_login = false;
       }),
+
+      [IS_SIGNUP] : (state, action) => produce(state, (draft) => {
+        if(draft.is_signup){
+          draft.is_signup = false
+        }else{
+          draft.is_signup = true
+        }
+      })
   },
   initialState
 );
@@ -254,6 +265,7 @@ const actionCreators = {
   loginCheck,
   logOutSV,
   editProfile,
+  is_Signup
 };
 
 export { actionCreators };

@@ -8,7 +8,7 @@ const Input = (props) => {
 
   if (is_comment) {
     return (
-        <CommentInput margin={margin} type={type} placeholder={placeholder} onChange={_onChange} />
+        <CommentInput margin={margin} type={type} placeholder={placeholder} onChange={_onChange} value={value}/>
     )
   }
 

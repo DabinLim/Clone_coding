@@ -12,8 +12,10 @@ const Header = (props) => {
     const dispatch = useDispatch()
     const user = useSelector(state=> state.user)
     let profile;
+    let user_name
     if(user.user){
         profile = user.user.profile_img
+        user_name = user.user.name
     }
     const token = sessionStorage.getItem('token')
 
@@ -24,12 +26,12 @@ const Header = (props) => {
                     <BannerContainer>
                 <Banner onClick={()=>{history.push('/newpost')}}></Banner>
                     </BannerContainer>
-                <TextContainer><Text bold>검색은 못만들겠다 진짜</Text></TextContainer>
+                <TextContainer><Text bold>{user_name}님 환영합니다</Text></TextContainer>
                 <IconContainer>
-                    <HomeIcon onClick={()=>{dispatch(userActions.logOutSV(history))}} fontSize='large'/>
-                    <ExploreIcon onClick={()=>{dispatch(userActions.testSV(token))}}fontSize='large'/>
-                    <FavoriteBorderIcon fontSize='large'/>
-                    <Image _onClick={()=> {history.push('/profile')}} src={profile} shape='circle' size='24'/>
+                    <HomeIcon cursor='pointer'onClick={()=>{dispatch(userActions.logOutSV(history))}} fontSize='large'/>
+                    <ExploreIcon cursor='pointer' onClick={()=>{dispatch(userActions.testSV(token))}}fontSize='large'/>
+                    <FavoriteBorderIcon cursor='pointer'fontSize='large'/>
+                    <Image cursor='pointer'_onClick={()=> {history.push('/profile')}} src={profile} shape='circle' size='24'/>
                 </IconContainer>
                 </HeaderContents>
             </HeaderContainer>
@@ -71,6 +73,7 @@ const Banner = styled.div`
     min-height:50px;
     background-size:contain;
     background-repeat:no-repeat;
+    cursor:pointer;
     
 `;
 

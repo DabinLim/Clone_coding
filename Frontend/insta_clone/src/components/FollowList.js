@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {Image, Text} from '../elements';
 import { useDispatch, useSelector, useSeletor } from 'react-redux';
 import {actionCreators as friendActions} from '../redux/modules/friend';
+import { history } from "../redux/configStore";
 
 const FollowList = (props) => {
   const { className, visible, maskClosable, closable, onClose } = props;
@@ -47,7 +48,7 @@ const FollowList = (props) => {
                       return(
                         <InfoBox>
                         <Info>
-                    <Image src={v.profile_image}shape="circle" />
+                    <Image cursor='pointer' _onClick={()=>{history.push('/profile/'+v.name)}} src={v.profile_image}shape="circle" />
                     <TextBox>
                       <Text NotP bold>
                         {v.name}

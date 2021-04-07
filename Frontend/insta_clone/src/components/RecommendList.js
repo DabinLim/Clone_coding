@@ -46,7 +46,7 @@ const RecommendList = (props) => {
       <Container>
         <MyProfileContainer>
           <MyInfo>
-            <Image src={user_profile} shape="circle" size="60" />
+            <Image cursor='pointer'_onClick={()=>{history.push('/profile')}}src={user_profile} shape="circle" size="60" />
             <TextBox>
               <Text
                 cursor="Pointer"
@@ -84,7 +84,7 @@ const RecommendList = (props) => {
               return (
                 <RecommendedUser>
                   <MyInfo>
-                    <Image src={v.recommended_image}shape="circle" />
+                    <Image cursor='pointer'_onClick={()=>{history.push('/profile/'+v.recommended_name)}} src={v.recommended_image} shape="circle" />
                     <TextBox>
                       <Text NotP bold>
                         {v.recommended_name}

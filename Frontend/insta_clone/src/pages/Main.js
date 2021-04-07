@@ -4,7 +4,7 @@ import {Grid, Text, Button, Input} from '../elements/index';
 import Login from '../components/Login';
 import { history } from "../redux/configStore";
 import SignUp from '../components/SignUp';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {actionCreators as userActions} from '../redux/modules/user';
 
 
@@ -16,7 +16,10 @@ const Main = (props) => {
   //     dispatch(userActions.loginCheck(is_session))
 
   // })
-    const [isSignup, setIsSignup] = React.useState(false)
+    const isSignup = useSelector(state=>state.user.is_signup)
+    const setIsSignup = () => {
+      dispatch(userActions.is_Signup())
+    }
     const notYet = () => {
         window.alert('아직 준비중입니다.')
     }
@@ -46,7 +49,7 @@ const Main = (props) => {
               padding="10px 0px"
               margin="0px 0px 10px 0px"
             >
-            {isSignup?<Text cursor='Pointer' _onClick={()=>setIsSignup(false)}>돌아가기</Text>:<Text cursor='Pointer'_onClick={()=>setIsSignup(true)}>가입하기</Text> }
+            {isSignup?<Text cursor='Pointer' _onClick={setIsSignup}>돌아가기</Text>:<Text cursor='Pointer'_onClick={setIsSignup}>가입하기</Text> }
             </Grid>
             <Grid bg_color='white' border height="102px">
               앱을 다운로드 하세요.

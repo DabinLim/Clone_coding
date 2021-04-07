@@ -21,25 +21,25 @@ const getCommentSV = (post_id) => {
   return function (dispatch) {
       const options = {
         url: 'http://13.209.10.75/api/set_comment',
-        method: 'GET',
+        method: 'POST',
         headers: {
           Accept: 'application.json',
           'Content-Type': 'application/json;charset=UTF-8',
         },
         data: {
-          post_id: post_id,
+          post_Id: post_id,
         }
       };
       axios(options).then((response) => {
         console.log(response.data)
         let comment_list =[];
-        for (let i =0; i<response.data.comment.length; i++) {
+        for (let i =0; i<response.data.comments.length; i++) {
           comment_list.push({
-            profile_image: response.data.comment[i].profile_img,
-            user_name: response.data.comment[i].name,
-            content: response.data.comment[i].text,
-            createAt: response.data.comment[i].createAt,
-            comment_id: response.data.comment[i]._id
+            profile_image: response.data.comments[i].profile_img,
+            user_name: response.data.comments[i].name,
+            content: response.data.comments[i].text,
+            createAt: response.data.comments[i].createAt,
+            comment_id: response.data.comments[i]._id
           })
         }
         dispatch(setComment(comment_list))
@@ -146,6 +146,7 @@ export default handleActions(
 const actionCreators = {
   getCommentSV,
   addCommentSV,
+  deleteCommentSV
 };
 
 export { actionCreators };
