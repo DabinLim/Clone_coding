@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Grid, Image } from "../elements/index";
 
 import { useDispatch, useSelector } from "react-redux";
+import { history } from "../redux/configStore";
 
 const FriendsPost = (props) => {
   const dispatch = useDispatch();
@@ -13,7 +14,14 @@ const FriendsPost = (props) => {
 
   return (
     <React.Fragment>
-      <Image size="250" shape="square" src={props.image[0]}></Image>
+      <Grid
+        width="270"
+        _onClick={() => {
+          history.push("/postdetail/" + props.post_id);
+        }}
+      >
+        <Image size="250" shape="square" src={props.image[0]}></Image>
+      </Grid>
     </React.Fragment>
   );
 };
