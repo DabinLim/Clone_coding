@@ -10,6 +10,11 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Header = (props) => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+  let profile;
+  if (user.user) {
+    profile = user.user.profile_img;
+  }
   const token = sessionStorage.getItem("token");
 
   return (
@@ -44,6 +49,7 @@ const Header = (props) => {
               _onClick={() => {
                 history.push("/profile");
               }}
+              src={profile}
               shape="circle"
               size="24"
             />

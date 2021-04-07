@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Post from './Post';
 import {useSelector, useDispatch} from 'react-redux';
+import {actionCreators as commentActions} from '../redux/modules/comment';
 import CommentItem from './CommentItem';
 
 
@@ -24,7 +25,7 @@ const PostDetail = (props) => {
     console.log(thisPost)
 
     React.useEffect(() => {
-        // dispatch(commentActions.getCommentSV(post_id));
+        dispatch(commentActions.getCommentSV(post_id));
       }, []);
 
     return (
@@ -66,7 +67,6 @@ const DetailContainer = styled.div`
 const CommentContainer = styled.div`
     width:100%;
     margin-top: -30px;
-    border:1px solid black;
     height: auto;
 `;
 
