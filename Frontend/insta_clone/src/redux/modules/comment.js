@@ -39,7 +39,8 @@ const getCommentSV = (post_id) => {
             user_name: response.data.comments[i].name,
             content: response.data.comments[i].text,
             createAt: response.data.comments[i].createAt,
-            comment_id: response.data.comments[i]._id
+            comment_id: response.data.comments[i]._id,
+            insta_id: response.data.comments[i].insta_Id
           })
         }
         dispatch(setComment(comment_list))
@@ -75,7 +76,8 @@ const addCommentSV = (post_id, comment, token) => {
           user_name: response.data.realTimeComment.name,
           content: response.data.realTimeComment.text,
           createAt: response.data.realTimeComment.createAt,
-          comment_id: response.data.realTimeComment._id
+          comment_id: response.data.realTimeComment._id,
+          insta_id: response.data.realTimeComment.insta_Id,
       }
       dispatch(addComment(comment_list))
     }).catch((error) => {

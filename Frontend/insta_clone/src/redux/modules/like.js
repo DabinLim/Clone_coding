@@ -6,6 +6,7 @@ const SET_LIKE = 'SET_LIKE';
 const ADD_LIKE = 'ADD_LIKE';
 
 const setLike = createAction(SET_LIKE, (like_user) => ({like_user}));
+
 const addLike = createAction(ADD_LIKE, (like_user) => ({like_user}));
 
 const initialState = {
@@ -57,8 +58,10 @@ const changeLikeSV = (postid,token) => {
 
       [ADD_LIKE]: (state, action) => produce(state, (draft) => {
         draft.like.unshift(action.payload.like_user)
-      })
+      }),
+
     },
+    
 
     initialState
   );

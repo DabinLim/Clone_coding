@@ -27,6 +27,7 @@ const Login = (props) => {
           <Input _onChange={(e) => {
               setPwd(e.target.value);
             }}
+            type='password'
             value={pwd} placeholder="비밀번호를 입력하세요" margin='5px'/>
         </Grid>
 

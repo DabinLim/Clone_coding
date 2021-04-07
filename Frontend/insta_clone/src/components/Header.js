@@ -26,7 +26,7 @@ const Header = (props) => {
                     <BannerContainer>
                 <Banner onClick={()=>{history.push('/newpost')}}></Banner>
                     </BannerContainer>
-                <TextContainer><Text bold>{user_name}님 환영합니다</Text></TextContainer>
+                <TextContainer><Text bold>{user_name}님</Text></TextContainer>
                 <IconContainer>
                     <HomeIcon cursor='pointer'onClick={()=>{dispatch(userActions.logOutSV(history))}} fontSize='large'/>
                     <ExploreIcon cursor='pointer' onClick={()=>{dispatch(userActions.testSV(token))}}fontSize='large'/>

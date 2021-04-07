@@ -9,6 +9,12 @@ import { history } from "../redux/configStore";
 const FollowList = (props) => {
   const { className, visible, maskClosable, closable, onClose } = props;
   const token = sessionStorage.getItem('token');
+
+    const user = useSelector(state=> state.user)
+    let user_name;
+    if(user.user){
+      user_name=user.user.name
+    }
     const dispatch = useDispatch();
     const onMaskClick = (e) => {
         if (e.target === e.currentTarget) {
@@ -23,6 +29,15 @@ const FollowList = (props) => {
     }
     const friend_list = useSelector(state => state.friend.friend_list)
     console.log(friend_list)
+
+    const checkFriend = (e) => {
+      if (e.name !== user_name) {
+          return true;
+      }
+  }
+
+
+  const friends = friend_list.filter(checkFriend);
 
     const deleteFriend = (name) =>{
       
@@ -44,11 +59,11 @@ const FollowList = (props) => {
                   팔로잉
                   </Title>
                     <Follow>
-                    {friend_list.map((v)=>{
+                    {friends.map((v)=>{
                       return(
                         <InfoBox>
                         <Info>
-                    <Image cursor='pointer' _onClick={()=>{history.push('/friends/'+v.name)}} src={v.profile_image}shape="circle" />
+                    <Image cursor='pointer' _onClick={()=>{history.push('/friends/'+v.insta_id)}} src={v.profile_image}shape="circle" />
                     <TextBox>
                       <Text NotP bold>
                         {v.name}

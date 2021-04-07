@@ -64,11 +64,13 @@ const getFriendListSV = (token) => {
     };
     axios(options)
       .then((response) => {
+        console.log(response.data)
         let friend_list = [];
         for (let i = 0; i < response.data.my_friend_list_show.length; i++) {
           friend_list.push({
             name: response.data.my_friend_list_show[i].name,
             profile_image: response.data.my_friend_list_show[i].profile_img,
+            insta_id: response.data.my_friend_list_show[i].insta_Id,
           });
         }
         dispatch(setFriendList(friend_list));
@@ -96,9 +98,11 @@ const addFriendSV = (token, name) => {
     };
     axios(options)
       .then((response) => {
+        console.log(response.data)
         let friend_list = {
           name: response.data.new_friend.name,
           profile_image: response.data.new_friend.profile_img,
+          insta_id: response.data.new_friend.insta_Id,
         };
         dispatch(addFriend(friend_list));
         dispatch(deleteRecommend(friend_list));

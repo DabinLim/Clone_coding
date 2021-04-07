@@ -168,6 +168,7 @@ const signUpSV = (data, history) => {
     };
     axios(options)
       .then((response) => {
+        dispatch(is_Signup())
         console.log(response);
         console.log(response.data);
         console.log(response["data"]);

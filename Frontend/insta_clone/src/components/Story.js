@@ -5,16 +5,29 @@ import {useSelector} from 'react-redux'
 import { history } from "../redux/configStore";
 
 const Story = (props) => {
+    const user = useSelector(state=> state.user)
+    let user_name;
+    if(user.user){
+      user_name=user.user.name
+    }
     const friend_list = useSelector(state => state.friend.friend_list)
-    console.log(friend_list);
+
+    const checkFriend = (e) => {
+        if (e.name !== user_name) {
+            return true;
+        }
+    }
+  
+  
+    const friends = friend_list.filter(checkFriend);
     return (
         <React.Fragment>
             <StoryContainer>
-                {friend_list.map((v) => {
+                {friends.map((v) => {
                     return(
                         <ImageContainer>
                         <Image cursor='pointer' src={v.profile_image}shape='circle' size='80' _onClick={()=> {
-                            history.push('/friends/'+v.name)
+                            history.push('/friends/'+v.insta_id)
                         }}></Image>
                         </ImageContainer>
                     )

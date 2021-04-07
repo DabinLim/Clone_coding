@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Text, Image } from "../elements";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
+import {history} from '../redux/configStore';
 
 const CommentItem = (props) => {
   const dispatch = useDispatch();
@@ -10,9 +11,15 @@ const CommentItem = (props) => {
         dispatch(commentActions.deleteCommentSV(props.comment_id))
     }
 
+    const user = useSelector(state=> state.user)
+    let user_name;
+    if(user.user){
+      user_name=user.user.name
+    }
+
   return (
     <React.Fragment>
-      <InfoBox>
+      {user_name == props.user_name ? <InfoBox>
         <Info>
           <Image src={props.profile_image} shape="circle" />
           <TextBox>
@@ -27,8 +34,24 @@ const CommentItem = (props) => {
         <DeleteBox>
           <Text cursor="Pointer" _onClick ={deleteComment}>삭제</Text>
         </DeleteBox>
-      </InfoBox>
-    </React.Fragment>
+      </InfoBox>:<InfoBox>
+        <Info>
+          <Image _onClick={()=> {history.push('/friends/'+props.insta_id)}} src={props.profile_image} shape="circle" />
+          <TextBox>
+            <Text NotP bold>
+              {props.user_name}
+            </Text>
+          </TextBox>
+          <TextBox>
+            <Text NotP>{props.content}</Text>
+          </TextBox>
+        </Info>
+        <DeleteBox>
+          
+        </DeleteBox>
+      </InfoBox>}
+      </React.Fragment>
+      
   );
 };
 

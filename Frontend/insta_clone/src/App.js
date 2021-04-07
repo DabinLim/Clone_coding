@@ -4,6 +4,7 @@ import Main from "./pages/Main";
 import React from "react";
 import SignUp from "./components/SignUp";
 import NewPost from "./pages/NewPost";
+import FollowingPost from "./pages/FollowingPost";
 import PostWrite from "./pages/PostWrite";
 import Profile from "./pages/Profile";
 import { ConnectedRouter } from "connected-react-router";
@@ -37,6 +38,7 @@ function App() {
             <ConnectedRouter history={history} is_login={is_login}>
               <Route path="/" exact component={Main} />
               <Route path="/newpost" exact component={NewPost} />
+              <Route path="/followingpost" exact component={FollowingPost} />
               <Route path="/postwrite" exact component={PostWrite} />
               <Route path="/profile" exact component={Profile} />
               <Route path="/postdetail/:id" exact component={PostDetail} />

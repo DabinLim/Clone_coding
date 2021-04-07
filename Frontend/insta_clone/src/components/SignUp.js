@@ -4,6 +4,7 @@ import {actionCreators as userActions} from '../redux/modules/user';
 import styled from 'styled-components';
 import {useDispatch, useSelector} from 'react-redux';
 import { history } from "../redux/configStore";
+import {idCheck, pwdCheck} from '../shared/common';
 
 const SignUp = (props) => {
     const dispatch = useDispatch()
@@ -15,7 +16,16 @@ const SignUp = (props) => {
             window.alert('공란이 있습니다, 모든 정보를 입력하세요.')
             return
         }
-        dispatch(userActions.is_Signup())
+
+        if(!idCheck(id)){
+          window.alert('5~12자리의 영문과 숫자를 조합해 주세요.')
+          return
+        }
+
+        if(!pwdCheck(pwd)){
+          window.alert('8~16자리의 영문과 숫자를 조합해 주세요.')
+          return
+        }
         dispatch(userActions.signUpSV([id, name, pwd], history))
 
     }
@@ -32,7 +42,7 @@ const SignUp = (props) => {
             }} placeholder="이름을 입력하세요" margin='5px'/>
           <Input _onChange={(e) => {
               setPwd(e.target.value);
-            }}
+            }} type='password'
             value={pwd} placeholder="비밀번호를 입력하세요" margin='5px'/>
         </Grid>
 

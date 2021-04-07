@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Grid, Text, Image, Button} from '../elements';
+import {Grid, Text, Image} from '../elements';
 import Story from '../components/Story';
 import Post from '../components/Post';
 import {useDispatch, useSelector} from 'react-redux';
@@ -9,14 +9,33 @@ import {history} from '../redux/configStore';
 import RecommendList from '../components/RecommendList';
 
 
-const NewPost = (props) => {
+const FollowingPost = (props) => {
     const dispatch = useDispatch();
     const data = useSelector(state => state.user.user);
     const post_data = useSelector(state => state.post.list);
+    const friend_list = useSelector(state => state.friend.friend_list)
+
+    const checkFriendPost = (e) => {
+        let num = 0;
+        for(let i =0; i<friend_list.length; i++){
+            console.log(e.name)
+            if(e.name == friend_list[i].name){
+                num +=1
+            }
+        }
+        if(num >= 1){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    const friend_post = post_data.filter(checkFriendPost);
+
     const token = sessionStorage.getItem('token');
     React.useEffect(()=> {
         if (post_data.length < 2) {
-            dispatch(postActions.getAllPostSV(token, history));
+            dispatch(postActions.getFriendsPostSV(token, history));
         }
       },[])
     
@@ -25,11 +44,11 @@ const NewPost = (props) => {
             <Container>
                 <PostContainer>
                     <Story/>
-                    <Text cursor='pointer' _onClick={()=> {history.push('/followingpost')}}>친구 게시물만 보기</Text>
-                    {post_data.map((p, idx) => {
+                    <Text cursor='pointer' _onClick={()=> {history.push('/newpost')}}>모든 게시물 보기</Text>
+                    {friend_post.map((p, idx) => {
                         return(
                         <Grid key={idx}
-                            margin='0px'>
+                            margin='10px 0px'>
                             <Post {...p}/>
                         </Grid>
                         )
@@ -81,4 +100,4 @@ const PostContainer=styled.div`
 
 
 
-export default NewPost;
+export default FollowingPost;
