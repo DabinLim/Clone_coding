@@ -48,7 +48,7 @@ const FollowList = (props) => {
                       return(
                         <InfoBox>
                         <Info>
-                    <Image cursor='pointer' _onClick={()=>{history.push('/profile/'+v.name)}} src={v.profile_image}shape="circle" />
+                    <Image cursor='pointer' _onClick={()=>{history.push('/friends/'+v.name)}} src={v.profile_image}shape="circle" />
                     <TextBox>
                       <Text NotP bold>
                         {v.name}

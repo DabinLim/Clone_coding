@@ -14,7 +14,7 @@ const Story = (props) => {
                     return(
                         <ImageContainer>
                         <Image cursor='pointer' src={v.profile_image}shape='circle' size='80' _onClick={()=> {
-                            history.push('/profile/'+v.name)
+                            history.push('/friends/'+v.name)
                         }}></Image>
                         </ImageContainer>
                     )

@@ -1,12 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import {Grid, Text, Image} from '../elements/index';
-import HomeIcon from '@material-ui/icons/Home';
-import ExploreIcon from '@material-ui/icons/Explore';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import React from "react";
+import styled from "styled-components";
+import { Grid, Text, Image } from "../elements/index";
+import HomeIcon from "@material-ui/icons/Home";
+import ExploreIcon from "@material-ui/icons/Explore";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import { history } from "../redux/configStore";
 import { actionCreators as userActions } from "../redux/modules/user";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = (props) => {
     const dispatch = useDispatch()
@@ -40,31 +40,31 @@ const Header = (props) => {
 }
 
 const HeaderContainer = styled.div`
-    border:1px solid #dbdbdb;
-    width:100%;
-    height:55px;
-    position:fixed;
-    z-index:1;
-    background-color:white;
-    display:flex;
-    flex-direction:row;
-    justify-content:center;
+  border: 1px solid #dbdbdb;
+  width: 100%;
+  height: 55px;
+  position: fixed;
+  z-index: 1;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 const HeaderContents = styled.div`
-    max-width:1000px;
-    width:100%;
-    margin-left:20px;
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    justify-content:space-between;
+  max-width: 1000px;
+  width: 100%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const BannerContainer = styled.div`
-    display:flex;
-    flex-direction:row;
-    justify-content: flex_start;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex_start;
 `;
 
 const Banner = styled.div`
@@ -78,17 +78,16 @@ const Banner = styled.div`
 `;
 
 const TextContainer = styled.div`
-    display:flex;
-    flex-direction:row;
-    justify-content: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 const IconContainer = styled.div`
-    margin-right:20px;
-    display:flex;
-    flex-direction:row;
-    justify-content: space-between;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
-
 
 export default Header;

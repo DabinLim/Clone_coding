@@ -34,7 +34,7 @@ const Post = (props) => {
         <DetailContainer>
           <UserInfo>
             <Grid flex_row>
-              <Image src={props.profile_image}shape="circle" size="36"></Image>
+              <Image _onClick={()=>{history.push('/friends/'+props.name)}}src={props.profile_image}shape="circle" size="36"></Image>
               <Text bold>{props.name}</Text>
             </Grid>
             <Grid
