@@ -16,6 +16,7 @@ const Profile = (props) => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.user.user);
   const post_data = useSelector((state) => state.post.list);
+  console.log(post_data);
   const token = sessionStorage.getItem("token");
   React.useEffect(() => {
     if (post_data.length == 0) {

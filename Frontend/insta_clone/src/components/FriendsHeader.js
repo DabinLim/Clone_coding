@@ -15,13 +15,8 @@ const FriendsHeader = (props) => {
   const post_data = useSelector((state) => state.user);
   console.log(post_data);
 
-  const frinedpost_data = useSelector((state) => state.user);
+  const frinedpost_data = useSelector((state) => state.user.data);
   console.log(frinedpost_data);
-
-  const friendsprofile_data = (name) => {
-    dispatch(friendActions.FriendsPostSV(name));
-  };
-  console.log(friendsprofile_data);
 
   if (post_data.user) {
     return (

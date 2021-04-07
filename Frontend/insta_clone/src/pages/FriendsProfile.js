@@ -17,20 +17,25 @@ import FriendsPost from "../components/FriendsPost";
 
 const FriendsProfile = (props) => {
   const dispatch = useDispatch();
-  const data = useSelector((state) => state.user.user);
+  //이 data는 포스트 쓴 유저들의 정보를 가져온다
+  const data = useSelector((state) => state.user.friend);
+  //현재 id의 정보를 가져옴
   const f_post_data = useSelector((state) => state.post.list);
+  console.log(f_post_data);
   const token = sessionStorage.getItem("token");
 
-  // let url = document.location.href.split("/");
-  // let post_id = url[url.length - 1];
+  //들어온 url에 붙은 이름으로 name을 만든다 -> 한글은 좀 이상하게 나옴
+  let url = document.location.href.split("/");
+  let post_name = url[url.length - 1];
+  console.log(post_name);
+  const name = post_name;
+  // console.log(data.name);
 
   React.useEffect(() => {
-    if (f_post_data.length == 0) {
-      dispatch(friendActions.FriendsPostSV(token, history));
+    if (post_name) {
+      dispatch(friendActions.FriendsPostSV(name, token, history));
     }
   }, []);
-  console.log(f_post_data);
-  console.log(data);
 
   // // 해당하는 사람 포스트만 보여주기
   // console.log(data.name);
