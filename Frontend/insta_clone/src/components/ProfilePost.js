@@ -17,13 +17,13 @@ const ProfilePost = (props) => {
   return (
     <React.Fragment>
       <Grid
-        width="270"
+        width="215"
         _onClick={() => {
           history.push("/postdetail/" + props.post_id);
         }}
       >
         <Imageitem>
-          <Image size="250" shape="square" src={props.image[0]}></Image>
+          <Image size="215" shape="square" src={props.image[0]}></Image>
         </Imageitem>
       </Grid>
     </React.Fragment>
@@ -32,8 +32,8 @@ const ProfilePost = (props) => {
 
 const Imageitem = styled.div`
   margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 20px;
+  margin-right: 15px;
+  margin-top: 15px;
 `;
 
 export default ProfilePost;
