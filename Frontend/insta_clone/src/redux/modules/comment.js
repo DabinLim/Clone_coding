@@ -86,6 +86,7 @@ const addCommentSV = (post_id, comment, token) => {
         };
 
         dispatch(addComment(comment_list));
+        dispatch(postActions.newComment(parseInt(post_id)));
       })
       .catch((error) => {
         console.log(error);
@@ -113,8 +114,9 @@ const deleteCommentSV = (post_id, comment_id) => {
     };
     axios(options)
       .then((response) => {
-        // console.log(response);
+        // console.log(response)
         dispatch(deleteComment(comment_id));
+        dispatch(postActions.oldComment(parseInt(post_id)));
       })
       .catch((error) => {
         console.log(error);
