@@ -3,6 +3,7 @@ import { produce } from "immer";
 import "moment";
 import moment from "moment";
 import axios from "axios";
+import { actionCreators as postActions } from "./post";
 
 const SET_COMMENT = "SET_COMMENT";
 const ADD_COMMENT = "ADD_COMMENT";
@@ -83,6 +84,7 @@ const addCommentSV = (post_id, comment, token) => {
           comment_id: response.data.realTimeComment.comment_Id,
           insta_id: response.data.realTimeComment.insta_Id,
         };
+
         dispatch(addComment(comment_list));
       })
       .catch((error) => {

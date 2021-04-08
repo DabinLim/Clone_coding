@@ -37,7 +37,7 @@ const Login = (props) => {
         <Grid padding='20px'>
           <Line/>
           <ImageBox>
-          <Image/>
+          <Image onClick={()=>{window.alert('아직 준비중입니다.')}}/>
           </ImageBox>
         </Grid>
       </Grid>
@@ -69,11 +69,12 @@ const ImageBox = styled.div`
 
 const Image = styled.div`
     background-image:url('https://firebasestorage.googleapis.com/v0/b/dab-react.appspot.com/o/facebook.png?alt=media&token=a400eb1a-93b7-484d-acdf-99102126b717');
-    
     max-width:250px;
     height:80px;
     background-size:contain;
     background-repeat:no-repeat;
+    cursor:pointer; 
+    
 `;
 const Line = styled.hr`
 
