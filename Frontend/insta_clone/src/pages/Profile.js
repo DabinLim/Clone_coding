@@ -53,9 +53,10 @@ const Container = styled.div`
   box-sizing: border-box;
   padding-top: 30px;
   margin: 0 auto;
-  max-width: 930px;
   /* position: relative; */
   width: 100vh;
+  /* height: 100%; */
+  max-width: 930px;
 `;
 
 const PostContainer = styled.div`
@@ -63,9 +64,8 @@ const PostContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 30px;
-  margin-right: 3px;
-  margin-left: 3px;
-  justify-content: space-between;
+  margin-right: 15px;
+  margin-left: 15px;
   width: 100%;
 `;
 

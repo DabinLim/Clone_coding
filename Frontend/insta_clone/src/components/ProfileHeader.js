@@ -71,7 +71,7 @@ const ProfileHeader = (props) => {
         <Container>
           <Grid width="291px" height="150px">
             <Image
-              cursor='Pointer'
+              cursor="Pointer"
               shape="circle"
               size="150"
               display="block"
@@ -123,8 +123,9 @@ const Container = styled.div`
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 613px;
+  width: 100%;
   height: 150px;
+  margin-left: 100px;
   margin-bottom: 10px;
 `;
 

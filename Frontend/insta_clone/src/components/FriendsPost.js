@@ -20,10 +20,18 @@ const FriendsPost = (props) => {
           history.push("/postdetail/" + props.post_id);
         }}
       >
-        <Image size="250" shape="square" src={props.image[0]}></Image>
+        <Imageitem>
+          <Image size="250" shape="square" src={props.image[0]}></Image>
+        </Imageitem>
       </Grid>
     </React.Fragment>
   );
 };
+
+const Imageitem = styled.div`
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+`;
 
 export default FriendsPost;

@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const Image = (props) => {
-  const { shape, src, size, _onClick ,cursor} = props;
+  const { shape, src, size, _onClick, cursor } = props;
 
   const styles = {
     src: src,
     size: size,
-    cursor:cursor,
+    cursor: cursor,
   };
 
   if (shape === "circle") {
@@ -36,10 +36,10 @@ const Image = (props) => {
 Image.defaultProps = {
   shape: "circle",
   src:
-    "https://firebasestorage.googleapis.com/v0/b/dab-react.appspot.com/o/%E1%84%91%E1%85%B3%E1%84%85%E1%85%A9%E1%84%91%E1%85%B5%E1%86%AF.jpeg?alt=media&token=aa5058f2-2495-4ef3-acde-b30699096de9",
+    "https://images.pexels.com/photos/376723/pexels-photo-376723.jpeg?cs=srgb&dl=pexels-daniel-pixelflow-376723.jpg&fm=jpg",
   size: 36,
   _onClick: () => {},
-  cursor:'',
+  cursor: "",
 };
 
 const ImageDefault = styled.div`

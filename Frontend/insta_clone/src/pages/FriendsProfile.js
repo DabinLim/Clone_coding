@@ -20,22 +20,19 @@ const FriendsProfile = (props) => {
   //이 data는 포스트 쓴 유저들의 정보를 가져온다
   //현재 id의 정보를 가져옴
   const f_post_data = useSelector((state) => state.post.list);
-  
-  
+
   //들어온 url에 붙은 이름으로 name을 만든다 -> 한글은 좀 이상하게 나옴
   let url = document.location.href.split("/");
   let friend_id = url[url.length - 1];
   // console.log(data.name);
   const checkFriend = (e) => {
     if (e.insta_id == friend_id) {
-        return true;
+      return true;
     }
-}
+  };
 
-
-const friendPost = f_post_data.filter(checkFriend);
-// console.log(friendPost)
- 
+  const friendPost = f_post_data.filter(checkFriend);
+  // console.log(friendPost)
 
   // // 해당하는 사람 포스트만 보여주기
   // console.log(data.name);
@@ -50,11 +47,10 @@ const friendPost = f_post_data.filter(checkFriend);
       <Container>
         <FriendsHeader />
         <PostContainer>
-          {friendPost && friendPost.map((p, idx) => {
-            
+          {friendPost &&
+            friendPost.map((p, idx) => {
               return <FriendsPost key={idx} {...p} />;
-            
-          })}
+            })}
         </PostContainer>
       </Container>
     </React.Fragment>
@@ -74,9 +70,8 @@ const PostContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 30px;
-  margin-right: 3px;
-  margin-left: 3px;
-  justify-content: space-between;
+  margin-right: 15px;
+  margin-left: 15px;
   width: 100%;
 `;
 
