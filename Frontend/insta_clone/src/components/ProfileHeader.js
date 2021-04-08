@@ -125,8 +125,6 @@ const TextContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 150px;
-  margin-left: 100px;
-  margin-bottom: 10px;
 `;
 
 const IdButton = styled.div`

@@ -128,7 +128,7 @@ const Post = (props) => {
                   }}
                 >
                   <ChatBubbleOutlineIcon cursor='pointer' fontSize="large" />
-                  <Text margin='0px 0px 0px 4px' bold>{comment_count}</Text>
+                  <Text margin='0px 0px 0px 4px'>{comment_count}</Text>
                 </Grid>
               </Grid>
               <Grid
@@ -230,7 +230,7 @@ const Post = (props) => {
                   }}
                 >
                   <ChatBubbleOutlineIcon cursor='pointer' fontSize="large" />
-                  <Text margin='0px 0px 0px 4px' bold>{comment_count}</Text>
+                  <Text margin='0px 0px 0px 4px'>{comment_count}</Text>
                 </Grid>
               </Grid>
               <Grid

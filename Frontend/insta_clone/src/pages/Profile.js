@@ -54,7 +54,7 @@ const Container = styled.div`
   padding-top: 30px;
   margin: 0 auto;
   /* position: relative; */
-  width: 100vh;
+  width: 100%;
   /* height: 100%; */
   max-width: 930px;
 `;

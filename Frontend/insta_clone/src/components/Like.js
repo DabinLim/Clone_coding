@@ -42,7 +42,7 @@ const Like = (props) => {
         return (
             <React.Fragment>
                 <FavoriteIcon cursor='pointer' onClick={()=>{dispatch(likeActions.changeLikeSV(props.post_id,token))}} color='secondary' fontSize='large'/>
-                <Text margin='0px 0px 0px 4px' bold>{like_count}</Text>
+                <Text margin='0px 0px 0px 4px'>{like_count}</Text>
             </React.Fragment>
         )
     } 
