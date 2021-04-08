@@ -31,28 +31,35 @@ const SignUp = (props) => {
     }
     return (
         <React.Fragment>
-      <Grid bg_color='white' flex_column padding="0 10%" max_height="380px">
+      <Grid bg_color='white' flex_column padding="0 10% 5% 10%" max_height="380px">
+        <BannerBox> 
         <Banner/>       
-        <Grid min_height='100px' flex_column flex_detail="align-items:center;">
+        </BannerBox>
+        <Grid min_height='80px' flex_column flex_detail="align-items:center;">
           <Input _onChange={(e) => {
               setId(e.target.value);
-            }} placeholder="아이디를 입력하세요" margin='5px'/>
+            }} placeholder="아이디를 입력하세요"/>
           <Input _onChange={(e) => {
               setName(e.target.value);
-            }} placeholder="이름을 입력하세요" margin='5px'/>
+            }} placeholder="이름을 입력하세요" />
           <Input _onChange={(e) => {
               setPwd(e.target.value);
             }} type='password'
-            value={pwd} placeholder="비밀번호를 입력하세요" margin='5px'/>
+            value={pwd} placeholder="비밀번호를 입력하세요" />
         </Grid>
 
-        <Button _onClick={signUp}> 회원가입 </Button>
+        <Button height='auto' _onClick={signUp}> 회원가입 </Button>
 
       </Grid>
     </React.Fragment>
     )
 }
 
+const BannerBox = styled.div`
+  width:100%;
+  min-height:100px;
+  padding: 0px 20%;
+`;
 
 const Banner = styled.div`
     background-image:url('https://firebasestorage.googleapis.com/v0/b/dab-react.appspot.com/o/instagram.png?alt=media&token=a53527c4-07df-4c3f-ae18-ca30c3e0aa2b');

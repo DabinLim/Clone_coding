@@ -49,10 +49,11 @@ const Main = (props) => {
               padding="10px 0px"
               margin="0px 0px 10px 0px"
             >
-            {isSignup?<Text cursor='Pointer' _onClick={setIsSignup}>돌아가기</Text>:<Text cursor='Pointer'_onClick={setIsSignup}>가입하기</Text> }
+            {isSignup?<Text bold color='#0095f6' cursor='Pointer' _onClick={setIsSignup}>돌아가기</Text>:<Text bold color='#0095f6' cursor='Pointer'_onClick={setIsSignup}>가입하기</Text> }
             </Grid>
             <Grid bg_color='white' border height="102px">
-              앱을 다운로드 하세요.
+              <DownloadImage onClick={()=>{window.alert('아직 준비중입니다.')}}/>
+
             </Grid>
           </Grid>
         </Grid>
@@ -86,6 +87,16 @@ const LoginImage = styled.div`
   @media (max-width:850px){
     display:none;
   };
+`;
+
+const DownloadImage = styled.div`
+  width:100%;
+  height:100%;
+  cursor:pointer;
+  background-image:url('https://firebasestorage.googleapis.com/v0/b/dab-react.appspot.com/o/%E1%84%8B%E1%85%A2%E1%86%B8%E1%84%8B%E1%85%B3%E1%86%AF%E1%84%83%E1%85%A1%E1%84%8B%E1%85%AE%E1%86%AB%E1%84%85%E1%85%A9%E1%84%83%E1%85%B3.png?alt=media&token=64038a5d-ed19-4b5d-8352-46d52821a1d7');
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top:5px;
 `;
 
 export default Main;

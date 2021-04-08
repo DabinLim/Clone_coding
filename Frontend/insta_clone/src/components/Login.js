@@ -19,7 +19,9 @@ const Login = (props) => {
   return (
     <React.Fragment>
       <Grid bg_color='white' flex_column padding="0 10%" max_height="380px">
+        <BannerBox>
         <Banner/>       
+        </BannerBox>
         <Grid min_height='100px' flex_column flex_detail="align-items:center;">
           <Input _onChange={(e) => {
               setId(e.target.value);
@@ -34,22 +36,37 @@ const Login = (props) => {
         <Button _onClick={login}> 로그인 </Button>
         <Grid padding='20px'>
           <Line/>
+          <ImageBox>
           <Image/>
+          </ImageBox>
         </Grid>
       </Grid>
     </React.Fragment>
   );
 };
 
+const BannerBox = styled.div`
+  width:100%;
+  min-height:100px;
+  padding: 0px 20%;
+`;
 
 const Banner = styled.div`
     background-image:url('https://firebasestorage.googleapis.com/v0/b/dab-react.appspot.com/o/instagram.png?alt=media&token=a53527c4-07df-4c3f-ae18-ca30c3e0aa2b');
-    max-width:250px;
+    width:100%;
+    margin: 0px auto;
     min-height:100px;
     background-size:contain;
     background-repeat:no-repeat;
     
 `;
+
+const ImageBox = styled.div`
+  width:100%;
+  height:80px;
+  padding: 0px 18%;
+`;
+
 const Image = styled.div`
     background-image:url('https://firebasestorage.googleapis.com/v0/b/dab-react.appspot.com/o/facebook.png?alt=media&token=a400eb1a-93b7-484d-acdf-99102126b717');
     

@@ -66,6 +66,7 @@ const addPostSV = (contents, file, token, history) => {
           createAt: response.data.post_list.createAt,
           profile_image: response.data.post_list.profile_img,
           insta_id: response.data.post_list.insta_Id,
+          comments: response.data.post_list.comments,
         };
         let like_data = {
           post_id: response.data.post_list.post_Id,
@@ -132,7 +133,7 @@ const getAllPostSV = (token, history) => {
     };
     axios(options)
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
         let post_data = [];
         let like_data = [];
         for (let i = 0; i < response.data.post_list.length; i++) {
@@ -145,6 +146,7 @@ const getAllPostSV = (token, history) => {
             profile_image: response.data.post_list[i].profile_img,
             like_count: response.data.post_list[i].like_count,
             insta_id: response.data.post_list[i].insta_Id,
+            comments: response.data.post_list[i].comments
           });
           like_data.push({
             post_id: response.data.post_list[i].post_Id,

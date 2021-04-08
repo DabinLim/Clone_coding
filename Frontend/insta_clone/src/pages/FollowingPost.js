@@ -18,7 +18,7 @@ const FollowingPost = (props) => {
     const checkFriendPost = (e) => {
         let num = 0;
         for(let i =0; i<friend_list.length; i++){
-            console.log(e.name)
+            // console.log(e.name)
             if(e.name == friend_list[i].name){
                 num +=1
             }
@@ -44,11 +44,13 @@ const FollowingPost = (props) => {
             <Container>
                 <PostContainer>
                     <Story/>
-                    <Text cursor='pointer' _onClick={()=> {history.push('/newpost')}}>모든 게시물 보기</Text>
+                    <TextBox>
+                    <Text bold color='#8e8e8e' cursor='pointer' _onClick={()=> {history.push('/newpost')}}>모든 게시물 보기</Text>
+                    </TextBox>
                     {friend_post.map((p, idx) => {
                         return(
                         <Grid key={idx}
-                            margin='10px 0px'>
+                            margin='0px'>
                             <Post {...p}/>
                         </Grid>
                         )
@@ -94,6 +96,13 @@ const PostContainer=styled.div`
     flex-direction:column;
     justify-items: center;
     width:100%;
+`;
+
+const TextBox = styled.div`
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-end;
+    margin-right: 10px;
 `;
 
 

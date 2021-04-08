@@ -26,7 +26,7 @@ const NewPost = (props) => {
                 <PostContainer>
                     <Story/>
                     <TextBox>
-                    <Text bold color='#0095f6' cursor='pointer' _onClick={()=> {history.push('/followingpost')}}>친구 게시물만 보기</Text>
+                    <Text bold color='#8e8e8e' cursor='pointer' _onClick={()=> {history.push('/followingpost')}}>친구 게시물만 보기</Text>
                     </TextBox>
                     {post_data.map((p, idx) => {
                         return(

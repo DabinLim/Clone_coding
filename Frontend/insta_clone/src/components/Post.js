@@ -17,6 +17,8 @@ const Post = (props) => {
   
 
   const [modalVisible, setModalVisible] = React.useState(false);
+  let comment_count = props.comments.length
+
 
   const openModal = () => {
     setModalVisible(true);
@@ -52,6 +54,7 @@ const Post = (props) => {
     }
  
   };
+  
 
   return (
     <React.Fragment>
@@ -69,6 +72,7 @@ const Post = (props) => {
             <UserInfo>
               <Grid flex_row>
                 <Image
+                cursor='pointer'
                   _onClick={() => {
                     history.push("/profile");
                   }}
@@ -85,10 +89,10 @@ const Post = (props) => {
                 flex_row
                 flex_detail="justify-content:space-between;"
               >
-                <Text cursor="pointer" _onClick={openModal}>
+                <Text color='#0095f6' cursor="pointer" _onClick={openModal}>
                   수정
                 </Text>
-                <Text cursor="pointer" _onClick={deletePost}>
+                <Text color='#0095f6' cursor="pointer" _onClick={deletePost}>
                   삭제
                 </Text>
               </Grid>
@@ -120,7 +124,8 @@ const Post = (props) => {
                     history.push("/postdetail/" + props.post_id);
                   }}
                 >
-                  <ChatBubbleOutlineIcon fontSize="large" />
+                  <ChatBubbleOutlineIcon cursor='pointer' fontSize="large" />
+                  <Text margin='0px 0px 0px 4px' bold>{comment_count}</Text>
                 </Grid>
               </Grid>
               <Grid
@@ -146,6 +151,7 @@ const Post = (props) => {
             <Grid bg_color="white" flex_row height="50px">
               <Grid width="auto" height="auto" margin="auto 10px">
                 <InsertEmoticonIcon
+                cursor='pointer'
                   fontSize="large"
                   onClick={() => {
                     window.alert("아직 준비중입니다.");
@@ -160,7 +166,7 @@ const Post = (props) => {
                 is_comment
               />
               <Grid width="40px" margin="auto 10px">
-                <Text _onClick={commentWrite} cursor="Pointer">
+                <Text color='#0095f6' _onClick={commentWrite} cursor="Pointer">
                   게시
                 </Text>
               </Grid>
@@ -173,6 +179,7 @@ const Post = (props) => {
             <UserInfo>
               <Grid flex_row>
                 <Image
+                cursor='pointer'
                   _onClick={() => {
                     history.push("/friends/" + props.insta_id);
                   }}
@@ -219,7 +226,8 @@ const Post = (props) => {
                     history.push("/postdetail/" + props.post_id);
                   }}
                 >
-                  <ChatBubbleOutlineIcon fontSize="large" />
+                  <ChatBubbleOutlineIcon cursor='pointer' fontSize="large" />
+                  <Text margin='0px 0px 0px 4px' bold>{comment_count}</Text>
                 </Grid>
               </Grid>
               <Grid
@@ -245,6 +253,7 @@ const Post = (props) => {
             <Grid bg_color="white" flex_row height="50px">
               <Grid width="auto" height="auto" margin="auto 10px">
                 <InsertEmoticonIcon
+                cursor='pointer'
                   fontSize="large"
                   onClick={() => {
                     window.alert("아직 준비중입니다.");
@@ -259,7 +268,7 @@ const Post = (props) => {
                 is_comment
               />
               <Grid width="40px" margin="auto 10px">
-                <Text _onClick={commentWrite} cursor="Pointer">
+                <Text color='#0095f6' _onClick={commentWrite} cursor="Pointer">
                   게시
                 </Text>
               </Grid>

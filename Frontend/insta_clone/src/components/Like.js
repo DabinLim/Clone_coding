@@ -41,14 +41,14 @@ const Like = (props) => {
     if(nowLike){
         return (
             <React.Fragment>
-                <FavoriteIcon onClick={()=>{dispatch(likeActions.changeLikeSV(props.post_id,token))}} color='secondary' fontSize='large'/>
+                <FavoriteIcon cursor='pointer' onClick={()=>{dispatch(likeActions.changeLikeSV(props.post_id,token))}} color='secondary' fontSize='large'/>
                 <Text margin='0px 0px 0px 4px' bold>{like_count}</Text>
             </React.Fragment>
         )
     } 
         return (
         <React.Fragment>
-            <FavoriteBorderIcon onClick={()=>{dispatch(likeActions.changeLikeSV(props.post_id,token))}}fontSize='large'/>
+            <FavoriteBorderIcon cursor='pointer' onClick={()=>{dispatch(likeActions.changeLikeSV(props.post_id,token))}}fontSize='large'/>
             <Text >{like_count}</Text>
         </React.Fragment>
         )

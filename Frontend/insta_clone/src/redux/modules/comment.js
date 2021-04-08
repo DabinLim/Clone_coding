@@ -93,7 +93,7 @@ const addCommentSV = (post_id, comment, token) => {
   };
 
 
-  const deleteCommentSV = (comment_id) => {
+  const deleteCommentSV = (post_id,comment_id) => {
     console.log(comment_id)
     return function(dispatch) {
       const options = {
@@ -104,6 +104,7 @@ const addCommentSV = (post_id, comment, token) => {
           'Content-Type': 'application/json;charset=UTF-8',
         },
         data: {
+          post_Id:post_id,
           comment_Id:comment_id
         }
       };

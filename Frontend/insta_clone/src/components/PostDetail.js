@@ -43,7 +43,7 @@ const PostDetail = (props) => {
             <CommentContainer>
                 {comment_list.map((v) =>{
                     return(
-                        <CommentItem key={v.comment_id} {...v}/>
+                        <CommentItem post_id={post_id} key={v.comment_id} {...v}/>
                     )
                 })}
             </CommentContainer>

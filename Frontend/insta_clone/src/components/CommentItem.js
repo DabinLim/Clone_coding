@@ -6,10 +6,11 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 import {history} from '../redux/configStore';
 
 const CommentItem = (props) => {
+  console.log(props.post_id)
   const dispatch = useDispatch();
     const deleteComment = () => {
       if(window.confirm('정말 삭제하시겠습니까?')){
-        dispatch(commentActions.deleteCommentSV(props.comment_id))
+        dispatch(commentActions.deleteCommentSV(props.post_id,props.comment_id))
       }
     }
 

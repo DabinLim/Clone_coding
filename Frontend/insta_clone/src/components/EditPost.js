@@ -46,7 +46,7 @@ const EditPost = (props) => {
               {closable && <CloseButton onClick={close}>x</CloseButton>}
               <Grid flex_row>
               <Input multiLine value={content}_onChange={(e)=>{setContent(e.target.value)}} placeholder='수정할 내용을 입력하세요.'/>
-              <Button margin='auto 20px' height='40px' width='60px' _onClick={editPost}>수정</Button>
+              <Button margin='auto 0px auto 20px' height='40px' width='60px' _onClick={editPost}>수정</Button>
               </Grid>
               </ModalInner>
         </ModalContainer>
