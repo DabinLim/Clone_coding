@@ -23,10 +23,8 @@ const FriendsHeader = (props) => {
   let friend_id = url[url.length - 1];
 
   React.useEffect(() => {
-
-      dispatch(friendActions.FriendsPostSV(friend_id, token, history))
+    dispatch(friendActions.FriendsPostSV(friend_id, token, history));
   }, []);
-  
 
   if (frinedpost_data) {
     return (
@@ -130,8 +128,9 @@ const Container = styled.div`
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 613px;
+  width: 100%;
   height: 150px;
+  margin-left: 100px;
   margin-bottom: 10px;
 `;
 

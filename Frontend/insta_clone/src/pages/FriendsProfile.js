@@ -62,17 +62,22 @@ const Container = styled.div`
   margin: 0 auto;
   max-width: 930px;
   /* position: relative; */
-  width: 100vh;
+  width: 100%;
+  max-width: 800px;
+  min-width: 800px;
 `;
 
 const PostContainer = styled.div`
   display: flex;
+  box-sizing: border-box;
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 30px;
   margin-right: 15px;
   margin-left: 15px;
   width: 100%;
+  max-width: 800px;
+  min-width: 800px;
 `;
 
 export default FriendsProfile;
