@@ -15,6 +15,7 @@ const DELETE_POST = 'DELETE_POST';
 const EDIT_POST = 'EDIT_POST';
 
 
+
 const setPost = createAction(SET_POST, (post_data) => ({
   post_data,
 }));
@@ -26,6 +27,8 @@ const addPost = createAction(ADD_POST, (post) => ({ post }));
 const deletePost = createAction(DELETE_POST, (post) => ({post}));
 
 const editPost = createAction(EDIT_POST, (post) => ({post}));
+
+
 
 
 const initialState = {
@@ -317,7 +320,8 @@ export default handleActions(
   
         // 인덱스를 이용해 list 정보와, action의 포스트 정보를 함께 업데이트한다.
         draft.list[idx].content = action.payload.post.content
-    })
+    }),
+
   },
   initialState
 );

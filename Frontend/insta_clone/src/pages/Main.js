@@ -38,7 +38,7 @@ const Main = (props) => {
           <LoginImage />
 
           <Grid flex_column min_width='350px' max_width='350px' height="620px" margin='auto'>
-            <Grid border height="380px" padding="10px 0px" margin="10px 0px">
+            <Grid bg_color='white' border height="380px" padding="10px 0px" margin="10px 0px">
                 {isSignup? <SignUp/> : <Login/>}
             </Grid>
             <Grid
@@ -52,18 +52,18 @@ const Main = (props) => {
             {isSignup?<Text bold color='#0095f6' cursor='Pointer' _onClick={setIsSignup}>돌아가기</Text>:<Text bold color='#0095f6' cursor='Pointer'_onClick={setIsSignup}>가입하기</Text> }
             </Grid>
             <Grid bg_color='white' border height="102px">
-              <DownloadImage onClick={()=>{window.alert('아직 준비중입니다.')}}/>
+              <DownloadImage onClick={notYet}/>
 
             </Grid>
           </Grid>
         </Grid>
         <Grid flex_column>
             <Grid margin='2% 0px 0px 0px' center>
-            <Text _onClick={notYet}>
+            <Text cursor='pointer' _onClick={notYet}>
             소개 블로그 채용 정보 도움말 API 개인정보처리방침 약관 인기 계정
               해시태그 위치
                 </Text>
-                <Text _onClick={notYet}>
+                <Text cursor='pointer'  _onClick={notYet}>
                 뷰티 댄스 및 공연 피트니스 식음료 집 및 정원 음악 시각 예술
                 </Text>
             </Grid>
