@@ -34,6 +34,9 @@ const Imageitem = styled.div`
   margin-left: 20px;
   margin-right: 15px;
   margin-top: 15px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
 `;
 
 export default ProfilePost;
