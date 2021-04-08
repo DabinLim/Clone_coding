@@ -14,6 +14,7 @@ const PostDetail = (props) => {
     let url = document.location.href.split("/");
     let post_id = url[url.length - 1];
     
+    
     const dispatch = useDispatch();
 
     const checkPost = (e) => {

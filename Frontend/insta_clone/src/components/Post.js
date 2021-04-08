@@ -30,6 +30,8 @@ const Post = (props) => {
 
   const [comment, setComment] = React.useState();
   const dispatch = useDispatch();
+
+
   const token = sessionStorage.getItem("token");
   const commentWrite = () => {
     setComment("");
@@ -54,6 +56,7 @@ const Post = (props) => {
     }
  
   };
+
   
 
   return (

@@ -81,7 +81,9 @@ const addCommentSV = (post_id, comment, token) => {
           insta_id: response.data.realTimeComment.insta_Id,
       }
 
+
       dispatch(addComment(comment_list))
+      dispatch(postActions.newComment(parseInt(post_id)))
     
     }).catch((error) => {
       console.log(error);
@@ -114,6 +116,7 @@ const addCommentSV = (post_id, comment, token) => {
       axios(options).then((response) => {
         // console.log(response)
         dispatch(deleteComment(comment_id))
+        dispatch(postActions.oldComment(parseInt(post_id)))
       }).catch((error) => {
         console.log(error);
         if (error.response) {

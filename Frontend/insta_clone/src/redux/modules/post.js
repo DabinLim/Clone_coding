@@ -13,6 +13,8 @@ const SET_FRIEND_POST = "SET_FRIEND_POST";
 const ADD_POST = "ADD_POST";
 const DELETE_POST = 'DELETE_POST';
 const EDIT_POST = 'EDIT_POST';
+const NEW_COMMENT = 'NEW_COMMENT';
+const OLD_COMMENT = 'OLD_COMMENT';
 
 
 
@@ -28,6 +30,9 @@ const deletePost = createAction(DELETE_POST, (post) => ({post}));
 
 const editPost = createAction(EDIT_POST, (post) => ({post}));
 
+const newComment = createAction(NEW_COMMENT, (comment_info) => ({comment_info}));
+
+const oldComment = createAction(OLD_COMMENT, (comment_info)=>({comment_info}))
 
 
 
@@ -322,6 +327,16 @@ export default handleActions(
         draft.list[idx].content = action.payload.post.content
     }),
 
+    [NEW_COMMENT] : (state, action) => produce(state, (draft) => {
+      let idx = draft.list.findIndex((p) => p.post_id === action.payload.comment_info);
+      draft.list[idx].comments.push('add')
+    }),
+
+    [OLD_COMMENT] : (state, action) => produce(state, (draft) => {
+      let idx = draft.list.findIndex((p) => p.post_id === action.payload.comment_info);
+      draft.list[idx].comments.pop()
+    })
+
   },
   initialState
 );
@@ -335,6 +350,8 @@ const actionCreators = {
   getMyPostSV,
   deletePostSV,
   editPostSV,
+  newComment,
+  oldComment
 };
 
 export { actionCreators };
