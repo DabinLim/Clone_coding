@@ -51,6 +51,7 @@ const initialPost = {
 
 const addPostSV = (contents, file, token, history) => {
   return function (dispatch) {
+    // formdata에 파일과 게시글 내용을 담아 서버로 전송
     let formData = new FormData();
     formData.append("file", file);
     formData.append("content", contents);
@@ -66,6 +67,7 @@ const addPostSV = (contents, file, token, history) => {
     axios(options)
       .then((response) => {
         // console.log(response.data);
+        // 방금 업데이트 된 포스트 정보를 받아 정리한다.
         let post_data = {
           post_id: response.data.post_list.post_Id,
           name: response.data.post_list.name,
@@ -76,13 +78,16 @@ const addPostSV = (contents, file, token, history) => {
           insta_id: response.data.post_list.insta_Id,
           comments: response.data.post_list.comments,
         };
+        // 포스트 정보에 관련된 좋아요 정보는 따로 정리한다.
         let like_data = {
           post_id: response.data.post_list.post_Id,
           like_count: response.data.post_list.like_count,
           like_user: response.data.post_list.like_user,
         };
         // console.log(post_data, like_data);
+        // 리덕스 상태 업데이트
         dispatch(addPost(post_data));
+        // 정리한 좋아요 정보를 like 리덕스 상태에 업데이트
         dispatch(likeActions.addLike(like_data));
         window.alert("게시물 작성이 완료되었습니다.");
         history.push("/profile");
@@ -144,6 +149,7 @@ const getAllPostSV = (token, history) => {
         console.log(response.data);
         let post_data = [];
         let like_data = [];
+        // response로 받은 데이터중 게시물 데이터와 좋아요 데이터를 분류하여 정리한다.
         for (let i = 0; i < response.data.post_list.length; i++) {
           post_data.push({
             post_id: response.data.post_list[i].post_Id,
@@ -162,6 +168,7 @@ const getAllPostSV = (token, history) => {
             like_count: response.data.post_list[i].like_count,
           });
         }
+        // 각각의 리덕스 업데이트
         dispatch(setPost(post_data));
         dispatch(likeActions.setLike(like_data));
       })
@@ -233,6 +240,7 @@ const deletePostSV = (post_id) => {
     };
     axios(options).then((response) => {
       // console.log(response)
+      // 방금 삭제한 게시물의 post_id를 이용하여 리덕스 상태 업데이트
       dispatch(deletePost(post_id))
     }).catch((error) => {
       console.log(error);
@@ -265,6 +273,7 @@ const editPostSV = (content, post_id) => {
       };
     
       dispatch(editPost(post_data))
+      // 방금 수정한 게시물의 post_id와 수정된 content를 묶어 리덕스 상태 업데이트
     }).catch((error) => {
       console.log(error);
       if (error.response) {
@@ -321,18 +330,21 @@ export default handleActions(
     }),
 
     [EDIT_POST] : (state, action) => produce(state, (draft) => {
+      // 현재 list의 게시물 정보중 방금 수정한 게시물과 post_id가 일치하는 게시물의 인덱스를 알아낸 후
       let idx = draft.list.findIndex((p) => p.post_id === action.payload.post.post_id);
   
-        // 인덱스를 이용해 list 정보와, action의 포스트 정보를 함께 업데이트한다.
+        // 그 인덱스의 content데이터를 수정한 content로 갈아끼워준다.
         draft.list[idx].content = action.payload.post.content
     }),
 
     [NEW_COMMENT] : (state, action) => produce(state, (draft) => {
       let idx = draft.list.findIndex((p) => p.post_id === action.payload.comment_info);
+      // 게시물 수정과 같은 방법으로 해당 게시물의 index를 찾아내 comments에 아무 정보(add)를 추가해준다. 어차피 comments 숫자 세는 용도로 사용
       draft.list[idx].comments.push('add')
     }),
 
     [OLD_COMMENT] : (state, action) => produce(state, (draft) => {
+      // 게시물 수정과 같은 방법으로 해당 게시물의 index를 찾아내 comments에 아무 정보나 하나 빼준다. 어차피 comments 숫자 세는 용도로 사용
       let idx = draft.list.findIndex((p) => p.post_id === action.payload.comment_info);
       draft.list[idx].comments.pop()
     })

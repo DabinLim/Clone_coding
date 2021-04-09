@@ -32,6 +32,7 @@ const changeLikeSV = (postid,token) => {
       .then((response) => {
         // console.log(response.data)
         let like_data = [];
+        // response에서 필요한 데이터를 분류하여 like_data에 저장
         for(let i =0; i< response.data.post_list.length; i++){
             like_data.push({
                 post_id:response.data.post_list[i].post_Id,
@@ -40,6 +41,7 @@ const changeLikeSV = (postid,token) => {
             })
         }
         // console.log(like_data)
+        // 리덕스 상태 업데이트
         dispatch(setLike(like_data))
     })
       .catch((error) => {

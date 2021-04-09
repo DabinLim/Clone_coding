@@ -11,6 +11,7 @@ import { history } from "../redux/configStore";
 const EditPost = (props) => {
   const { className, visible, maskClosable, closable, onClose, post_id } = props;
   const token = sessionStorage.getItem('token');
+  // 수정을 할때 현재 게시물의 content를 인풋창에 미리 띄워놓기 위해 state의 default값을 props.content로 설정
     const [content, setContent] = React.useState(props.content);
     
     const user = useSelector(state=> state.user)

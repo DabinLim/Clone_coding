@@ -8,6 +8,7 @@ import store from "./redux/configStore";
 
 
 ReactDOM.render(  
+  // 스토어 주입
   <Provider store={store}>
     <App />
   </Provider>,

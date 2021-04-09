@@ -7,6 +7,8 @@ import { actionCreators as friendActions } from "../redux/modules/friend";
 import FollowList from './FollowList';
 
 const RecommendList = (props) => {
+
+  // 나의 팔로우(FriendList) 정보들을 담은 모달창
     const [modalVisible, setModalVisible] = React.useState(false)
 
     const openModal = () => {
@@ -23,6 +25,7 @@ const RecommendList = (props) => {
 
     const token = sessionStorage.getItem('token')
   const addFriend = (name, id) => {
+    // 현재 로그인한 사람의 친구 정보 리덕스 상태에 업데이트
     dispatch(friendActions.addFriendSV(token, name))
   }
 
@@ -34,10 +37,12 @@ const RecommendList = (props) => {
     user_id = user.user.insta_Id;
     user_profile = user.user.profile_img;
   }
+  // 친구가 아닌 유저는 추천리스트
   const recommended_list = useSelector((state) => state.friend.list);
 
   React.useEffect(() => {
     const token = sessionStorage.getItem("token");
+    // 친구 리스트에 없는 유저는 추천 리스트에 업데이트
     dispatch(friendActions.setRecommendSV(token));
   }, []);
 

@@ -10,10 +10,12 @@ const Login = (props) => {
   const [id, setId] = React.useState('');
   const [pwd, setPwd] = React.useState('');
   const login = () => {
+    // 공란이 있을경우 dispatch를 실행하지 않고 리턴
     if(!id || !pwd){
         window.alert('아이디와 비밀번호 모두 입력해주세요')
         return
     }
+    // 리덕스에서 api 연동 이후에 화면 전환을 위해 history를 인자로 추가
     dispatch(userActions.loginSV([id, pwd], history));
   };
   return (
@@ -23,6 +25,7 @@ const Login = (props) => {
         <Banner/>       
         </BannerBox>
         <Grid min_height='100px' flex_column flex_detail="align-items:center;">
+          {/* input 값의 변화를 state에 저장 */}
           <Input _onChange={(e) => {
               setId(e.target.value);
             }} placeholder="아이디를 입력하세요" margin='5px'/>

@@ -9,6 +9,7 @@ import { history } from "../redux/configStore";
 
 const PostWrite = (props) => {
   const dispatch = useDispatch();
+  
   const [preview, setPreview] = React.useState('http://via.placeholder.com/400x300')
   const [file, setFile] = React.useState(null);
   const [value, setValue] = React.useState("");
@@ -20,9 +21,10 @@ const PostWrite = (props) => {
 
   const addPost = () => {
     const token = sessionStorage.getItem("token");
+    // 로그인 상태인 경우에만 게시글 작성 가능
     if (token) {
-      console.log("작성시작");
-      console.log(file);
+      // console.log("작성시작");
+      // console.log(file);
       dispatch(postActions.addPostSV(contents, file, token, history));
     } else if (!token) {
       window.alert("로그인 상태가 아닙니다.");
@@ -38,9 +40,12 @@ const PostWrite = (props) => {
   const fileInput = React.useRef();
 
   const selectFile = (e) => {
+    //file state에 현재 선택된 파일 저장
     setFile(e.target.files[0]);
     const reader = new FileReader();
+    // 현재 선택된 파일을 dataurl로 변환
     reader.readAsDataURL(e.target.files[0]);
+    // 변환된 dataurl을 preview state에 저장
     reader.onload = () => {
       setPreview(reader.result)
     }

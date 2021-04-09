@@ -36,6 +36,7 @@ const getCommentSV = (post_id) => {
       .then((response) => {
         // console.log(response.data)
         let comment_list = [];
+        // reponse 데이터 중 필요한 데이터를 분류하여 comment_list에 저장
         for (let i = 0; i < response.data.comments.length; i++) {
           comment_list.push({
             profile_image: response.data.comments[i].profile_img,
@@ -46,6 +47,7 @@ const getCommentSV = (post_id) => {
             insta_id: response.data.comments[i].insta_Id,
           });
         }
+        // 리덕스 상태 업데이트
         dispatch(setComment(comment_list));
       })
       .catch((error) => {
@@ -84,8 +86,9 @@ const addCommentSV = (post_id, comment, token) => {
           comment_id: response.data.realTimeComment.comment_Id,
           insta_id: response.data.realTimeComment.insta_Id,
         };
-
+        // 방금 추가한 코멘트 정보를 리덕스 상태에 업데이트
         dispatch(addComment(comment_list));
+        // 코멘트의 숫자를 셀때는 post정보에 포함된 comments 배열의 길이로 숫자를 세서 화면에 표현하므로 post 리덕스의 상태도 수정해주어야 한다.
         dispatch(postActions.newComment(parseInt(post_id)));
       })
       .catch((error) => {
@@ -115,7 +118,9 @@ const deleteCommentSV = (post_id, comment_id) => {
     axios(options)
       .then((response) => {
         // console.log(response)
+        // 방금 삭제한 코멘트 정보를 리덕스 상태에 업데이트
         dispatch(deleteComment(comment_id));
+        // 코멘트의 숫자를 셀때는 post정보에 포함된 comments 배열의 길이로 숫자를 세서 화면에 표현하므로 post 리덕스의 상태도 수정해주어야 한다.
         dispatch(postActions.oldComment(parseInt(post_id)));
       })
       .catch((error) => {

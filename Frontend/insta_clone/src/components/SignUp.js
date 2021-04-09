@@ -12,11 +12,12 @@ const SignUp = (props) => {
     const [name, setName] = React.useState('');
     const [pwd, setPwd] = React.useState('');
     const signUp = () => {
+      // 공란이 있는 경우
         if(!id || !name || !pwd) {
             window.alert('공란이 있습니다, 모든 정보를 입력하세요.')
             return
         }
-
+        // 정규 표현식에 맞지 않는 경우
         if(!idCheck(id)){
           window.alert('5~12자리의 영문과 숫자를 조합해 주세요.')
           return
@@ -26,6 +27,7 @@ const SignUp = (props) => {
           window.alert('8~16자리의 영문과 숫자를 조합해 주세요.')
           return
         }
+        // 로그인과 마찬가지로 history를 인자로 추가
         dispatch(userActions.signUpSV([id, name, pwd], history))
 
     }

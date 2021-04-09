@@ -22,6 +22,7 @@ const CommentItem = (props) => {
 
   return (
     <React.Fragment>
+      {/* 내 댓글인 경우에만 삭제 가능 */}
       {user_name == props.user_name ? <InfoBox>
         <Info>
           <Image _onClick={()=> {history.push('/profile')}} src={props.profile_image} shape="circle" />

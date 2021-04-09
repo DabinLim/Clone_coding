@@ -17,30 +17,23 @@ import FriendsPost from "../components/FriendsPost";
 
 const FriendsProfile = (props) => {
   const dispatch = useDispatch();
-  //이 data는 포스트 쓴 유저들의 정보를 가져온다
-  //현재 id의 정보를 가져옴
+  
   const f_post_data = useSelector((state) => state.post.list);
 
-  //들어온 url에 붙은 이름으로 name을 만든다 -> 한글은 좀 이상하게 나옴
+  // 현재 url을 '/' 기준으로 나누어 url 변수에 저장
   let url = document.location.href.split("/");
+  // 가장 마지막 인덱스가 친구 id이므로 friend_id라는 변수에 저장
   let friend_id = url[url.length - 1];
   // console.log(data.name);
+  // 게시글 정보의 id와 친구id를 비교하여 일치하는 경우에만 true 반환
   const checkFriend = (e) => {
     if (e.insta_id == friend_id) {
       return true;
     }
   };
-
+ // checkFriend 함수를 이용하여 친구 게시글만 friendPost 변수에 저장
   const friendPost = f_post_data.filter(checkFriend);
-  // console.log(friendPost)
-
-  // // 해당하는 사람 포스트만 보여주기
-  // console.log(data.name);
-  // console.log(post_data[1].name);
-
-  // if (data.name = post_data[i].name) {
-
-  // }
+  
 
   return (
     <React.Fragment>

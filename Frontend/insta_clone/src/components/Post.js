@@ -15,7 +15,7 @@ import EditPost from "./EditPost";
 
 const Post = (props) => {
   
-
+  // 게시글 수정을 위한 모달 창, comment State
   const [modalVisible, setModalVisible] = React.useState(false);
   let comment_count = props.comments.length
 
@@ -34,6 +34,7 @@ const Post = (props) => {
 
   const token = sessionStorage.getItem("token");
   const commentWrite = () => {
+    // comment 작성후에는 input창을 비워주기 위함
     setComment("");
     if (!comment) {
       window.alert("댓글 내용을 입력하세요");
@@ -61,6 +62,7 @@ const Post = (props) => {
 
   return (
     <React.Fragment>
+      {/* 내 게시물인 경우에만 수정과 삭제 가능 */}
       {user_name == props.name ? (
         <Grid flex_column margin="0px">
           <EditPost

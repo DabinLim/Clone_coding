@@ -33,7 +33,7 @@ const loginCheck = (session_info, token) => {
       };
       axios(options)
         .then((response) => {
-          
+          // 로그인 상태라면 현재 로그인한 유저정보 리덕스에 업데이트
           dispatch(setUser(response.data));
         })
         .catch((error) => {
@@ -50,9 +50,12 @@ const loginCheck = (session_info, token) => {
 
 const logOutSV = (history) => {
   return function (dispatch) {
+    // session에 token 삭제 후
     sessionStorage.removeItem("token");
+    // is_login을 false로 바꿔주고
     dispatch(logOut());
     history.replace("/");
+    // 리덕스 상태 업데이트
     dispatch(setUser());
   };
 };
@@ -86,6 +89,7 @@ const loginSV = (data, history) => {
     };
     axios(options)
       .then((response) => {
+        // 받은 토근을 sessionStoreage에 저장
         sessionStorage.setItem("token", response.data.token);
         window.alert("로그인 완료");
         dispatch(setUser(login_data.user_id));
@@ -171,10 +175,11 @@ const signUpSV = (data, history) => {
     };
     axios(options)
       .then((response) => {
+        // 현재 화면을 로그인창으로 바꿔주기 위함
         dispatch(is_Signup())
-        console.log(response);
-        console.log(response.data);
-        console.log(response["data"]);
+        // console.log(response);
+        // console.log(response.data);
+        // console.log(response["data"]);
       })
       .catch((error) => {
         window.alert(error.response.data.errorMessage);
@@ -203,7 +208,7 @@ const editProfile = (file, token, history) => {
   return function (dispatch) {
     let formData = new FormData();
     formData.append("file", file);
-    console.log("넘어왔음");
+    // console.log("넘어왔음");
 
     const options = {
       url: "http://13.209.10.75/api/profile_img_save",
@@ -221,7 +226,8 @@ const editProfile = (file, token, history) => {
           name: response.data.name,
           profile_img: response.data.profile_img,
         };
-        console.log(profile_data);
+        // console.log(profile_data);
+        // 새로운 유저 정보로 리덕스 상태 업데이트
         dispatch(setUser(profile_data));
         // dispatch(likeActions.addLike(like_data));
         window.alert("프로필 변경이 완료되었습니다.");

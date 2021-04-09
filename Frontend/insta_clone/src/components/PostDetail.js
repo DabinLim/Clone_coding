@@ -16,7 +16,7 @@ const PostDetail = (props) => {
     
     
     const dispatch = useDispatch();
-
+    // post리덕스의 게시글 정보 중에서 현재 게시글만 보여주기 위해 필터링
     const checkPost = (e) => {
         if (e.post_id == post_id) {
             return true;
@@ -28,6 +28,8 @@ const PostDetail = (props) => {
     // console.log(thisPost)
     const token = sessionStorage.getItem('token')
     React.useEffect(() => {
+        // 개인 또는 친구 피드에서 post를 선택하여 이동하였을때에는 post리덕스에 게시글 정보가 없다(post리덕스에 게시글 정보를 업데이트 하는 시기는 newpost가 렌더링 될때이다.)
+        // 그러므로 상세페이지에서도 게시글 정보를 렌더링 해준다.
         dispatch(postActions.getAllPostSV(token, history))
         dispatch(commentActions.getCommentSV(post_id));
       }, []);

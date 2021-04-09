@@ -12,6 +12,8 @@ const Story = (props) => {
     }
     const friend_list = useSelector(state => state.friend.friend_list)
 
+    // 친구 게시물만 보기를 선택한 경우에도 자기 자신의 게시물은 보이게 하기 위해 친구리스트에는 자기 자신의 id도 포함되어 있음
+    // 자기 자신의 id를 제외하기 위한 함수
     const checkFriend = (e) => {
         if (e.name !== user_name) {
             return true;
@@ -32,6 +34,7 @@ const Story = (props) => {
                         </ImageContainer>
                     )
                 })}
+                {/* 스토리에 내용물이 없을 경우 width가 짧아져 화면이 깨져서 하얀 그림을 넣은 이미지를 Default로 채워주었다. */}
                 <ImageContainer>
                         <Image shape='circle' size='80'></Image>
                         </ImageContainer>

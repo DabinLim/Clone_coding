@@ -16,10 +16,13 @@ const Main = (props) => {
   //     dispatch(userActions.loginCheck(is_session))
 
   // })
+  // 현재 렌더링된 화면이 회원가입 화면인지 확인
     const isSignup = useSelector(state=>state.user.is_signup)
+    // user 리덕스의 is_signup을 변경하여 현재 화면이 화원가입 화면인지 로그인화면인지 구분
     const setIsSignup = () => {
       dispatch(userActions.is_Signup())
     }
+    // 아직 준비되지 않은 페이지는 알럿창을 띄워준다.
     const notYet = () => {
         window.alert('아직 준비중입니다.')
     }
@@ -38,6 +41,7 @@ const Main = (props) => {
           <LoginImage />
 
           <Grid flex_column min_width='350px' max_width='350px' height="620px" margin='auto'>
+            {/* isSignup의 상태에 따라 로그인 또는 회원가입 페이지를 보여준다. */}
             <Grid bg_color='white' border height="380px" padding="10px 0px" margin="10px 0px">
                 {isSignup? <SignUp/> : <Login/>}
             </Grid>
@@ -49,6 +53,7 @@ const Main = (props) => {
               padding="10px 0px"
               margin="0px 0px 10px 0px"
             >
+              {/*  버튼을 누르면 유저 리덕스의 is_signup을 업데이트 */}
             {isSignup?<Text bold color='#0095f6' cursor='Pointer' _onClick={setIsSignup}>돌아가기</Text>:<Text bold color='#0095f6' cursor='Pointer'_onClick={setIsSignup}>가입하기</Text> }
             </Grid>
             <Grid bg_color='white' border height="102px">

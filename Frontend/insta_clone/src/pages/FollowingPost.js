@@ -15,6 +15,7 @@ const FollowingPost = (props) => {
     const post_data = useSelector(state => state.post.list);
     const friend_list = useSelector(state => state.friend.friend_list)
 
+    // post리덕스의 게시글 정보와 friend리덕스의 친구 정보를 비교하여 게시글이 친구의 게시글인 경우에만 True 반환
     const checkFriendPost = (e) => {
         let num = 0;
         for(let i =0; i<friend_list.length; i++){
@@ -29,7 +30,7 @@ const FollowingPost = (props) => {
             return false
         }
     }
-
+    // checkFriendPost의 반환값을 이용하여 친구 게시물만 friend_post에 저장
     const friend_post = post_data.filter(checkFriendPost);
 
     const token = sessionStorage.getItem('token');

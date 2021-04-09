@@ -15,6 +15,7 @@ const NewPost = (props) => {
     const post_data = useSelector(state => state.post.list);
     const token = sessionStorage.getItem('token');
     React.useEffect(()=> {
+        // 현재 리덕스의 게시글 데이터가 1개 이하일 경우 서버에서 게시글 정보를 가져옴
         if (post_data.length < 2) {
             dispatch(postActions.getAllPostSV(token, history));
         }

@@ -29,7 +29,7 @@ const FollowList = (props) => {
     }
     const friend_list = useSelector(state => state.friend.friend_list)
     
-
+    // 친구리스트에는 자기자신의 이름이 포함되어 있기 때문에 자기 자신의 이름은 걸러준다.
     const checkFriend = (e) => {
       if (e.name !== user_name) {
           return true;
